@@ -1,0 +1,16 @@
+Tier,Model,Rated_Capacity_mAh,Rated_Energy_Wh,Measured_Energy_Wh,Measured_Capacity_mAh,Efficiency_Percent,Weight_g,Energy_Density_Wh_kg,Cell_Architecture,Telemetry_Notes
+S,CUKTECH 45W,20000,74.0,64.09,12822.0,86.6,496.9,129.0,Li-Ion,"All-time lab efficiency record, synchronous buck-boost (ZMI/Xiaomi), minimal ripple, precise OCP"
+S,UGreen 145W,25000,90.0,75.23,,83.6,493.5,152.4,Li-Ion (21700),"Sustained 100W PD output (92.6W real @ 18.5V/5A), 35.3°C converter temp, 5.2A OCP limit, PD 3.0 / PPS"
+S,Vention 165W TFT,20000,74.0,61.62,11958.0,83.3,439.7,140.1,Li-Ion (21700),"Real-time TFT display with dedicated telemetry chip, independent DC-DC rails without port reset"
+S,AlzaPower Metal 40k,40000,148.0,119.69,,80.9,790.9,151.3,Li-Po / Li-Ion,"Full aluminum housing acts as passive heatsink for MOSFETs, zero thermal throttling (>12h continuous load)"
+S,O2 Spark 35W,10000,37.0,28.97,,78.3,173.9,166.6,Li-Ion (2x 21700),"Highest energy density in testbench, 2S configuration minimizes I²R Joule heating losses"
+A,O2 Built-in Cables 10k,10000,37.0,30.48,,82.4,205.0,148.7,Li-Po Pouch,"Low-resistance integrated flex cables, analog OCP cutoff at 2.4A on 9V rail"
+A,WG 10k QC3.0/PD/SM,10000,37.0,30.1,,81.4,220.0,136.8,Li-Po Pouch,Solid 5V/9V rail regulation without transient voltage spikes
+A,AlzaPower Parade 22.5W,20000,74.0,59.46,,80.4,410.9,144.7,Li-Po Pouch,"Consistent 22.5W output, slightly elevated converter temperature under maximum charge current"
+A,WG 20+,20000,74.0,56.74,,76.7,421.0,134.8,Li-Po Pouch,"Conservative analog OCP trip at +15% overcurrent, effectively protects Li-Po pouch cells"
+B,AlzaPower Qi2 Ultra Slim,5000,18.5,14.36,3138.0,77.6,125.2,114.7,Ultra-slim Li-Po,Full Qi2 15W MPP magnetic support with active thermal monitoring on transmitter coil
+B,Vention Cables Yellow,5000,18.5,14.1,,76.2,129.2,109.1,Li-Po Pouch,Mild voltage sag under current loads exceeding 2.0A on 5V rail
+B,Pink Qi2 / MagSafe,5000,18.5,13.56,2995.0,73.3,126.4,107.3,Li-Po + Qi2 coil,"Standard 15W wireless / 18W USB-C, early thermal rollback on magnetic ring under load"
+B,Samsung EB-U1200CS,10000,37.0,26.85,,72.6,233.6,114.9,Li-Po + Qi coil,"Outdated AFC causes drop to 2.4W on non-compatible gear, elevated quiescent parasitic drain"
+B,UGreen Qi2 Black,10000,37.0,25.5,5381.0,68.9,212.8,119.9,Li-Po + Qi2 coil,"High wireless coil transmission losses pull efficiency <70%, USB-C output hard-limited to 3.1A (5V)"
+F,TRONIC PD/QC (Lidl 10k),10000,37.0,18.2,3663.0,49.2,219.8,82.8,Low-grade Li-Po,"Critical flaws: 18.8Wh lost as pure heat, fake LED gauge in CV phase, shuts down below 2.5W load, high self-discharge"
