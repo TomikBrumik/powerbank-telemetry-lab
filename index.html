@@ -86,8 +86,8 @@
                     <span class="text-xs font-semibold uppercase tracking-wider">Lab Record Efficiency</span>
                     <span class="text-xl">🏆</span>
                 </div>
-                <div class="text-2xl font-extrabold text-amber-400">86.6%</div>
-                <p class="text-xs text-gray-400 mt-1 font-medium">CUKTECH 45W (64.09 Wh usable)</p>
+                <div class="text-2xl font-extrabold text-amber-400">93.7%</div>
+                <p class="text-xs text-gray-400 mt-1 font-medium">INIU 45W 20k (69.36 Wh usable)</p>
             </div>
 
             <div class="bg-cardBg border border-borderCol rounded-xl p-5 shadow-md">
@@ -95,8 +95,8 @@
                     <span class="text-xs font-semibold uppercase tracking-wider">Max Energy Density</span>
                     <span class="text-xl">⚡</span>
                 </div>
-                <div class="text-2xl font-extrabold text-blue-400">166.6 <span class="text-base font-normal">Wh/kg</span></div>
-                <p class="text-xs text-gray-400 mt-1 font-medium">O2 Spark 35W (2S 21700)</p>
+                <div class="text-2xl font-extrabold text-blue-400">206.9 <span class="text-base font-normal">Wh/kg</span></div>
+                <p class="text-xs text-gray-400 mt-1 font-medium">INIU 45W 20k (High-Density Li-Po)</p>
             </div>
 
             <div class="bg-cardBg border border-borderCol rounded-xl p-5 shadow-md">
@@ -104,7 +104,7 @@
                     <span class="text-xs font-semibold uppercase tracking-wider">Tested Devices</span>
                     <span class="text-xl">🔬</span>
                 </div>
-                <div id="testedCount" class="text-2xl font-extrabold text-emerald-400">15 Units</div>
+                <div id="testedCount" class="text-2xl font-extrabold text-emerald-400">21 Units</div>
                 <p class="text-xs text-gray-400 mt-1 font-medium">From 5,000 to 40,000 mAh</p>
             </div>
 
@@ -124,7 +124,7 @@
                 <!-- Search -->
                 <div class="relative flex-1">
                     <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3.5 text-gray-400"></i>
-                    <input type="text" id="searchInput" placeholder="Search model, brand, or cell type (e.g. 21700, Cuktech, Qi2)..." class="w-full pl-9 pr-4 py-2.5 rounded-lg border text-sm">
+                    <input type="text" id="searchInput" placeholder="Search model, brand, or cell type (e.g. 21700, Samsung, Qi2)..." class="w-full pl-9 pr-4 py-2.5 rounded-lg border text-sm">
                 </div>
 
                 <!-- Tier Filter Buttons -->
@@ -156,7 +156,7 @@
                 <h2 class="text-base font-semibold text-white flex items-center gap-2">
                     <i data-lucide="bar-chart-2" class="w-4 h-4 text-accentBlue"></i> Efficiency vs. Energy Density Comparison
                 </h2>
-                <span class="text-xs text-gray-400">Bubble size = Rated Capacity</span>
+                <span class="text-xs text-gray-400">Blue = Energy Density (Wh/kg) | Green = Efficiency (%)</span>
             </div>
             <div class="h-64 md:h-80 w-full">
                 <canvas id="benchmarkChart"></canvas>
@@ -169,7 +169,7 @@
                 <h2 class="text-sm font-semibold text-white flex items-center gap-2">
                     <i data-lucide="database" class="w-4 h-4 text-emerald-400"></i> Benchmark Telemetry Database
                 </h2>
-                <span id="filteredCountText" class="text-xs text-gray-400">Showing 15 of 15 models</span>
+                <span id="filteredCountText" class="text-xs text-gray-400">Showing 21 of 21 models</span>
             </div>
             
             <div class="overflow-x-auto">
@@ -207,7 +207,33 @@
         const rawData = [
             {
                 "Tier": "S",
-                "Model": "CUKTECH 45W",
+                "Model": "INIU 45W w/ Built-in Cable (20k)",
+                "Rated_Capacity_mAh": 20000,
+                "Rated_Energy_Wh": 74.0,
+                "Measured_Energy_Wh": 69.36,
+                "Measured_Capacity_mAh": 14291,
+                "Efficiency_Percent": 93.7,
+                "Weight_g": 335.2,
+                "Energy_Density_Wh_kg": 206.9,
+                "Cell_Architecture": "High-Density Li-Po",
+                "Telemetry_Notes": "Absolute lab record, high-density Li-Po architecture, ultra-efficient synchronous buck-boost"
+            },
+            {
+                "Tier": "S",
+                "Model": "AlzaPower Vision 100W (10k)",
+                "Rated_Capacity_mAh": 10000,
+                "Rated_Energy_Wh": 36.0,
+                "Measured_Energy_Wh": 32.94,
+                "Measured_Capacity_mAh": 6593,
+                "Efficiency_Percent": 91.5,
+                "Weight_g": 345.8,
+                "Energy_Density_Wh_kg": 95.3,
+                "Cell_Architecture": "Li-Ion",
+                "Telemetry_Notes": "Avg of 2 units, highly stable output, robust chassis with TFT display"
+            },
+            {
+                "Tier": "S",
+                "Model": "CUKTECH 45W (20k)",
                 "Rated_Capacity_mAh": 20000,
                 "Rated_Energy_Wh": 74.0,
                 "Measured_Energy_Wh": 64.09,
@@ -216,11 +242,11 @@
                 "Weight_g": 496.9,
                 "Energy_Density_Wh_kg": 129.0,
                 "Cell_Architecture": "Li-Ion",
-                "Telemetry_Notes": "All-time lab efficiency record, synchronous buck-boost (ZMI/Xiaomi), minimal ripple, precise OCP"
+                "Telemetry_Notes": "Clean ripple, synchronous buck-boost (ZMI/Xiaomi), precise OCP"
             },
             {
                 "Tier": "S",
-                "Model": "UGreen 145W",
+                "Model": "UGreen 145W (25k)",
                 "Rated_Capacity_mAh": 25000,
                 "Rated_Energy_Wh": 90.0,
                 "Measured_Energy_Wh": 75.23,
@@ -229,11 +255,11 @@
                 "Weight_g": 493.5,
                 "Energy_Density_Wh_kg": 152.4,
                 "Cell_Architecture": "Li-Ion (21700)",
-                "Telemetry_Notes": "Sustained 100W PD output (92.6W real @ 18.5V/5A), 35.3°C converter temp, 5.2A OCP limit, PD 3.0 / PPS"
+                "Telemetry_Notes": "Sustained 100W PD output (92.6W real @ 18.5V/5A), 35.3°C converter temp, 5.2A OCP limit"
             },
             {
                 "Tier": "S",
-                "Model": "Vention 165W TFT",
+                "Model": "Vention 165W TFT (20k)",
                 "Rated_Capacity_mAh": 20000,
                 "Rated_Energy_Wh": 74.0,
                 "Measured_Energy_Wh": 61.62,
@@ -242,7 +268,7 @@
                 "Weight_g": 439.7,
                 "Energy_Density_Wh_kg": 140.1,
                 "Cell_Architecture": "Li-Ion (21700)",
-                "Telemetry_Notes": "Real-time TFT display with dedicated telemetry chip, independent DC-DC rails without port reset"
+                "Telemetry_Notes": "Independent DC-DC lines, dedicated telemetry IC driving color TFT panel"
             },
             {
                 "Tier": "S",
@@ -255,24 +281,24 @@
                 "Weight_g": 790.9,
                 "Energy_Density_Wh_kg": 151.3,
                 "Cell_Architecture": "Li-Po / Li-Ion",
-                "Telemetry_Notes": "Full aluminum housing acts as passive heatsink for MOSFETs, zero thermal throttling (>12h continuous load)"
+                "Telemetry_Notes": "Massive aluminum chassis acts as heatsink, zero thermal throttling over >12h run"
             },
             {
                 "Tier": "S",
-                "Model": "O2 Spark 35W",
+                "Model": "O2 Spark 35W (10k)",
                 "Rated_Capacity_mAh": 10000,
-                "Rated_Energy_Wh": 37.0,
+                "Rated_Energy_Wh": 36.0,
                 "Measured_Energy_Wh": 28.97,
                 "Measured_Capacity_mAh": null,
-                "Efficiency_Percent": 78.3,
+                "Efficiency_Percent": 80.5,
                 "Weight_g": 173.9,
                 "Energy_Density_Wh_kg": 166.6,
                 "Cell_Architecture": "Li-Ion (2x 21700)",
-                "Telemetry_Notes": "Highest energy density in testbench, 2S configuration minimizes I²R Joule heating losses"
+                "Telemetry_Notes": "2S 21700 architecture minimizes Joule I²R losses, supports 5V-20V profiles"
             },
             {
                 "Tier": "A",
-                "Model": "O2 Built-in Cables 10k",
+                "Model": "O2 Built-in Cable 10k",
                 "Rated_Capacity_mAh": 10000,
                 "Rated_Energy_Wh": 37.0,
                 "Measured_Energy_Wh": 30.48,
@@ -281,11 +307,11 @@
                 "Weight_g": 205.0,
                 "Energy_Density_Wh_kg": 148.7,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Low-resistance integrated flex cables, analog OCP cutoff at 2.4A on 9V rail"
+                "Telemetry_Notes": "Low-resistance flex cables, analog OCP cutoff at 2.4A on 9V rail"
             },
             {
                 "Tier": "A",
-                "Model": "WG 10k QC3.0/PD/SM",
+                "Model": "WG 10k QC/PD",
                 "Rated_Capacity_mAh": 10000,
                 "Rated_Energy_Wh": 37.0,
                 "Measured_Energy_Wh": 30.10,
@@ -294,11 +320,11 @@
                 "Weight_g": 220.0,
                 "Energy_Density_Wh_kg": 136.8,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Solid 5V/9V rail regulation without transient voltage spikes"
+                "Telemetry_Notes": "Solid rail regulation without transient voltage spikes, stable 5V and 9V"
             },
             {
                 "Tier": "A",
-                "Model": "AlzaPower Parade 22.5W",
+                "Model": "AlzaPower Parade 22.5W (20k)",
                 "Rated_Capacity_mAh": 20000,
                 "Rated_Energy_Wh": 74.0,
                 "Measured_Energy_Wh": 59.46,
@@ -307,11 +333,11 @@
                 "Weight_g": 410.9,
                 "Energy_Density_Wh_kg": 144.7,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Consistent 22.5W output, slightly elevated converter temperature under maximum charge current"
+                "Telemetry_Notes": "Consistent 22.5W output, classic Li-Po pouch workhorse"
             },
             {
                 "Tier": "A",
-                "Model": "WG 20+",
+                "Model": "WG 20+ (20k)",
                 "Rated_Capacity_mAh": 20000,
                 "Rated_Energy_Wh": 74.0,
                 "Measured_Energy_Wh": 56.74,
@@ -320,11 +346,24 @@
                 "Weight_g": 421.0,
                 "Energy_Density_Wh_kg": 134.8,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Conservative analog OCP trip at +15% overcurrent, effectively protects Li-Po pouch cells"
+                "Telemetry_Notes": "Conservative analog OCP (+15% trip limit) effectively protects pouch cells"
+            },
+            {
+                "Tier": "A",
+                "Model": "AlzaPower Garnet 20k (White)",
+                "Rated_Capacity_mAh": 20000,
+                "Rated_Energy_Wh": 74.0,
+                "Measured_Energy_Wh": 55.98,
+                "Measured_Capacity_mAh": 11430,
+                "Efficiency_Percent": 75.6,
+                "Weight_g": 417.7,
+                "Energy_Density_Wh_kg": 134.0,
+                "Cell_Architecture": "Li-Po Pouch",
+                "Telemetry_Notes": "Reliable Li-Po pouch block with oval LED display, standard 20k efficiency"
             },
             {
                 "Tier": "B",
-                "Model": "AlzaPower Qi2 Ultra Slim",
+                "Model": "AlzaPower Qi2 Slim (5k)",
                 "Rated_Capacity_mAh": 5000,
                 "Rated_Energy_Wh": 18.5,
                 "Measured_Energy_Wh": 14.36,
@@ -333,11 +372,11 @@
                 "Weight_g": 125.2,
                 "Energy_Density_Wh_kg": 114.7,
                 "Cell_Architecture": "Ultra-slim Li-Po",
-                "Telemetry_Notes": "Full Qi2 15W MPP magnetic support with active thermal monitoring on transmitter coil"
+                "Telemetry_Notes": "Full Qi2 15W MPP magnetic profile with active coil thermal monitoring"
             },
             {
                 "Tier": "B",
-                "Model": "Vention Cables Yellow",
+                "Model": "Vention Cables Yellow (5k)",
                 "Rated_Capacity_mAh": 5000,
                 "Rated_Energy_Wh": 18.5,
                 "Measured_Energy_Wh": 14.10,
@@ -350,7 +389,20 @@
             },
             {
                 "Tier": "B",
-                "Model": "Pink Qi2 / MagSafe",
+                "Model": "AlzaPower Parade Gen2 100W (27k)",
+                "Rated_Capacity_mAh": 27000,
+                "Rated_Energy_Wh": 99.9,
+                "Measured_Energy_Wh": 73.34,
+                "Measured_Capacity_mAh": 14815,
+                "Efficiency_Percent": 73.4,
+                "Weight_g": 532.8,
+                "Energy_Density_Wh_kg": 137.6,
+                "Cell_Architecture": "Li-Po Pouch",
+                "Telemetry_Notes": "100W PD buck-boost; elevated converter thermal losses under sustained load"
+            },
+            {
+                "Tier": "B",
+                "Model": "Pink Qi2 / MagSafe (5k)",
                 "Rated_Capacity_mAh": 5000,
                 "Rated_Energy_Wh": 18.5,
                 "Measured_Energy_Wh": 13.56,
@@ -359,11 +411,24 @@
                 "Weight_g": 126.4,
                 "Energy_Density_Wh_kg": 107.3,
                 "Cell_Architecture": "Li-Po + Qi2 coil",
-                "Telemetry_Notes": "Standard 15W wireless / 18W USB-C, early thermal rollback on magnetic ring under load"
+                "Telemetry_Notes": "Standard 15W wireless / 18W PD, early thermal rollback on magnetic ring"
             },
             {
                 "Tier": "B",
-                "Model": "Samsung EB-U1200CS",
+                "Model": "Samsung 20k 25W (EB-P5300)",
+                "Rated_Capacity_mAh": 20000,
+                "Rated_Energy_Wh": 74.0,
+                "Measured_Energy_Wh": 53.98,
+                "Measured_Capacity_mAh": 11694,
+                "Efficiency_Percent": 73.0,
+                "Weight_g": 400.4,
+                "Energy_Density_Wh_kg": 134.8,
+                "Cell_Architecture": "Li-Po Pouch",
+                "Telemetry_Notes": "Dual USB-C + USB-A configuration, solid thermal build, 5h 50m runtime under 2A"
+            },
+            {
+                "Tier": "B",
+                "Model": "Samsung EB-U1200CS (10k)",
                 "Rated_Capacity_mAh": 10000,
                 "Rated_Energy_Wh": 37.0,
                 "Measured_Energy_Wh": 26.85,
@@ -372,11 +437,24 @@
                 "Weight_g": 233.6,
                 "Energy_Density_Wh_kg": 114.9,
                 "Cell_Architecture": "Li-Po + Qi coil",
-                "Telemetry_Notes": "Outdated AFC causes drop to 2.4W on non-compatible gear, elevated quiescent parasitic drain"
+                "Telemetry_Notes": "Outdated AFC drops to 2.4W on non-compatible gear, elevated quiescent drain"
             },
             {
                 "Tier": "B",
-                "Model": "UGreen Qi2 Black",
+                "Model": "ROMOSS 65W Fast Charge (27k)",
+                "Rated_Capacity_mAh": 27000,
+                "Rated_Energy_Wh": 99.9,
+                "Measured_Energy_Wh": 69.62,
+                "Measured_Capacity_mAh": 13947,
+                "Efficiency_Percent": 69.7,
+                "Weight_g": 677.5,
+                "Energy_Density_Wh_kg": 102.8,
+                "Cell_Architecture": "Li-Po / High-Cap",
+                "Telemetry_Notes": "Massive 65W output with higher internal step-up losses, heavy chassis"
+            },
+            {
+                "Tier": "B",
+                "Model": "UGreen Qi2 Black (10k)",
                 "Rated_Capacity_mAh": 10000,
                 "Rated_Energy_Wh": 37.0,
                 "Measured_Energy_Wh": 25.50,
@@ -385,11 +463,11 @@
                 "Weight_g": 212.8,
                 "Energy_Density_Wh_kg": 119.9,
                 "Cell_Architecture": "Li-Po + Qi2 coil",
-                "Telemetry_Notes": "High wireless coil transmission losses pull efficiency <70%, USB-C output hard-limited to 3.1A (5V)"
+                "Telemetry_Notes": "Wireless coil transmission losses pull efficiency <70%, USB-C capped at 3.1A"
             },
             {
                 "Tier": "F",
-                "Model": "TRONIC PD/QC (Lidl 10k)",
+                "Model": "TRONIC 10k (Lidl)",
                 "Rated_Capacity_mAh": 10000,
                 "Rated_Energy_Wh": 37.0,
                 "Measured_Energy_Wh": 18.20,
@@ -398,7 +476,7 @@
                 "Weight_g": 219.8,
                 "Energy_Density_Wh_kg": 82.8,
                 "Cell_Architecture": "Low-grade Li-Po",
-                "Telemetry_Notes": "Critical flaws: 18.8Wh lost as pure heat, fake LED gauge in CV phase, shuts down below 2.5W load, high self-discharge"
+                "Telemetry_Notes": "Critical flaws: 18.8Wh lost as pure heat, fake LED gauge in CV phase, cuts off <2.5W, massive self-discharge"
             }
         ];
 
@@ -501,7 +579,7 @@
         function updateChart(data) {
             const ctx = document.getElementById('benchmarkChart').getContext('2d');
             
-            const labels = data.map(d => d.Model);
+            const labels = data.map(d => d.Model.length > 22 ? d.Model.substring(0, 20) + '...' : d.Model);
             const densities = data.map(d => d.Energy_Density_Wh_kg);
             const efficiencies = data.map(d => d.Efficiency_Percent);
 
@@ -537,7 +615,12 @@
                     maintainAspectRatio: false,
                     scales: {
                         x: {
-                            ticks: { color: '#8b949e', font: { size: 10 } },
+                            ticks: { 
+                                color: '#8b949e', 
+                                font: { size: 9 },
+                                maxRotation: 45,
+                                minRotation: 45
+                            },
                             grid: { color: '#21262d' }
                         },
                         y: {
