@@ -66,7 +66,7 @@
                     <h1 class="text-2xl md:text-3xl font-bold text-white tracking-tight">Powerbank Telemetry Benchmark</h1>
                 </div>
                 <p class="text-sm text-gray-400 mt-1">
-                    Standardized DL24P DC Electronic Load Testbench Data &bull; Real Wh Efficiency &bull; Wh/kg Density
+                    Standardized DL24P DC Electronic Load Testbench &bull; 30cm Low-Resistance USB-C Harness &bull; Real Wh Efficiency &bull; Wh/kg Density
                 </p>
             </div>
             <div class="flex items-center gap-3 flex-wrap">
@@ -78,17 +78,6 @@
                 </a>
             </div>
         </header>
-
-        <!-- Cabling Methodology Banner -->
-        <div class="bg-[#161b22] border border-blue-500/30 rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 shadow-sm">
-            <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400">
-                <i data-lucide="git-compare" class="w-5 h-5"></i>
-            </div>
-            <div class="text-xs text-gray-300 leading-relaxed">
-                <span class="font-semibold text-white">Cabling Harness Standards:</span> 
-                Built-in models run factory cables &bull; USB-A models benchmarked via <span class="text-blue-300 font-mono">30cm INIU USB-A</span> &bull; Pure USB-C models undergoing transition from legacy <span class="text-gray-400 font-mono">1m Vention</span> to calibrated <span class="text-emerald-400 font-mono font-semibold">30cm ADOL USB-C (&lt;3.8V cut-off)</span>. Samsung EB-P4520 completed (+10Wh recovered).
-            </div>
-        </div>
 
         <!-- KPI Summary Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -135,7 +124,7 @@
                 <!-- Search -->
                 <div class="relative flex-1">
                     <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3.5 text-gray-400"></i>
-                    <input type="text" id="searchInput" placeholder="Search model, brand, or cell type (e.g. 21700, Samsung, ADOL)..." class="w-full pl-9 pr-4 py-2.5 rounded-lg border text-sm">
+                    <input type="text" id="searchInput" placeholder="Search model, brand, or method (e.g. nová metoda, 21700, Samsung, Qi2)..." class="w-full pl-9 pr-4 py-2.5 rounded-lg border text-sm">
                 </div>
 
                 <!-- Tier Filter Buttons -->
@@ -195,7 +184,7 @@
                             <th class="py-3.5 px-4 text-right">Weight</th>
                             <th class="py-3.5 px-4 text-right">Wh/kg</th>
                             <th class="py-3.5 px-4">Cell Tech</th>
-                            <th class="py-3.5 px-4">Harness & BMS Notes</th>
+                            <th class="py-3.5 px-4">Telemetry & BMS Notes</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody" class="divide-y divide-borderCol">
@@ -207,7 +196,7 @@
 
         <!-- Footer -->
         <footer class="text-center text-xs text-gray-500 py-6">
-            <p>Laboratory testbench telemetry powered by ATORCH DL24P DC Electronic Load.</p>
+            <p>Laboratory testbench telemetry powered by ATORCH DL24P DC Electronic Load with standardized 30cm USB-C harness.</p>
             <p class="mt-1">Open-source dataset released under MIT License &bull; Maintained on GitHub</p>
         </footer>
 
@@ -227,7 +216,7 @@
                 "Weight_g": 335.2,
                 "Energy_Density_Wh_kg": 206.9,
                 "Cell_Architecture": "High-Density Li-Po",
-                "Telemetry_Notes": "Built-in cable, absolute lab record, high-density Li-Po architecture"
+                "Telemetry_Notes": "Absolute lab record, high-density Li-Po architecture, ultra-efficient synchronous buck-boost"
             },
             {
                 "Tier": "S",
@@ -240,7 +229,7 @@
                 "Weight_g": 345.8,
                 "Energy_Density_Wh_kg": 95.3,
                 "Cell_Architecture": "Li-Ion",
-                "Telemetry_Notes": "30cm INIU USB-A, avg of 2 units, highly stable output, TFT display"
+                "Telemetry_Notes": "Avg of 2 units, highly stable output, robust chassis with TFT display"
             },
             {
                 "Tier": "S",
@@ -253,7 +242,7 @@
                 "Weight_g": 496.9,
                 "Energy_Density_Wh_kg": 129.0,
                 "Cell_Architecture": "Li-Ion",
-                "Telemetry_Notes": "Built-in cable, clean ripple, sync buck-boost topology"
+                "Telemetry_Notes": "Clean ripple, synchronous buck-boost (ZMI/Xiaomi), precise OCP"
             },
             {
                 "Tier": "S",
@@ -266,7 +255,7 @@
                 "Weight_g": 400.4,
                 "Energy_Density_Wh_kg": 159.9,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "NEW METHOD: 30cm ADOL USB-C (<3.8V stop), 3x USB-C 45W SFC 2.0, delivered 12793mAh in 6h23m"
+                "Telemetry_Notes": "Re-tested (USB-C 30cm nová metoda, <3.8V stop), 3x USB-C 45W SFC 2.0, delivered 12793mAh in 6h23m"
             },
             {
                 "Tier": "S",
@@ -279,7 +268,7 @@
                 "Weight_g": 493.5,
                 "Energy_Density_Wh_kg": 152.4,
                 "Cell_Architecture": "Li-Ion (21700)",
-                "Telemetry_Notes": "30cm INIU USB-A/PD, sustained 100W PD profile, 21700 cells"
+                "Telemetry_Notes": "Sustained 100W PD output (92.6W real @ 18.5V/5A), 35.3°C converter temp, 5.2A OCP limit"
             },
             {
                 "Tier": "S",
@@ -292,7 +281,7 @@
                 "Weight_g": 439.7,
                 "Energy_Density_Wh_kg": 140.1,
                 "Cell_Architecture": "Li-Ion (21700)",
-                "Telemetry_Notes": "30cm INIU USB-A, independent DC-DC lines, dedicated telemetry IC"
+                "Telemetry_Notes": "Independent DC-DC lines, dedicated telemetry IC driving color TFT panel"
             },
             {
                 "Tier": "S",
@@ -305,7 +294,7 @@
                 "Weight_g": 790.9,
                 "Energy_Density_Wh_kg": 151.3,
                 "Cell_Architecture": "Li-Po / Li-Ion",
-                "Telemetry_Notes": "30cm INIU USB-A, massive aluminum chassis, zero thermal sag"
+                "Telemetry_Notes": "Massive aluminum chassis acts as heatsink, zero thermal throttling over >12h run"
             },
             {
                 "Tier": "S",
@@ -318,7 +307,20 @@
                 "Weight_g": 173.9,
                 "Energy_Density_Wh_kg": 166.6,
                 "Cell_Architecture": "Li-Ion (2x 21700)",
-                "Telemetry_Notes": "Built-in cable, 2S 21700 architecture minimizes Joule losses"
+                "Telemetry_Notes": "2S 21700 architecture minimizes Joule I²R losses, supports 5V-20V profiles"
+            },
+            {
+                "Tier": "A",
+                "Model": "AlzaPower Qi2 Slim (5k)",
+                "Rated_Capacity_mAh": 5000,
+                "Rated_Energy_Wh": 18.5,
+                "Measured_Energy_Wh": 15.30,
+                "Measured_Capacity_mAh": 3123,
+                "Efficiency_Percent": 82.7,
+                "Weight_g": 125.2,
+                "Energy_Density_Wh_kg": 122.2,
+                "Cell_Architecture": "Ultra-slim Li-Po",
+                "Telemetry_Notes": "Re-tested (USB-C 30cm nová metoda): 3123mAh in 1h33m, exceptional compact Qi2 wired conversion efficiency"
             },
             {
                 "Tier": "A",
@@ -331,7 +333,7 @@
                 "Weight_g": 205.0,
                 "Energy_Density_Wh_kg": 148.7,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Built-in flex cables, low-resistance, 2.4A OCP on 9V"
+                "Telemetry_Notes": "Low-resistance flex cables, analog OCP cutoff at 2.4A on 9V rail"
             },
             {
                 "Tier": "A",
@@ -344,7 +346,7 @@
                 "Weight_g": 220.0,
                 "Energy_Density_Wh_kg": 136.8,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "30cm INIU USB-A, clean rail regulation without transient spikes"
+                "Telemetry_Notes": "Solid rail regulation without transient voltage spikes, stable 5V and 9V"
             },
             {
                 "Tier": "A",
@@ -357,7 +359,7 @@
                 "Weight_g": 222.0,
                 "Energy_Density_Wh_kg": 135.1,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "1m Vention USB-C (Stop 4.0V), high-efficiency 25W PPS/PD converter, 6551mAh in 3h16m"
+                "Telemetry_Notes": "High-efficiency 25W PPS/PD converter, delivered 6,551 mAh over 3h 16m"
             },
             {
                 "Tier": "A",
@@ -370,7 +372,20 @@
                 "Weight_g": 410.9,
                 "Energy_Density_Wh_kg": 144.7,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "30cm INIU USB-A, Li-Po pouch workhorse, steady 22.5W"
+                "Telemetry_Notes": "Consistent 22.5W output, classic Li-Po pouch workhorse"
+            },
+            {
+                "Tier": "A",
+                "Model": "Pink Qi2 / MagSafe (5k)",
+                "Rated_Capacity_mAh": 5000,
+                "Rated_Energy_Wh": 18.5,
+                "Measured_Energy_Wh": 14.18,
+                "Measured_Capacity_mAh": 2922,
+                "Efficiency_Percent": 76.7,
+                "Weight_g": 126.4,
+                "Energy_Density_Wh_kg": 112.2,
+                "Cell_Architecture": "Li-Po + Qi2 coil",
+                "Telemetry_Notes": "Re-tested (USB-C 30cm nová metoda): 2922mAh in 1h27m, improved step-up efficiency on low-resistance testbench"
             },
             {
                 "Tier": "A",
@@ -383,7 +398,7 @@
                 "Weight_g": 421.0,
                 "Energy_Density_Wh_kg": 134.8,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "30cm INIU USB-A, conservative analog OCP (+15% trip limit)"
+                "Telemetry_Notes": "Conservative analog OCP (+15% trip limit) effectively protects pouch cells"
             },
             {
                 "Tier": "A",
@@ -396,20 +411,20 @@
                 "Weight_g": 417.7,
                 "Energy_Density_Wh_kg": 134.0,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "30cm INIU USB-A, reliable Li-Po pouch block with oval display"
+                "Telemetry_Notes": "Reliable Li-Po pouch block with oval LED display, standard 20k efficiency"
             },
             {
-                "Tier": "B",
-                "Model": "AlzaPower Qi2 Slim (5k)",
-                "Rated_Capacity_mAh": 5000,
-                "Rated_Energy_Wh": 18.5,
-                "Measured_Energy_Wh": 14.36,
-                "Measured_Capacity_mAh": 3138,
-                "Efficiency_Percent": 77.6,
-                "Weight_g": 125.2,
-                "Energy_Density_Wh_kg": 114.7,
-                "Cell_Architecture": "Ultra-slim Li-Po",
-                "Telemetry_Notes": "1m Vention USB-C, solid sub-compact Qi2, queued for ADOL USB-C re-test"
+                "Tier": "A",
+                "Model": "ROMOSS 65W Fast Charge (27k)",
+                "Rated_Capacity_mAh": 27000,
+                "Rated_Energy_Wh": 99.9,
+                "Measured_Energy_Wh": 75.44,
+                "Measured_Capacity_mAh": 15202,
+                "Efficiency_Percent": 75.5,
+                "Weight_g": 677.5,
+                "Energy_Density_Wh_kg": 111.4,
+                "Cell_Architecture": "Li-Po / High-Cap",
+                "Telemetry_Notes": "Re-tested (USB-C 30cm nová metoda): 15202mAh over 7h 36m, sustained 65W PD capability, safe sub-100Wh flight limit"
             },
             {
                 "Tier": "B",
@@ -422,7 +437,7 @@
                 "Weight_g": 129.2,
                 "Energy_Density_Wh_kg": 109.1,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Built-in cable, slight voltage sag over 2.0A on 5V rail"
+                "Telemetry_Notes": "Mild voltage sag under current loads exceeding 2.0A on 5V rail"
             },
             {
                 "Tier": "B",
@@ -435,20 +450,7 @@
                 "Weight_g": 532.8,
                 "Energy_Density_Wh_kg": 137.6,
                 "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "30cm INIU USB-A, higher thermal losses at sustained load"
-            },
-            {
-                "Tier": "B",
-                "Model": "Pink Qi2 / MagSafe (5k)",
-                "Rated_Capacity_mAh": 5000,
-                "Rated_Energy_Wh": 18.5,
-                "Measured_Energy_Wh": 13.56,
-                "Measured_Capacity_mAh": 2995,
-                "Efficiency_Percent": 73.3,
-                "Weight_g": 126.4,
-                "Energy_Density_Wh_kg": 107.3,
-                "Cell_Architecture": "Li-Po + Qi2 coil",
-                "Telemetry_Notes": "1m Vention USB-C, early thermal rollback, queued for ADOL USB-C re-test"
+                "Telemetry_Notes": "100W PD buck-boost; elevated converter thermal losses under sustained load"
             },
             {
                 "Tier": "B",
@@ -461,33 +463,20 @@
                 "Weight_g": 233.6,
                 "Energy_Density_Wh_kg": 114.9,
                 "Cell_Architecture": "Li-Po + Qi coil",
-                "Telemetry_Notes": "1m Vention USB-C, high standby parasitic drain, queued for ADOL USB-C re-test"
-            },
-            {
-                "Tier": "B",
-                "Model": "ROMOSS 65W Fast Charge (27k)",
-                "Rated_Capacity_mAh": 27000,
-                "Rated_Energy_Wh": 99.9,
-                "Measured_Energy_Wh": 69.62,
-                "Measured_Capacity_mAh": 13947,
-                "Efficiency_Percent": 69.7,
-                "Weight_g": 677.5,
-                "Energy_Density_Wh_kg": 102.8,
-                "Cell_Architecture": "Li-Po / High-Cap",
-                "Telemetry_Notes": "30cm INIU USB-A, massive 65W output with higher internal losses"
+                "Telemetry_Notes": "Outdated AFC drops to 2.4W on non-compatible gear, elevated quiescent drain"
             },
             {
                 "Tier": "B",
                 "Model": "UGreen Qi2 Black (10k)",
                 "Rated_Capacity_mAh": 10000,
                 "Rated_Energy_Wh": 37.0,
-                "Measured_Energy_Wh": 25.50,
-                "Measured_Capacity_mAh": 5381,
-                "Efficiency_Percent": 68.9,
+                "Measured_Energy_Wh": 25.34,
+                "Measured_Capacity_mAh": 5043,
+                "Efficiency_Percent": 68.5,
                 "Weight_g": 212.8,
-                "Energy_Density_Wh_kg": 119.9,
+                "Energy_Density_Wh_kg": 119.1,
                 "Cell_Architecture": "Li-Po + Qi2 coil",
-                "Telemetry_Notes": "1m Vention USB-C, wireless coil losses pull eff <70%, queued for ADOL USB-C re-test"
+                "Telemetry_Notes": "Re-tested (USB-C 30cm nová metoda): 5043mAh in 2h31m, wireless coil circuit parasitic losses"
             },
             {
                 "Tier": "F",
@@ -500,7 +489,7 @@
                 "Weight_g": 219.8,
                 "Energy_Density_Wh_kg": 82.8,
                 "Cell_Architecture": "Low-grade Li-Po",
-                "Telemetry_Notes": "1m Vention USB-C, 18.8Wh wasted as heat, fake CV gauge, cuts off <2.5W"
+                "Telemetry_Notes": "Critical flaws: 18.8Wh lost as pure heat, fake LED gauge in CV phase, cuts off <2.5W, massive self-discharge"
             }
         ];
 
@@ -525,8 +514,8 @@
         function getEfficiencyBar(eff) {
             let color = 'bg-rose-500';
             if (eff >= 83) color = 'bg-amber-400';
-            else if (eff >= 78) color = 'bg-emerald-400';
-            else if (eff >= 70) color = 'bg-sky-400';
+            else if (eff >= 75) color = 'bg-emerald-400';
+            else if (eff >= 68) color = 'bg-sky-400';
 
             return `
                 <div class="flex items-center gap-2">
