@@ -16,7 +16,6 @@
             theme: {
                 extend: {
                     colors: {
-                        // Catppuccin Mocha Pastel Palette (Cute & Dark)
                         darkBg: '#1e1e2e',
                         cardBg: '#181825',
                         borderCol: '#313244',
@@ -54,7 +53,6 @@
             outline: none;
             box-shadow: 0 0 0 3px rgba(245, 194, 231, 0.2);
         }
-        /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #1e1e2e; }
         ::-webkit-scrollbar-thumb { background: #45475a; border-radius: 4px; }
@@ -64,10 +62,8 @@
 </head>
 <body class="min-h-screen p-4 md:p-8">
 
-    <!-- Container -->
     <div class="max-w-7xl mx-auto space-y-6">
 
-        <!-- Header -->
         <header class="bg-cardBg border border-borderCol rounded-2xl p-6 shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative overflow-hidden">
             <div class="absolute -right-10 -top-10 w-40 h-40 bg-accentPink opacity-10 rounded-full blur-3xl"></div>
             <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-accentBlue opacity-10 rounded-full blur-3xl"></div>
@@ -91,7 +87,6 @@
             </div>
         </header>
 
-        <!-- KPI Summary Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentYellow transition-colors duration-300">
                 <div class="flex justify-between items-center text-[#bac2de] mb-2">
@@ -130,7 +125,6 @@
             </div>
         </div>
 
-        <!-- Controls -->
         <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg space-y-4">
             <div class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center">
                 <div class="relative flex-1">
@@ -157,7 +151,6 @@
             </div>
         </div>
 
-        <!-- Chart Section -->
         <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-base font-extrabold text-white flex items-center gap-2">
@@ -169,7 +162,6 @@
             </div>
         </div>
 
-        <!-- Data Table Section -->
         <div class="bg-cardBg border border-borderCol rounded-2xl shadow-lg overflow-hidden">
             <div class="p-5 border-b border-borderCol flex justify-between items-center bg-[#181825]">
                 <h2 class="text-sm font-extrabold text-white flex items-center gap-2">
@@ -193,37 +185,34 @@
                         </tr>
                     </thead>
                     <tbody id="tableBody" class="divide-y divide-borderCol font-semibold">
-                        <!-- Rows -->
                     </tbody>
                 </table>
             </div>
         </div>
-
     </div>
 
-    <!-- Data & Script -->
     <script>
         const rawData = [
             { "Tier": "S", "Model": "INIU 45W (20k)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 69.36, "Efficiency_Percent": 93.7, "Weight_g": 335.2, "Energy_Density_Wh_kg": 206.9, "Cell_Architecture": "High-Density Li-Po" },
             { "Tier": "S", "Model": "AlzaPower Vision 100W (10k)", "Rated_Energy_Wh": 36.0, "Measured_Energy_Wh": 33.15, "Efficiency_Percent": 92.1, "Weight_g": 345.8, "Energy_Density_Wh_kg": 95.9, "Cell_Architecture": "Li-Ion (2x 21700)" },
-            { "Tier": "S", "Model": "WG 20+ (20k)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 62.74, "Efficiency_Percent": 84.8, "Weight_g": 421.0, "Energy_Density_Wh_kg": 149.0, "Cell_Architecture": "Li-Po Pouch" },
-            { "Tier": "S", "Model": "AlzaPower Parade 22.5W (20k)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 62.27, "Efficiency_Percent": 84.2, "Weight_g": 415.0, "Energy_Density_Wh_kg": 150.1, "Cell_Architecture": "Li-Po Pouch" },
             { "Tier": "S", "Model": "CUKTECH 45W (20k)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 64.09, "Efficiency_Percent": 86.6, "Weight_g": 496.9, "Energy_Density_Wh_kg": 129.0, "Cell_Architecture": "Li-Ion" },
             { "Tier": "S", "Model": "Samsung 20k 45W (EB-P4520)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 64.01, "Efficiency_Percent": 86.5, "Weight_g": 400.4, "Energy_Density_Wh_kg": 159.9, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "S", "Model": "WG 20+ (20k)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 62.74, "Efficiency_Percent": 84.8, "Weight_g": 421.0, "Energy_Density_Wh_kg": 149.0, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "S", "Model": "AlzaPower Parade 22.5W (20k)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 62.27, "Efficiency_Percent": 84.2, "Weight_g": 415.0, "Energy_Density_Wh_kg": 150.1, "Cell_Architecture": "Li-Po Pouch" },
             { "Tier": "S", "Model": "UGreen 145W (25k)", "Rated_Energy_Wh": 90.0, "Measured_Energy_Wh": 74.49, "Efficiency_Percent": 82.8, "Weight_g": 493.5, "Energy_Density_Wh_kg": 150.9, "Cell_Architecture": "Li-Ion (21700)" },
             { "Tier": "S", "Model": "Vention 165W TFT (20k)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 61.62, "Efficiency_Percent": 83.3, "Weight_g": 439.7, "Energy_Density_Wh_kg": 140.1, "Cell_Architecture": "Li-Ion (21700)" },
             { "Tier": "S", "Model": "AlzaPower Metal 40k", "Rated_Energy_Wh": 148.0, "Measured_Energy_Wh": 119.69, "Efficiency_Percent": 80.9, "Weight_g": 790.9, "Energy_Density_Wh_kg": 151.3, "Cell_Architecture": "Li-Po / Li-Ion" },
             { "Tier": "S", "Model": "O2 Spark 35W (10k)", "Rated_Energy_Wh": 36.0, "Measured_Energy_Wh": 28.97, "Efficiency_Percent": 80.5, "Weight_g": 173.9, "Energy_Density_Wh_kg": 166.6, "Cell_Architecture": "Li-Ion (2x 21700)" },
             { "Tier": "A", "Model": "Pink Ineo (5k)", "Rated_Energy_Wh": 18.5, "Measured_Energy_Wh": 15.71, "Efficiency_Percent": 84.9, "Weight_g": 126.4, "Energy_Density_Wh_kg": 124.3, "Cell_Architecture": "Li-Po (Cute Pink)" },
-            { "Tier": "A", "Model": "Samsung 10k Wireless", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 29.79, "Efficiency_Percent": 80.5, "Weight_g": 240.0, "Energy_Density_Wh_kg": 124.1, "Cell_Architecture": "Li-Po + Qi coil" },
             { "Tier": "A", "Model": "AlzaPower Qi2 Slim (5k)", "Rated_Energy_Wh": 18.5, "Measured_Energy_Wh": 15.30, "Efficiency_Percent": 82.7, "Weight_g": 125.2, "Energy_Density_Wh_kg": 122.2, "Cell_Architecture": "Ultra-slim Li-Po" },
             { "Tier": "A", "Model": "O2 Built-in Cable 10k", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 30.48, "Efficiency_Percent": 82.4, "Weight_g": 205.0, "Energy_Density_Wh_kg": 148.7, "Cell_Architecture": "Li-Po Pouch" },
             { "Tier": "A", "Model": "WG 10k QC/PD", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 30.10, "Efficiency_Percent": 81.4, "Weight_g": 220.0, "Energy_Density_Wh_kg": 136.8, "Cell_Architecture": "Li-Po Pouch" },
             { "Tier": "A", "Model": "Samsung 10k 25W PD (Beige)", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 30.00, "Efficiency_Percent": 81.1, "Weight_g": 222.0, "Energy_Density_Wh_kg": 135.1, "Cell_Architecture": "Li-Po Pouch" },
             { "Tier": "A", "Model": "AlzaPower Parade Gen2 (27k)", "Rated_Energy_Wh": 99.9, "Measured_Energy_Wh": 80.47, "Efficiency_Percent": 80.5, "Weight_g": 532.8, "Energy_Density_Wh_kg": 151.0, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "A", "Model": "Samsung 10k Wireless", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 29.79, "Efficiency_Percent": 80.5, "Weight_g": 240.0, "Energy_Density_Wh_kg": 124.1, "Cell_Architecture": "Li-Po + Qi coil" },
             { "Tier": "A", "Model": "ROMOSS 65W (27k)", "Rated_Energy_Wh": 99.9, "Measured_Energy_Wh": 75.44, "Efficiency_Percent": 75.5, "Weight_g": 677.5, "Energy_Density_Wh_kg": 111.4, "Cell_Architecture": "Li-Po / High-Cap" },
-            { "Tier": "B", "Model": "AlzaPower Garnet 20k", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 54.72, "Efficiency_Percent": 73.9, "Weight_g": 415.0, "Energy_Density_Wh_kg": 131.9, "Cell_Architecture": "Li-Po Pouch" },
             { "Tier": "B", "Model": "Vention Cables Yellow (5k)", "Rated_Energy_Wh": 18.5, "Measured_Energy_Wh": 14.10, "Efficiency_Percent": 76.2, "Weight_g": 129.2, "Energy_Density_Wh_kg": 109.1, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "B", "Model": "AlzaPower Garnet 20k (White)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 54.72, "Efficiency_Percent": 73.9, "Weight_g": 415.0, "Energy_Density_Wh_kg": 131.9, "Cell_Architecture": "Li-Po Pouch" },
             { "Tier": "B", "Model": "UGreen Qi2 Black (10k)", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 25.34, "Efficiency_Percent": 68.5, "Weight_g": 212.8, "Energy_Density_Wh_kg": 119.1, "Cell_Architecture": "Li-Po + Qi2 coil" },
             { "Tier": "F", "Model": "TRONIC 10k (Lidl)", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 18.20, "Efficiency_Percent": 49.2, "Weight_g": 219.8, "Energy_Density_Wh_kg": 82.8, "Cell_Architecture": "Low-grade Li-Po" }
         ];
