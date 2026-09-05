@@ -16,17 +16,20 @@
             theme: {
                 extend: {
                     colors: {
-                        darkBg: '#0d1117',
-                        cardBg: '#161b22',
-                        borderCol: '#30363d',
-                        accentBlue: '#58a6ff',
-                        accentGreen: '#3fb950',
-                        accentOrange: '#f0883e',
-                        accentRed: '#f85149',
-                        tierS: '#ffd700',
-                        tierA: '#2ea44f',
-                        tierB: '#388bfd',
-                        tierF: '#da3633'
+                        // Catppuccin Mocha Pastel Palette (Cute & Dark)
+                        darkBg: '#1e1e2e',
+                        cardBg: '#181825',
+                        borderCol: '#313244',
+                        accentBlue: '#89b4fa',
+                        accentGreen: '#a6e3a1',
+                        accentPink: '#f5c2e7',
+                        accentYellow: '#f9e2af',
+                        accentRed: '#f38ba8',
+                        accentTeal: '#94e2d5',
+                        tierS: '#f9e2af',
+                        tierA: '#a6e3a1',
+                        tierB: '#89b4fa',
+                        tierF: '#f38ba8'
                     }
                 }
             }
@@ -34,24 +37,30 @@
     </script>
     <style>
         body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
         .table-row-hover:hover {
-            background-color: rgba(56, 139, 253, 0.08);
+            background-color: rgba(137, 180, 250, 0.08);
         }
         input, select {
-            background-color: #0d1117 !important;
-            border-color: #30363d !important;
-            color: #c9d1d9 !important;
+            background-color: #11111b !important;
+            border-color: #313244 !important;
+            color: #cdd6f4 !important;
         }
         input:focus, select:focus {
-            border-color: #58a6ff !important;
+            border-color: #f5c2e7 !important;
             outline: none;
-            box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(245, 194, 231, 0.2);
         }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #1e1e2e; }
+        ::-webkit-scrollbar-thumb { background: #45475a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #585b70; }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="min-h-screen p-4 md:p-8">
 
@@ -59,21 +68,24 @@
     <div class="max-w-7xl mx-auto space-y-6">
 
         <!-- Header -->
-        <header class="bg-cardBg border border-borderCol rounded-xl p-6 shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <div>
+        <header class="bg-cardBg border border-borderCol rounded-2xl p-6 shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-accentPink opacity-10 rounded-full blur-3xl"></div>
+            <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-accentBlue opacity-10 rounded-full blur-3xl"></div>
+            
+            <div class="z-10">
                 <div class="flex items-center gap-3">
-                    <span class="text-3xl">🔋</span>
-                    <h1 class="text-2xl md:text-3xl font-bold text-white tracking-tight">Powerbank Telemetry Benchmark</h1>
+                    <span class="text-4xl">🧸</span>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Powerbank Lab <span class="text-accentPink">✧</span></h1>
                 </div>
-                <p class="text-sm text-gray-400 mt-1">
-                    Standardized DL24P DC Electronic Load Testbench &bull; 30cm Low-Resistance USB-C Harness &bull; Real Wh Efficiency &bull; Wh/kg Density
+                <p class="text-sm text-[#bac2de] mt-2 font-medium">
+                    Standardized DL24P Load Testbench &bull; 30cm Cable Harness &bull; Real Wh Efficiency 
                 </p>
             </div>
-            <div class="flex items-center gap-3 flex-wrap">
-                <a href="https://github.com/TomikBrumik/powerbank-telemetry-lab" target="_blank" class="flex items-center gap-2 bg-[#21262d] hover:bg-[#30363d] text-white text-sm px-4 py-2 rounded-lg border border-borderCol transition">
+            <div class="flex items-center gap-3 flex-wrap z-10">
+                <a href="https://github.com/TomikBrumik/powerbank-telemetry-lab" target="_blank" class="flex items-center gap-2 bg-[#313244] hover:bg-[#45475a] text-white text-sm px-5 py-2.5 rounded-xl border border-borderCol transition-all duration-300 shadow-md">
                     <i data-lucide="github" class="w-4 h-4"></i> GitHub Repo
                 </a>
-                <a href="powerbank_telemetry_database.csv" download class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm px-4 py-2 rounded-lg font-medium transition shadow-sm">
+                <a href="powerbank_telemetry_database.csv" download class="flex items-center gap-2 bg-accentPink hover:opacity-90 text-[#11111b] text-sm px-5 py-2.5 rounded-xl font-bold transition-all duration-300 shadow-md">
                     <i data-lucide="download" class="w-4 h-4"></i> Download CSV
                 </a>
             </div>
@@ -81,66 +93,61 @@
 
         <!-- KPI Summary Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="bg-cardBg border border-borderCol rounded-xl p-5 shadow-md">
-                <div class="flex justify-between items-center text-gray-400 mb-2">
-                    <span class="text-xs font-semibold uppercase tracking-wider">Lab Record Efficiency</span>
-                    <span class="text-xl">🏆</span>
+            <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentYellow transition-colors duration-300">
+                <div class="flex justify-between items-center text-[#bac2de] mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider">Record Efficiency</span>
+                    <span class="text-xl group-hover:scale-110 transition-transform">✨</span>
                 </div>
-                <div class="text-2xl font-extrabold text-amber-400">93.7%</div>
-                <p class="text-xs text-gray-400 mt-1 font-medium">INIU 45W 20k (69.36 Wh usable)</p>
+                <div class="text-3xl font-extrabold text-accentYellow">93.7%</div>
+                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">INIU 45W 20k (69.36 Wh)</p>
             </div>
 
-            <div class="bg-cardBg border border-borderCol rounded-xl p-5 shadow-md">
-                <div class="flex justify-between items-center text-gray-400 mb-2">
-                    <span class="text-xs font-semibold uppercase tracking-wider">Max Energy Density</span>
-                    <span class="text-xl">⚡</span>
+            <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentBlue transition-colors duration-300">
+                <div class="flex justify-between items-center text-[#bac2de] mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider">Max Density</span>
+                    <span class="text-xl group-hover:scale-110 transition-transform">🚀</span>
                 </div>
-                <div class="text-2xl font-extrabold text-blue-400">206.9 <span class="text-base font-normal">Wh/kg</span></div>
-                <p class="text-xs text-gray-400 mt-1 font-medium">INIU 45W 20k (High-Density Li-Po)</p>
+                <div class="text-3xl font-extrabold text-accentBlue">206.9 <span class="text-base font-semibold opacity-70">Wh/kg</span></div>
+                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">INIU 45W 20k</p>
             </div>
 
-            <div class="bg-cardBg border border-borderCol rounded-xl p-5 shadow-md">
-                <div class="flex justify-between items-center text-gray-400 mb-2">
-                    <span class="text-xs font-semibold uppercase tracking-wider">Tested Devices</span>
-                    <span class="text-xl">🔬</span>
+            <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentGreen transition-colors duration-300">
+                <div class="flex justify-between items-center text-[#bac2de] mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider">Tested Devices</span>
+                    <span class="text-xl group-hover:scale-110 transition-transform">🌸</span>
                 </div>
-                <div id="testedCount" class="text-2xl font-extrabold text-emerald-400">22 Units</div>
-                <p class="text-xs text-gray-400 mt-1 font-medium">From 5,000 to 40,000 mAh</p>
+                <div id="testedCount" class="text-3xl font-extrabold text-accentGreen">22 Units</div>
+                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">From 5k to 40k mAh</p>
             </div>
 
-            <div class="bg-cardBg border border-borderCol rounded-xl p-5 shadow-md">
-                <div class="flex justify-between items-center text-gray-400 mb-2">
-                    <span class="text-xs font-semibold uppercase tracking-wider">Worst Performer</span>
-                    <span class="text-xl">🛑</span>
+            <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentRed transition-colors duration-300">
+                <div class="flex justify-between items-center text-[#bac2de] mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider">Newest 20k King</span>
+                    <span class="text-xl group-hover:scale-110 transition-transform">👑</span>
                 </div>
-                <div class="text-2xl font-extrabold text-rose-500">49.2%</div>
-                <p class="text-xs text-gray-400 mt-1 font-medium">TRONIC 10k Lidl (18.8Wh heat waste)</p>
+                <div class="text-3xl font-extrabold text-accentTeal">WG 20+</div>
+                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">84.8% Eff (62.74 Wh)</p>
             </div>
         </div>
 
-        <!-- Controls: Filters & Search -->
-        <div class="bg-cardBg border border-borderCol rounded-xl p-5 shadow-md space-y-4">
+        <!-- Controls -->
+        <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg space-y-4">
             <div class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center">
-                <!-- Search -->
                 <div class="relative flex-1">
-                    <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3.5 text-gray-400"></i>
-                    <input type="text" id="searchInput" placeholder="Search model, brand, or method (e.g. nová metoda, 21700, Samsung, Qi2)..." class="w-full pl-9 pr-4 py-2.5 rounded-lg border text-sm">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-4 top-3.5 text-[#6c7086]"></i>
+                    <input type="text" id="searchInput" placeholder="Search models, brands (e.g. Ineo, WG 20+, Parade)..." class="w-full pl-11 pr-4 py-2.5 rounded-xl border text-sm font-semibold transition-all">
                 </div>
 
-                <!-- Tier Filter Buttons -->
-                <div class="flex items-center gap-1.5 flex-wrap">
-                    <span class="text-xs text-gray-400 font-medium mr-1">Tier:</span>
-                    <button onclick="setTierFilter('ALL')" class="tier-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-700 text-white border border-gray-600 transition" data-tier="ALL">All</button>
-                    <button onclick="setTierFilter('S')" class="tier-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#21262d] text-amber-300 border border-borderCol hover:border-amber-400 transition" data-tier="S">S-Tier</button>
-                    <button onclick="setTierFilter('A')" class="tier-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#21262d] text-emerald-400 border border-borderCol hover:border-emerald-400 transition" data-tier="A">A-Tier</button>
-                    <button onclick="setTierFilter('B')" class="tier-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#21262d] text-sky-400 border border-borderCol hover:border-sky-400 transition" data-tier="B">B-Tier</button>
-                    <button onclick="setTierFilter('F')" class="tier-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#21262d] text-rose-400 border border-borderCol hover:border-rose-400 transition" data-tier="F">F-Tier</button>
+                <div class="flex items-center gap-2 flex-wrap">
+                    <button onclick="setTierFilter('ALL')" class="tier-btn active px-4 py-2 rounded-xl text-xs font-bold bg-[#313244] text-white border border-[#45475a] transition" data-tier="ALL">All</button>
+                    <button onclick="setTierFilter('S')" class="tier-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#11111b] text-accentYellow border border-borderCol hover:border-accentYellow transition" data-tier="S">S-Tier</button>
+                    <button onclick="setTierFilter('A')" class="tier-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#11111b] text-accentGreen border border-borderCol hover:border-accentGreen transition" data-tier="A">A-Tier</button>
+                    <button onclick="setTierFilter('B')" class="tier-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#11111b] text-accentBlue border border-borderCol hover:border-accentBlue transition" data-tier="B">B-Tier</button>
+                    <button onclick="setTierFilter('F')" class="tier-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#11111b] text-accentRed border border-borderCol hover:border-accentRed transition" data-tier="F">F-Tier</button>
                 </div>
 
-                <!-- Sort By -->
                 <div class="flex items-center gap-2">
-                    <span class="text-xs text-gray-400 font-medium whitespace-nowrap">Sort:</span>
-                    <select id="sortSelect" onchange="applyFiltersAndSort()" class="py-2 px-3 rounded-lg border text-xs cursor-pointer">
+                    <select id="sortSelect" onchange="applyFiltersAndSort()" class="py-2.5 px-4 rounded-xl border text-xs font-bold cursor-pointer">
                         <option value="density_desc">Wh/kg Density (High to Low)</option>
                         <option value="eff_desc">Efficiency % (High to Low)</option>
                         <option value="real_wh_desc">Real Energy Wh (High to Low)</option>
@@ -151,12 +158,11 @@
         </div>
 
         <!-- Chart Section -->
-        <div class="bg-cardBg border border-borderCol rounded-xl p-5 shadow-md">
+        <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-base font-semibold text-white flex items-center gap-2">
-                    <i data-lucide="bar-chart-2" class="w-4 h-4 text-accentBlue"></i> Efficiency vs. Energy Density Comparison
+                <h2 class="text-base font-extrabold text-white flex items-center gap-2">
+                    <i data-lucide="bar-chart-2" class="w-5 h-5 text-accentPink"></i> Efficiency vs. Density 
                 </h2>
-                <span class="text-xs text-gray-400">Blue = Energy Density (Wh/kg) | Green = Efficiency (%)</span>
             </div>
             <div class="h-64 md:h-80 w-full">
                 <canvas id="benchmarkChart"></canvas>
@@ -164,364 +170,88 @@
         </div>
 
         <!-- Data Table Section -->
-        <div class="bg-cardBg border border-borderCol rounded-xl shadow-md overflow-hidden">
-            <div class="p-4 border-b border-borderCol flex justify-between items-center bg-[#1c2128]">
-                <h2 class="text-sm font-semibold text-white flex items-center gap-2">
-                    <i data-lucide="database" class="w-4 h-4 text-emerald-400"></i> Benchmark Telemetry Database
+        <div class="bg-cardBg border border-borderCol rounded-2xl shadow-lg overflow-hidden">
+            <div class="p-5 border-b border-borderCol flex justify-between items-center bg-[#181825]">
+                <h2 class="text-sm font-extrabold text-white flex items-center gap-2">
+                    <i data-lucide="database" class="w-4 h-4 text-accentTeal"></i> Telemetry Database
                 </h2>
-                <span id="filteredCountText" class="text-xs text-gray-400">Showing 22 of 22 models</span>
+                <span id="filteredCountText" class="text-xs font-bold text-[#a6adc8]"></span>
             </div>
             
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm border-collapse">
                     <thead>
-                        <tr class="border-b border-borderCol bg-[#161b22] text-xs font-semibold uppercase text-gray-400 tracking-wider">
-                            <th class="py-3.5 px-4 text-center">Tier</th>
-                            <th class="py-3.5 px-4">Model</th>
-                            <th class="py-3.5 px-4 text-right">Rated (Wh)</th>
-                            <th class="py-3.5 px-4 text-right">Measured (Wh)</th>
-                            <th class="py-3.5 px-4">Efficiency</th>
-                            <th class="py-3.5 px-4 text-right">Weight</th>
-                            <th class="py-3.5 px-4 text-right">Wh/kg</th>
-                            <th class="py-3.5 px-4">Cell Tech</th>
-                            <th class="py-3.5 px-4">Telemetry & BMS Notes</th>
+                        <tr class="border-b border-borderCol bg-[#11111b] text-xs font-extrabold uppercase text-[#a6adc8] tracking-wider">
+                            <th class="py-4 px-5 text-center">Tier</th>
+                            <th class="py-4 px-5">Model</th>
+                            <th class="py-4 px-5 text-right">Rated (Wh)</th>
+                            <th class="py-4 px-5 text-right">Measured</th>
+                            <th class="py-4 px-5">Efficiency</th>
+                            <th class="py-4 px-5 text-right">Weight</th>
+                            <th class="py-4 px-5 text-right">Wh/kg</th>
+                            <th class="py-4 px-5">Cell Tech</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody" class="divide-y divide-borderCol">
-                        <!-- Rows dynamically rendered via JavaScript -->
+                    <tbody id="tableBody" class="divide-y divide-borderCol font-semibold">
+                        <!-- Rows -->
                     </tbody>
                 </table>
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer class="text-center text-xs text-gray-500 py-6">
-            <p>Laboratory testbench telemetry powered by ATORCH DL24P DC Electronic Load with standardized 30cm USB-C harness.</p>
-            <p class="mt-1">Open-source dataset released under MIT License &bull; Maintained on GitHub</p>
-        </footer>
 
     </div>
 
     <!-- Data & Script -->
     <script>
         const rawData = [
-            {
-                "Tier": "S",
-                "Model": "INIU 45W w/ Built-in Cable (20k)",
-                "Rated_Capacity_mAh": 20000,
-                "Rated_Energy_Wh": 74.0,
-                "Measured_Energy_Wh": 69.36,
-                "Measured_Capacity_mAh": 14291,
-                "Efficiency_Percent": 93.7,
-                "Weight_g": 335.2,
-                "Energy_Density_Wh_kg": 206.9,
-                "Cell_Architecture": "High-Density Li-Po",
-                "Telemetry_Notes": "Absolute lab record, high-density Li-Po architecture, ultra-efficient synchronous buck-boost"
-            },
-            {
-                "Tier": "S",
-                "Model": "AlzaPower Vision 100W (10k)",
-                "Rated_Capacity_mAh": 10000,
-                "Rated_Energy_Wh": 36.0,
-                "Measured_Energy_Wh": 32.94,
-                "Measured_Capacity_mAh": 6593,
-                "Efficiency_Percent": 91.5,
-                "Weight_g": 345.8,
-                "Energy_Density_Wh_kg": 95.3,
-                "Cell_Architecture": "Li-Ion",
-                "Telemetry_Notes": "Avg of 2 units, highly stable output, robust chassis with TFT display"
-            },
-            {
-                "Tier": "S",
-                "Model": "CUKTECH 45W (20k)",
-                "Rated_Capacity_mAh": 20000,
-                "Rated_Energy_Wh": 74.0,
-                "Measured_Energy_Wh": 64.09,
-                "Measured_Capacity_mAh": 12822,
-                "Efficiency_Percent": 86.6,
-                "Weight_g": 496.9,
-                "Energy_Density_Wh_kg": 129.0,
-                "Cell_Architecture": "Li-Ion",
-                "Telemetry_Notes": "Clean ripple, synchronous buck-boost (ZMI/Xiaomi), precise OCP"
-            },
-            {
-                "Tier": "S",
-                "Model": "Samsung 20k 45W (EB-P4520)",
-                "Rated_Capacity_mAh": 20000,
-                "Rated_Energy_Wh": 74.0,
-                "Measured_Energy_Wh": 64.01,
-                "Measured_Capacity_mAh": 12793,
-                "Efficiency_Percent": 86.5,
-                "Weight_g": 400.4,
-                "Energy_Density_Wh_kg": 159.9,
-                "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Re-tested (USB-C 30cm nová metoda, <3.8V stop), 3x USB-C 45W SFC 2.0, delivered 12793mAh in 6h23m"
-            },
-            {
-                "Tier": "S",
-                "Model": "UGreen 145W (25k)",
-                "Rated_Capacity_mAh": 25000,
-                "Rated_Energy_Wh": 90.0,
-                "Measured_Energy_Wh": 75.23,
-                "Measured_Capacity_mAh": null,
-                "Efficiency_Percent": 83.6,
-                "Weight_g": 493.5,
-                "Energy_Density_Wh_kg": 152.4,
-                "Cell_Architecture": "Li-Ion (21700)",
-                "Telemetry_Notes": "Sustained 100W PD output (92.6W real @ 18.5V/5A), 35.3°C converter temp, 5.2A OCP limit"
-            },
-            {
-                "Tier": "S",
-                "Model": "Vention 165W TFT (20k)",
-                "Rated_Capacity_mAh": 20000,
-                "Rated_Energy_Wh": 74.0,
-                "Measured_Energy_Wh": 61.62,
-                "Measured_Capacity_mAh": 11958,
-                "Efficiency_Percent": 83.3,
-                "Weight_g": 439.7,
-                "Energy_Density_Wh_kg": 140.1,
-                "Cell_Architecture": "Li-Ion (21700)",
-                "Telemetry_Notes": "Independent DC-DC lines, dedicated telemetry IC driving color TFT panel"
-            },
-            {
-                "Tier": "S",
-                "Model": "AlzaPower Metal 40k",
-                "Rated_Capacity_mAh": 40000,
-                "Rated_Energy_Wh": 148.0,
-                "Measured_Energy_Wh": 119.69,
-                "Measured_Capacity_mAh": null,
-                "Efficiency_Percent": 80.9,
-                "Weight_g": 790.9,
-                "Energy_Density_Wh_kg": 151.3,
-                "Cell_Architecture": "Li-Po / Li-Ion",
-                "Telemetry_Notes": "Massive aluminum chassis acts as heatsink, zero thermal throttling over >12h run"
-            },
-            {
-                "Tier": "S",
-                "Model": "O2 Spark 35W (10k)",
-                "Rated_Capacity_mAh": 10000,
-                "Rated_Energy_Wh": 36.0,
-                "Measured_Energy_Wh": 28.97,
-                "Measured_Capacity_mAh": null,
-                "Efficiency_Percent": 80.5,
-                "Weight_g": 173.9,
-                "Energy_Density_Wh_kg": 166.6,
-                "Cell_Architecture": "Li-Ion (2x 21700)",
-                "Telemetry_Notes": "2S 21700 architecture minimizes Joule I²R losses, supports 5V-20V profiles"
-            },
-            {
-                "Tier": "A",
-                "Model": "AlzaPower Qi2 Slim (5k)",
-                "Rated_Capacity_mAh": 5000,
-                "Rated_Energy_Wh": 18.5,
-                "Measured_Energy_Wh": 15.30,
-                "Measured_Capacity_mAh": 3123,
-                "Efficiency_Percent": 82.7,
-                "Weight_g": 125.2,
-                "Energy_Density_Wh_kg": 122.2,
-                "Cell_Architecture": "Ultra-slim Li-Po",
-                "Telemetry_Notes": "Re-tested (USB-C 30cm nová metoda): 3123mAh in 1h33m, exceptional compact Qi2 wired conversion efficiency"
-            },
-            {
-                "Tier": "A",
-                "Model": "O2 Built-in Cable 10k",
-                "Rated_Capacity_mAh": 10000,
-                "Rated_Energy_Wh": 37.0,
-                "Measured_Energy_Wh": 30.48,
-                "Measured_Capacity_mAh": null,
-                "Efficiency_Percent": 82.4,
-                "Weight_g": 205.0,
-                "Energy_Density_Wh_kg": 148.7,
-                "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Low-resistance flex cables, analog OCP cutoff at 2.4A on 9V rail"
-            },
-            {
-                "Tier": "A",
-                "Model": "WG 10k QC/PD",
-                "Rated_Capacity_mAh": 10000,
-                "Rated_Energy_Wh": 37.0,
-                "Measured_Energy_Wh": 30.10,
-                "Measured_Capacity_mAh": null,
-                "Efficiency_Percent": 81.4,
-                "Weight_g": 220.0,
-                "Energy_Density_Wh_kg": 136.8,
-                "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Solid rail regulation without transient voltage spikes, stable 5V and 9V"
-            },
-            {
-                "Tier": "A",
-                "Model": "Samsung 10k 25W PD (Beige)",
-                "Rated_Capacity_mAh": 10000,
-                "Rated_Energy_Wh": 37.0,
-                "Measured_Energy_Wh": 30.00,
-                "Measured_Capacity_mAh": 6551,
-                "Efficiency_Percent": 81.1,
-                "Weight_g": 222.0,
-                "Energy_Density_Wh_kg": 135.1,
-                "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "High-efficiency 25W PPS/PD converter, delivered 6,551 mAh over 3h 16m"
-            },
-            {
-                "Tier": "A",
-                "Model": "AlzaPower Parade 22.5W (20k)",
-                "Rated_Capacity_mAh": 20000,
-                "Rated_Energy_Wh": 74.0,
-                "Measured_Energy_Wh": 59.46,
-                "Measured_Capacity_mAh": null,
-                "Efficiency_Percent": 80.4,
-                "Weight_g": 410.9,
-                "Energy_Density_Wh_kg": 144.7,
-                "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Consistent 22.5W output, classic Li-Po pouch workhorse"
-            },
-            {
-                "Tier": "A",
-                "Model": "Pink Qi2 / MagSafe (5k)",
-                "Rated_Capacity_mAh": 5000,
-                "Rated_Energy_Wh": 18.5,
-                "Measured_Energy_Wh": 14.18,
-                "Measured_Capacity_mAh": 2922,
-                "Efficiency_Percent": 76.7,
-                "Weight_g": 126.4,
-                "Energy_Density_Wh_kg": 112.2,
-                "Cell_Architecture": "Li-Po + Qi2 coil",
-                "Telemetry_Notes": "Re-tested (USB-C 30cm nová metoda): 2922mAh in 1h27m, improved step-up efficiency on low-resistance testbench"
-            },
-            {
-                "Tier": "A",
-                "Model": "WG 20+ (20k)",
-                "Rated_Capacity_mAh": 20000,
-                "Rated_Energy_Wh": 74.0,
-                "Measured_Energy_Wh": 56.74,
-                "Measured_Capacity_mAh": null,
-                "Efficiency_Percent": 76.7,
-                "Weight_g": 421.0,
-                "Energy_Density_Wh_kg": 134.8,
-                "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Conservative analog OCP (+15% trip limit) effectively protects pouch cells"
-            },
-            {
-                "Tier": "A",
-                "Model": "AlzaPower Garnet 20k (White)",
-                "Rated_Capacity_mAh": 20000,
-                "Rated_Energy_Wh": 74.0,
-                "Measured_Energy_Wh": 55.98,
-                "Measured_Capacity_mAh": 11430,
-                "Efficiency_Percent": 75.6,
-                "Weight_g": 417.7,
-                "Energy_Density_Wh_kg": 134.0,
-                "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Reliable Li-Po pouch block with oval LED display, standard 20k efficiency"
-            },
-            {
-                "Tier": "A",
-                "Model": "ROMOSS 65W Fast Charge (27k)",
-                "Rated_Capacity_mAh": 27000,
-                "Rated_Energy_Wh": 99.9,
-                "Measured_Energy_Wh": 75.44,
-                "Measured_Capacity_mAh": 15202,
-                "Efficiency_Percent": 75.5,
-                "Weight_g": 677.5,
-                "Energy_Density_Wh_kg": 111.4,
-                "Cell_Architecture": "Li-Po / High-Cap",
-                "Telemetry_Notes": "Re-tested (USB-C 30cm nová metoda): 15202mAh over 7h 36m, sustained 65W PD capability, safe sub-100Wh flight limit"
-            },
-            {
-                "Tier": "B",
-                "Model": "Vention Cables Yellow (5k)",
-                "Rated_Capacity_mAh": 5000,
-                "Rated_Energy_Wh": 18.5,
-                "Measured_Energy_Wh": 14.10,
-                "Measured_Capacity_mAh": null,
-                "Efficiency_Percent": 76.2,
-                "Weight_g": 129.2,
-                "Energy_Density_Wh_kg": 109.1,
-                "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "Mild voltage sag under current loads exceeding 2.0A on 5V rail"
-            },
-            {
-                "Tier": "B",
-                "Model": "AlzaPower Parade Gen2 100W (27k)",
-                "Rated_Capacity_mAh": 27000,
-                "Rated_Energy_Wh": 99.9,
-                "Measured_Energy_Wh": 73.34,
-                "Measured_Capacity_mAh": 14815,
-                "Efficiency_Percent": 73.4,
-                "Weight_g": 532.8,
-                "Energy_Density_Wh_kg": 137.6,
-                "Cell_Architecture": "Li-Po Pouch",
-                "Telemetry_Notes": "100W PD buck-boost; elevated converter thermal losses under sustained load"
-            },
-            {
-                "Tier": "B",
-                "Model": "Samsung EB-U1200CS (10k)",
-                "Rated_Capacity_mAh": 10000,
-                "Rated_Energy_Wh": 37.0,
-                "Measured_Energy_Wh": 26.85,
-                "Measured_Capacity_mAh": 5669,
-                "Efficiency_Percent": 72.6,
-                "Weight_g": 233.6,
-                "Energy_Density_Wh_kg": 114.9,
-                "Cell_Architecture": "Li-Po + Qi coil",
-                "Telemetry_Notes": "Outdated AFC drops to 2.4W on non-compatible gear, elevated quiescent drain"
-            },
-            {
-                "Tier": "B",
-                "Model": "UGreen Qi2 Black (10k)",
-                "Rated_Capacity_mAh": 10000,
-                "Rated_Energy_Wh": 37.0,
-                "Measured_Energy_Wh": 25.34,
-                "Measured_Capacity_mAh": 5043,
-                "Efficiency_Percent": 68.5,
-                "Weight_g": 212.8,
-                "Energy_Density_Wh_kg": 119.1,
-                "Cell_Architecture": "Li-Po + Qi2 coil",
-                "Telemetry_Notes": "Re-tested (USB-C 30cm nová metoda): 5043mAh in 2h31m, wireless coil circuit parasitic losses"
-            },
-            {
-                "Tier": "F",
-                "Model": "TRONIC 10k (Lidl)",
-                "Rated_Capacity_mAh": 10000,
-                "Rated_Energy_Wh": 37.0,
-                "Measured_Energy_Wh": 18.20,
-                "Measured_Capacity_mAh": 3663,
-                "Efficiency_Percent": 49.2,
-                "Weight_g": 219.8,
-                "Energy_Density_Wh_kg": 82.8,
-                "Cell_Architecture": "Low-grade Li-Po",
-                "Telemetry_Notes": "Critical flaws: 18.8Wh lost as pure heat, fake LED gauge in CV phase, cuts off <2.5W, massive self-discharge"
-            }
+            { "Tier": "S", "Model": "INIU 45W (20k)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 69.36, "Efficiency_Percent": 93.7, "Weight_g": 335.2, "Energy_Density_Wh_kg": 206.9, "Cell_Architecture": "High-Density Li-Po" },
+            { "Tier": "S", "Model": "AlzaPower Vision 100W (10k)", "Rated_Energy_Wh": 36.0, "Measured_Energy_Wh": 33.15, "Efficiency_Percent": 92.1, "Weight_g": 345.8, "Energy_Density_Wh_kg": 95.9, "Cell_Architecture": "Li-Ion (2x 21700)" },
+            { "Tier": "S", "Model": "WG 20+ (20k)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 62.74, "Efficiency_Percent": 84.8, "Weight_g": 421.0, "Energy_Density_Wh_kg": 149.0, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "S", "Model": "AlzaPower Parade 22.5W (20k)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 62.27, "Efficiency_Percent": 84.2, "Weight_g": 415.0, "Energy_Density_Wh_kg": 150.1, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "S", "Model": "CUKTECH 45W (20k)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 64.09, "Efficiency_Percent": 86.6, "Weight_g": 496.9, "Energy_Density_Wh_kg": 129.0, "Cell_Architecture": "Li-Ion" },
+            { "Tier": "S", "Model": "Samsung 20k 45W (EB-P4520)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 64.01, "Efficiency_Percent": 86.5, "Weight_g": 400.4, "Energy_Density_Wh_kg": 159.9, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "S", "Model": "UGreen 145W (25k)", "Rated_Energy_Wh": 90.0, "Measured_Energy_Wh": 74.49, "Efficiency_Percent": 82.8, "Weight_g": 493.5, "Energy_Density_Wh_kg": 150.9, "Cell_Architecture": "Li-Ion (21700)" },
+            { "Tier": "S", "Model": "Vention 165W TFT (20k)", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 61.62, "Efficiency_Percent": 83.3, "Weight_g": 439.7, "Energy_Density_Wh_kg": 140.1, "Cell_Architecture": "Li-Ion (21700)" },
+            { "Tier": "S", "Model": "AlzaPower Metal 40k", "Rated_Energy_Wh": 148.0, "Measured_Energy_Wh": 119.69, "Efficiency_Percent": 80.9, "Weight_g": 790.9, "Energy_Density_Wh_kg": 151.3, "Cell_Architecture": "Li-Po / Li-Ion" },
+            { "Tier": "S", "Model": "O2 Spark 35W (10k)", "Rated_Energy_Wh": 36.0, "Measured_Energy_Wh": 28.97, "Efficiency_Percent": 80.5, "Weight_g": 173.9, "Energy_Density_Wh_kg": 166.6, "Cell_Architecture": "Li-Ion (2x 21700)" },
+            { "Tier": "A", "Model": "Pink Ineo (5k)", "Rated_Energy_Wh": 18.5, "Measured_Energy_Wh": 15.71, "Efficiency_Percent": 84.9, "Weight_g": 126.4, "Energy_Density_Wh_kg": 124.3, "Cell_Architecture": "Li-Po (Cute Pink)" },
+            { "Tier": "A", "Model": "Samsung 10k Wireless", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 29.79, "Efficiency_Percent": 80.5, "Weight_g": 240.0, "Energy_Density_Wh_kg": 124.1, "Cell_Architecture": "Li-Po + Qi coil" },
+            { "Tier": "A", "Model": "AlzaPower Qi2 Slim (5k)", "Rated_Energy_Wh": 18.5, "Measured_Energy_Wh": 15.30, "Efficiency_Percent": 82.7, "Weight_g": 125.2, "Energy_Density_Wh_kg": 122.2, "Cell_Architecture": "Ultra-slim Li-Po" },
+            { "Tier": "A", "Model": "O2 Built-in Cable 10k", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 30.48, "Efficiency_Percent": 82.4, "Weight_g": 205.0, "Energy_Density_Wh_kg": 148.7, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "A", "Model": "WG 10k QC/PD", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 30.10, "Efficiency_Percent": 81.4, "Weight_g": 220.0, "Energy_Density_Wh_kg": 136.8, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "A", "Model": "Samsung 10k 25W PD (Beige)", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 30.00, "Efficiency_Percent": 81.1, "Weight_g": 222.0, "Energy_Density_Wh_kg": 135.1, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "A", "Model": "AlzaPower Parade Gen2 (27k)", "Rated_Energy_Wh": 99.9, "Measured_Energy_Wh": 80.47, "Efficiency_Percent": 80.5, "Weight_g": 532.8, "Energy_Density_Wh_kg": 151.0, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "A", "Model": "ROMOSS 65W (27k)", "Rated_Energy_Wh": 99.9, "Measured_Energy_Wh": 75.44, "Efficiency_Percent": 75.5, "Weight_g": 677.5, "Energy_Density_Wh_kg": 111.4, "Cell_Architecture": "Li-Po / High-Cap" },
+            { "Tier": "B", "Model": "AlzaPower Garnet 20k", "Rated_Energy_Wh": 74.0, "Measured_Energy_Wh": 54.72, "Efficiency_Percent": 73.9, "Weight_g": 415.0, "Energy_Density_Wh_kg": 131.9, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "B", "Model": "Vention Cables Yellow (5k)", "Rated_Energy_Wh": 18.5, "Measured_Energy_Wh": 14.10, "Efficiency_Percent": 76.2, "Weight_g": 129.2, "Energy_Density_Wh_kg": 109.1, "Cell_Architecture": "Li-Po Pouch" },
+            { "Tier": "B", "Model": "UGreen Qi2 Black (10k)", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 25.34, "Efficiency_Percent": 68.5, "Weight_g": 212.8, "Energy_Density_Wh_kg": 119.1, "Cell_Architecture": "Li-Po + Qi2 coil" },
+            { "Tier": "F", "Model": "TRONIC 10k (Lidl)", "Rated_Energy_Wh": 37.0, "Measured_Energy_Wh": 18.20, "Efficiency_Percent": 49.2, "Weight_g": 219.8, "Energy_Density_Wh_kg": 82.8, "Cell_Architecture": "Low-grade Li-Po" }
         ];
 
         let activeTier = 'ALL';
         let chartInstance = null;
 
         function getTierBadge(tier) {
-            switch(tier) {
-                case 'S':
-                    return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-400/10 text-amber-400 border border-amber-400/30">S-Tier</span>';
-                case 'A':
-                    return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-400/10 text-emerald-400 border border-emerald-400/30">A-Tier</span>';
-                case 'B':
-                    return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-sky-400/10 text-sky-400 border border-sky-400/30">B-Tier</span>';
-                case 'F':
-                    return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-500/10 text-rose-500 border border-rose-500/30">F-Tier</span>';
-                default:
-                    return tier;
-            }
+            const styles = {
+                'S': 'bg-[#f9e2af]/10 text-[#f9e2af] border-[#f9e2af]/30',
+                'A': 'bg-[#a6e3a1]/10 text-[#a6e3a1] border-[#a6e3a1]/30',
+                'B': 'bg-[#89b4fa]/10 text-[#89b4fa] border-[#89b4fa]/30',
+                'F': 'bg-[#f38ba8]/10 text-[#f38ba8] border-[#f38ba8]/30'
+            };
+            return `<span class="inline-flex items-center px-3 py-1 rounded-xl text-xs font-extrabold border ${styles[tier]}">${tier}-Tier</span>`;
         }
 
         function getEfficiencyBar(eff) {
-            let color = 'bg-rose-500';
-            if (eff >= 83) color = 'bg-amber-400';
-            else if (eff >= 75) color = 'bg-emerald-400';
-            else if (eff >= 68) color = 'bg-sky-400';
+            let color = 'bg-[#f38ba8]';
+            if (eff >= 83) color = 'bg-[#f9e2af]';
+            else if (eff >= 75) color = 'bg-[#a6e3a1]';
+            else if (eff >= 68) color = 'bg-[#89b4fa]';
 
             return `
-                <div class="flex items-center gap-2">
-                    <span class="font-bold text-white text-xs w-11">${eff.toFixed(1)}%</span>
-                    <div class="w-20 bg-gray-700/60 rounded-full h-2 overflow-hidden">
-                        <div class="${color} h-2 rounded-full" style="width: ${Math.min(eff, 100)}%"></div>
+                <div class="flex items-center gap-3">
+                    <span class="font-extrabold text-white text-xs w-11">${eff.toFixed(1)}%</span>
+                    <div class="w-24 bg-[#313244] rounded-full h-2.5 overflow-hidden">
+                        <div class="${color} h-2.5 rounded-full" style="width: ${Math.min(eff, 100)}%"></div>
                     </div>
                 </div>
             `;
@@ -530,34 +260,31 @@
         function renderTable(data) {
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = '';
-
             data.forEach(item => {
                 const tr = document.createElement('tr');
                 tr.className = 'table-row-hover transition text-xs md:text-sm';
                 tr.innerHTML = `
-                    <td class="py-3 px-4 text-center">${getTierBadge(item.Tier)}</td>
-                    <td class="py-3 px-4 font-semibold text-white">${item.Model}</td>
-                    <td class="py-3 px-4 text-right text-gray-300">${item.Rated_Energy_Wh.toFixed(1)} Wh</td>
-                    <td class="py-3 px-4 text-right font-medium text-emerald-400">${item.Measured_Energy_Wh.toFixed(2)} Wh</td>
-                    <td class="py-3 px-4">${getEfficiencyBar(item.Efficiency_Percent)}</td>
-                    <td class="py-3 px-4 text-right text-gray-300">${item.Weight_g.toFixed(1)} g</td>
-                    <td class="py-3 px-4 text-right font-bold text-blue-400">${item.Energy_Density_Wh_kg.toFixed(1)}</td>
-                    <td class="py-3 px-4 text-gray-400">${item.Cell_Architecture}</td>
-                    <td class="py-3 px-4 text-xs text-gray-400 max-w-xs leading-relaxed">${item.Telemetry_Notes}</td>
+                    <td class="py-3 px-5 text-center">${getTierBadge(item.Tier)}</td>
+                    <td class="py-3 px-5 font-extrabold text-white">${item.Model}</td>
+                    <td class="py-3 px-5 text-right text-[#bac2de]">${item.Rated_Energy_Wh.toFixed(1)} Wh</td>
+                    <td class="py-3 px-5 text-right font-extrabold text-[#a6e3a1]">${item.Measured_Energy_Wh.toFixed(2)} Wh</td>
+                    <td class="py-3 px-5">${getEfficiencyBar(item.Efficiency_Percent)}</td>
+                    <td class="py-3 px-5 text-right text-[#bac2de]">${item.Weight_g.toFixed(1)} g</td>
+                    <td class="py-3 px-5 text-right font-extrabold text-[#89b4fa]">${item.Energy_Density_Wh_kg.toFixed(1)}</td>
+                    <td class="py-3 px-5 text-[#a6adc8]">${item.Cell_Architecture}</td>
                 `;
                 tbody.appendChild(tr);
             });
-
-            document.getElementById('filteredCountText').innerText = `Showing ${data.length} of ${rawData.length} models`;
+            document.getElementById('filteredCountText').innerText = `Showing ${data.length} models`;
         }
 
         function setTierFilter(tier) {
             activeTier = tier;
             document.querySelectorAll('.tier-btn').forEach(btn => {
                 if (btn.dataset.tier === tier) {
-                    btn.className = 'tier-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-700 text-white border border-gray-500 transition shadow-sm';
+                    btn.className = 'tier-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#313244] text-white border border-[#585b70] transition shadow-md';
                 } else {
-                    btn.className = 'tier-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#21262d] text-gray-400 border border-borderCol hover:border-gray-500 transition';
+                    btn.className = 'tier-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#11111b] text-[#6c7086] border border-borderCol hover:border-[#585b70] transition';
                 }
             });
             applyFiltersAndSort();
@@ -566,17 +293,11 @@
         function applyFiltersAndSort() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             const sortMode = document.getElementById('sortSelect').value;
-
             let filtered = rawData.filter(item => {
                 const matchesTier = (activeTier === 'ALL' || item.Tier === activeTier);
-                const matchesQuery = !query || 
-                    item.Model.toLowerCase().includes(query) ||
-                    item.Cell_Architecture.toLowerCase().includes(query) ||
-                    item.Telemetry_Notes.toLowerCase().includes(query);
+                const matchesQuery = !query || item.Model.toLowerCase().includes(query) || item.Cell_Architecture.toLowerCase().includes(query);
                 return matchesTier && matchesQuery;
             });
-
-            // Sorting
             filtered.sort((a, b) => {
                 if (sortMode === 'density_desc') return b.Energy_Density_Wh_kg - a.Energy_Density_Wh_kg;
                 if (sortMode === 'eff_desc') return b.Efficiency_Percent - a.Efficiency_Percent;
@@ -584,21 +305,17 @@
                 if (sortMode === 'weight_asc') return a.Weight_g - b.Weight_g;
                 return 0;
             });
-
             renderTable(filtered);
             updateChart(filtered);
         }
 
         function updateChart(data) {
             const ctx = document.getElementById('benchmarkChart').getContext('2d');
-            
-            const labels = data.map(d => d.Model.length > 22 ? d.Model.substring(0, 20) + '...' : d.Model);
+            const labels = data.map(d => d.Model.length > 20 ? d.Model.substring(0, 18) + '...' : d.Model);
             const densities = data.map(d => d.Energy_Density_Wh_kg);
             const efficiencies = data.map(d => d.Efficiency_Percent);
 
-            if (chartInstance) {
-                chartInstance.destroy();
-            }
+            if (chartInstance) chartInstance.destroy();
 
             chartInstance = new Chart(ctx, {
                 type: 'bar',
@@ -608,69 +325,36 @@
                         {
                             label: 'Energy Density (Wh/kg)',
                             data: densities,
-                            backgroundColor: 'rgba(56, 139, 253, 0.7)',
-                            borderColor: '#58a6ff',
+                            backgroundColor: 'rgba(137, 180, 250, 0.8)',
+                            borderColor: '#89b4fa',
                             borderWidth: 1,
+                            borderRadius: 4,
                             yAxisID: 'y'
                         },
                         {
                             label: 'Efficiency (%)',
                             data: efficiencies,
-                            backgroundColor: 'rgba(63, 185, 80, 0.7)',
-                            borderColor: '#3fb950',
+                            backgroundColor: 'rgba(245, 194, 231, 0.8)',
+                            borderColor: '#f5c2e7',
                             borderWidth: 1,
+                            borderRadius: 4,
                             yAxisID: 'y1'
                         }
                     ]
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
+                    responsive: true, maintainAspectRatio: false,
                     scales: {
-                        x: {
-                            ticks: { 
-                                color: '#8b949e', 
-                                font: { size: 9 },
-                                maxRotation: 45,
-                                minRotation: 45
-                            },
-                            grid: { color: '#21262d' }
-                        },
-                        y: {
-                            type: 'linear',
-                            display: true,
-                            position: 'left',
-                            title: { display: true, text: 'Wh/kg', color: '#58a6ff' },
-                            ticks: { color: '#8b949e' },
-                            grid: { color: '#21262d' }
-                        },
-                        y1: {
-                            type: 'linear',
-                            display: true,
-                            position: 'right',
-                            min: 30,
-                            max: 100,
-                            title: { display: true, text: 'Efficiency %', color: '#3fb950' },
-                            ticks: { color: '#8b949e' },
-                            grid: { drawOnChartArea: false }
-                        }
+                        x: { ticks: { color: '#a6adc8', font: { family: 'Nunito', size: 10, weight: 'bold' } }, grid: { color: '#313244' } },
+                        y: { type: 'linear', position: 'left', title: { display: true, text: 'Wh/kg', color: '#89b4fa', font: { weight: 'bold' } }, ticks: { color: '#bac2de' }, grid: { color: '#313244' } },
+                        y1: { type: 'linear', position: 'right', min: 30, max: 100, title: { display: true, text: 'Efficiency %', color: '#f5c2e7', font: { weight: 'bold' } }, ticks: { color: '#bac2de' }, grid: { drawOnChartArea: false } }
                     },
-                    plugins: {
-                        legend: {
-                            labels: { color: '#c9d1d9', boxWidth: 12 }
-                        }
-                    }
+                    plugins: { legend: { labels: { color: '#cdd6f4', font: { family: 'Nunito', weight: 'bold' }, boxWidth: 12 } } }
                 }
             });
         }
-
         document.getElementById('searchInput').addEventListener('input', applyFiltersAndSort);
-
-        // Initial render
-        window.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            applyFiltersAndSort();
-        });
+        window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); applyFiltersAndSort(); });
     </script>
 </body>
 </html>
