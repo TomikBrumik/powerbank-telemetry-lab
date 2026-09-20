@@ -3,29 +3,29 @@ S,INIU 45W w/ Built-in Cable (20k),20000,74.0,69.36,14291,93.7,335.2,206.9,High-
 S,AlzaPower Vision 100W (10k),10000,36.0,33.04,6645,91.8,343.6,96.2,Li-Ion (2x 21700),"Updated avg of 2 units, highly stable output"
 S,ChoeTech Digital 22.5W (50k),50000,185.0,166.75,33397,90.1,955.3,174.6,Li-Po Block,"16h runtime, massive capacity"
 S,CUKTECH 45W (20k),20000,74.0,64.09,12822,86.6,496.9,129.0,Li-Ion,"Clean ripple, sync buck-boost topology"
-S,Samsung 20k 45W (EB-P4520),20000,74.0,64.01,12793,86.5,400.4,159.9,Li-Po Pouch,"Re-tested (USB-C 30cm nová metoda, <3.8V stop), 3x USB-C 45W SFC 2.0, 12793mAh in 6h23m"
-S,Pink Ineo (5k),5000,18.5,15.71,3150,84.9,126.4,124.3,Li-Po (Cute Pink),"Solid DC-DC conversion for a compact unit, very cute pink design"
+S,Samsung 20k 45W (EB-P4520),20000,74.0,64.01,12793,86.5,400.4,159.9,Li-Po Pouch,"Re-tested (USB-C 30cm, <3.8V stop), 3x USB-C 45W SFC 2.0"
+S,Vention Magnetic Wireless 20W Pink (5k),5000,18.5,15.71,3150,84.9,126.4,124.3,Li-Po,"Solid DC-DC conversion, previously misidentified as Ineo"
 S,INIU Pocket 10k (P50),10000,36.0,30.56,6105,84.9,162.0,188.6,2S Li-Po,"Exceptional density, 45W support"
 S,WG 20+ (20k),20000,74.0,62.74,12522,84.8,421.0,149.0,Li-Po Pouch,"New King of 20k, 6h 15m test runtime, precise output"
 S,AlzaPower Vision 100W (20k),20000,72.0,60.62,12069,84.2,477.9,126.8,Li-Ion,Used healthy unit (Kus 1) for benchmark
 S,AlzaPower Parade 22.5W (20k),20000,74.0,62.27,12343,84.1,415.0,150.0,Li-Po Pouch,"Re-tested (USB-C 30cm), highly efficient Li-Po pouch workhorse"
 S,Vention 165W TFT (20k),20000,74.0,61.62,11958,83.3,439.7,140.1,Li-Ion (21700),"Independent DC-DC lines, dedicated telemetry IC"
-A,UGreen 145W (25k),25000,90.0,74.49,14789,82.8,493.5,150.9,Li-Ion (21700),"Re-tested (USB-C 30cm nová metoda): 14789mAh in 7h23m, sustained 100W PD"
-A,AlzaPower Qi2 Slim (5k),5000,18.5,15.3,3123,82.7,125.2,122.2,Ultra-slim Li-Po,"Re-tested (USB-C 30cm nová metoda): 3123mAh in 1h33m, exceptional compact Qi2 efficiency"
+A,UGreen 145W (25k),25000,90.0,74.49,14789,82.8,493.5,150.9,Li-Ion (21700),Sustained 100W PD
+A,AlzaPower Qi2 Slim (5k),5000,18.5,15.3,3123,82.7,125.2,122.2,Ultra-slim Li-Po,Exceptional compact Qi2 efficiency
 A,PanzerGlass Empower Qi2 (10k),10000,38.5,31.8,6759,82.6,195.4,162.7,High-Voltage Li-Po + Qi2,High efficiency for a wireless powerbank
 A,O2 Built-in Cable 10k,10000,37.0,30.48,6100,82.4,205.0,148.7,Li-Po Pouch,"Low-resistance flex cables, 2.4A OCP on 9V"
 A,WG 10k QC/PD,10000,37.0,30.1,6000,81.4,220.0,136.8,Li-Po Pouch,Clean rail regulation without transient spikes
-A,Samsung 10k 25W PD (Beige),10000,37.0,30.0,6551,81.1,222.0,135.1,Li-Po Pouch,"High-efficiency 25W PPS/PD converter, delivered 6551mAh in 3h16m"
+A,Samsung 10k 25W PD (Beige),10000,37.0,30.0,6551,81.1,222.0,135.1,Li-Po Pouch,High-efficiency 25W PPS/PD converter
 A,AlzaPower WorkMate 100W (20k),20000,74.0,59.99,12303,81.1,432.8,138.6,Li-Po,Solid 100W performance
 A,AlzaPower Metal 40k,40000,148.0,119.69,24000,80.9,790.9,151.3,Li-Po / Li-Ion,"Massive aluminum chassis, zero thermal sag"
-A,AlzaPower Parade Gen2 100W (27k),27000,99.9,80.47,15893,80.6,532.8,151.0,Li-Po Pouch,"Re-tested (USB-C 30cm nová metoda): 15893mAh in 7h56m, robust 100W chassis"
+A,AlzaPower Parade Gen2 100W (27k),27000,99.9,80.47,15893,80.6,532.8,151.0,Li-Po Pouch,Robust 100W chassis
 A,O2 Spark 35W (10k),10000,36.0,28.97,5800,80.5,173.9,166.6,Li-Ion (2x 21700),2S 21700 architecture minimizes Joule losses
-A,Samsung 10k Wireless,10000,37.0,29.79,5952,80.5,240.0,124.1,Li-Po + Qi coil,"Re-tested (USB-C 30cm), much better wired efficiency than previously recorded"
+A,Samsung 10k Wireless,10000,37.0,29.79,5952,80.5,240.0,124.1,Li-Po + Qi coil,Much better wired efficiency with direct harness
 A,AlzaPower Vision 10k (30W),10000,36.0,28.46,5725,79.1,237.7,119.7,Li-Ion,Average of 3 units
 B,Vention Cables Yellow (5k),5000,18.5,14.1,2850,76.2,129.2,109.1,Li-Po Pouch,Slight voltage sag over 2.0A on 5V rail
 B,Vention Mini 35W w/ Cable (10k),10000,38.5,29.15,5781,75.7,176.5,165.2,High-Voltage Li-Po,"Compact, but standard efficiency"
-B,ROMOSS 65W Fast Charge (27k),27000,99.9,75.44,15202,75.5,677.5,111.4,Li-Po / High-Cap,"Re-tested (USB-C 30cm nová metoda): 15202mAh in 7h36m, massive 65W brick, safe sub-100Wh flight limit"
-B,AlzaPower Garnet 20k (White),20000,74.0,54.72,11104,73.9,415.0,131.9,Li-Po Pouch,"Drops from 15% to 0% abruptly, significant heat waste on DC-DC"
-B,AlzaPower Parade Gen2 (20k),20000,75.0,53.86,10798,71.8,409.5,131.5,Li-Po Pouch,Lower efficiency compared to older generation
-B,UGreen Qi2 Black (10k),10000,37.0,25.34,5043,68.5,212.8,119.1,Li-Po + Qi2 coil,"Re-tested (USB-C 30cm nová metoda): 5043mAh in 2h31m, wireless coil circuit parasitic losses"
-F,TRONIC 10k (Lidl),10000,37.0,18.2,3663,49.2,219.8,82.8,Low-grade Li-Po,"18.8Wh wasted as heat, fake CV gauge, cuts off <2.5W"
+B,ROMOSS 65W Fast Charge (27k),27000,99.9,75.44,15202,75.5,677.5,111.4,Li-Po / High-Cap,"Massive 65W brick, safe sub-100Wh flight limit"
+B,AlzaPower Garnet 20k (White),20000,74.0,54.72,11104,73.9,415.0,131.9,Li-Po Pouch,Drops from 15% to 0% abruptly
+B,AlzaPower Parade Gen2 22.5W (20k),20000,75.0,53.86,10798,71.8,409.5,131.5,Li-Po Pouch,Lower efficiency compared to older generation
+B,UGreen Qi2 Black (10k),10000,37.0,25.34,5043,68.5,212.8,119.1,Li-Po + Qi2 coil,Wireless coil circuit parasitic losses
+F,TRONIC 10k (Lidl),10000,37.0,18.2,3663,49.2,219.8,82.8,Low-grade Li-Po,"18.8Wh wasted as heat, fake CV gauge"
