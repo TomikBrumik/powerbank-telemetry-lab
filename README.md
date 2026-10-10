@@ -1,23 +1,23 @@
-# 🔋 Powerbank Telemetry & Efficiency Benchmark Lab
+# ⚡ Powerbank Telemetry & Efficiency Benchmark Lab
 
 A publicly accessible, standardized telemetry database and engineering benchmark for portable power banks. All units undergo controlled continuous discharge and recharge cycles to expose real usable energy, DC-DC converter efficiency, thermal behavior, and BMS limits.
 
-**Total Units Tested:** 42 individual units across 31 models (from 5,000 mAh to 50,000 mAh)
+**Total Units Tested:** 🔬 43 individual units across 31 models (from 5,000 mAh to 50,000 mAh)
 
-*Note on Volumetric Density (Wh/liter): Gravimetric density (Wh/kg) is tracked precisely via digital scale. Volumetric density (Wh/L) is currently being estimated and will be added via caliper measurements soon!*
+*Note on Volumetric Density (Wh/liter): Gravimetric density (Wh/kg) is tracked precisely via digital scale. Volumetric density (Wh/L) is currently being estimated and will be added via caliper measurements soon!* 📐
 
 ---
 
 ## 🔬 Testing Methodology & Hardware Rig
 
-* **Hardware Testbench:** Factory-calibrated ATORCH DL24P Programmable Electronic DC Load with PC telemetry logging.
-* **Inline Diagnostic Testers:** High-precision inline USB-C power delivery testers logging real-time charging telemetry (V, A, W, mAh, mWh) with four-wire (Kelvin) sensing at terminals.
-* **Standardized Harness:** Ultra-low resistance ADOL 60W 30cm Type-C direct link cable (<3.8V cut-off threshold) to eliminate parasitic cable voltage drop ($I^2R$ dissipation) from skewing BMS efficiency numbers.
-* **Environmental Baseline:** Ambient room temperature stabilized at 21.5 °C ± 1.0 °C with open convective airflow.
-* **Discharge Profiles:** Standardized continuous active load runs at 5V/2A (10W baseline) for nominal pack capacity verification, alongside protocol-specific PD stress profiles (20W, 45W, 65W, 100W, and 140W EPR).
-* **Pack Discharge Efficiency Metric:** $(\text{Delivered Output Energy [Wh]} / \text{Rated Battery Pack Energy [Wh]}) \times 100$
-* **Wall-to-Load (Round-Trip Cycle) Efficiency Metric:** $(\text{Delivered Output Energy [Wh]} / \text{Replenishment Input Energy [Wh]}) \times 100$
-* **Gravimetric Energy Density:** $\text{Delivered Output Energy [Wh]} / \text{Total Unit Weight [kg]}$
+* **Hardware Testbench:** Factory-calibrated ATORCH DL24P Programmable Electronic DC Load with PC telemetry logging. ⚡
+* **Inline Diagnostic Testers:** High-precision inline USB-C power delivery testers logging real-time charging telemetry (V, A, W, mAh, mWh) with four-wire (Kelvin) sensing at terminals. 🔌
+* **Standardized Harness:** Ultra-low resistance ADOL 60W 30cm Type-C direct link cable (<3.8V cut-off threshold) to eliminate parasitic cable voltage drop ($I^2R$ dissipation) from skewing BMS efficiency numbers. 🧪
+* **Environmental Baseline:** Ambient room temperature stabilized at 21.5 °C ± 1.0 °C with open convective airflow. 🌡️
+* **Discharge Profiles:** Standardized continuous active load runs at 5V/2A (10W baseline) for nominal pack capacity verification, alongside protocol-specific PD stress profiles (20W, 45W, 65W, 100W, and 140W EPR). 📊
+* **Pack Discharge Efficiency Metric:** $(\text{Delivered Output Energy [Wh]} / \text{Rated Battery Pack Energy [Wh]}) \times 100$ 📈
+* **Wall-to-Load (Round-Trip Cycle) Efficiency Metric:** $(\text{Delivered Output Energy [Wh]} / \text{Replenishment Input Energy [Wh]}) \times 100$ 🔄
+* **Gravimetric Energy Density:** $\text{Delivered Output Energy [Wh]} / \text{Total Unit Weight [kg]}$ 🚀
 
 ---
 
@@ -39,9 +39,9 @@ Direct comparison between energy pulled from the AC supply ($E_{\text{in}}$), la
 
 ### 🥇 S-Tier: Engineering Excellence (Sync Buck-Boost & Premium Chemistry)
 
-* **INIU 45W w/ Cable (20,000 mAh / 74 Wh)** 👑
+* **INIU 45W w/ Cable (20,000 mAh / 74 Wh)** 🏆
 **Measured:** 70.30 Wh | **Efficiency:** **95.00%** | **Weight:** 335.20 g | **Density:** **209.72 Wh/kg**
-*Outstanding form-factor efficiency; class-leading gravimetric density; negligible converter resistance. Average of 2 units (69.36Wh & 71.23Wh).*
+*Outstanding form-factor efficiency; class-leading gravimetric density; negligible converter resistance. Average of 2 units (69.36Wh & 71.23Wh; second unit hit 96.27% — new lab record).*
 * **AlzaPower Vision 100W (10,000 mAh / 36 Wh)** 💡
 **Measured:** 32.82 Wh | **Efficiency:** **91.17%** | **Weight:** 343.60 g | **Density:** **95.52 Wh/kg**
 *Uncompromised rail stability throughout discharge; heavy CNC chassis reduces gravimetric score. Average of 4 units.*
@@ -51,7 +51,7 @@ Direct comparison between energy pulled from the AC supply ($E_{\text{in}}$), la
 * **INIU P771 Qi2 25W (10,000 mAh / 36 Wh)** 🧲
 **Measured:** 31.94 Wh | **Efficiency (Pack):** **88.72%** | **Cycle Efficiency:** **84.05%** | **Weight:** 215.00 g | **Density:** **148.56 Wh/kg**
 *Qi2 magnetic ring; outstanding wired PD conversion efficiency; best wall-to-load cycle efficiency in the lab.*
-* **CUKTECH 45W (20,000 mAh / 74 Wh)** 🏆
+* **CUKTECH 45W (20,000 mAh / 74 Wh)** ⚡
 **Measured:** 64.09 Wh | **Efficiency:** **86.61%** | **Weight:** 496.90 g | **Density:** **128.98 Wh/kg**
 *Robust thermal envelope; 21700 cell pack; synchronous buck-boost topology.*
 * **Samsung 45W (EB-P4520) - Average (20,000 mAh / 74 Wh)** ⚡
@@ -103,7 +103,7 @@ Direct comparison between energy pulled from the AC supply ($E_{\text{in}}$), la
 * **ROMOSS 65W Fast Charge (27k)** — **75.44 Wh (75.52%)** | **111.35 Wh/kg** | *Heavy plastic shell; basic conversion circuitry; safe sub-100Wh flight limit.*
 * **AlzaPower Garnet 20k (White)** — **54.72 Wh (73.95%)** | **131.86 Wh/kg** | *Budget Li-Pol pack; significant thermal losses at 18W; drops abruptly from 15% to 0%.*
 * **AlzaPower Parade Gen2 22.5W (20k)** — **53.86 Wh (71.81%)** | **131.53 Wh/kg** | *High internal resistance; early BMS low-voltage cut-off.*
-* **UGreen Qi2 Black (10k)** — **25.34 Wh (68.49%)** | **119.08 Wh/kg** | *High parasitic thermal dissipation in the magnetic charging stage.*
+* **UGREEN Qi2 Black (10k)** — **25.34 Wh (68.49%)** | **119.08 Wh/kg** | *High parasitic thermal dissipation in the magnetic charging stage.*
 
 ---
 
@@ -115,13 +115,13 @@ Direct comparison between energy pulled from the AC supply ($E_{\text{in}}$), la
 
 ### 🔍 Key Engineering Takeaways & Pitfalls
 
-1. **The Li-Pol "Voltage Sag" Trap (Parade Gen2 100W Case Study):**
+1. **The Li-Pol "Voltage Sag" Trap (Parade Gen2 100W Case Study):** 🪫
 A pack can deliver a solid ~82% energy efficiency at low currents (5V/2A), but completely fail under a 65W–100W laptop load. Soft Li-Pol pouches with elevated internal resistance experience severe V_drop = I × R_int. Under high amp draw, the cell terminal voltage drops below the BMS cutoff threshold (typically 3.0V/cell) well before the actual chemical energy is exhausted.
-2. **Cylindrical 21700 Packs Rule High-Power PD:**
+2. **Cylindrical 21700 Packs Rule High-Power PD:** ⚡
 Units utilizing 4S/5S/6S configurations of 21700 cells maintain significantly flatter discharge curves and sustain high continuous wattage without premature low-voltage cutoffs.
-3. **Display Telemetry Discrepancies:**
+3. **Display Telemetry Discrepancies:** 📺
 Beware of smart screens that only display calculated wattage. Without dedicated voltage and amperage readouts, users cannot detect whether a device renegotiated to an inefficient 5V rail or whether active thermal throttling is taking place.
-4. **Multi-Unit Testing Reveals Consistency:**
+4. **Multi-Unit Testing Reveals Consistency:** 📊
 The AlzaPower Vision 100W (10k) showed remarkable consistency across 4 units (within 1.27 Wh), while the Samsung 45W EB-P4520 showed wider variance (3.62 Wh between units), suggesting potential production tolerance issues.
-5. **Input Energy (Wh In) Matters:**
+5. **Input Energy (Wh In) Matters:** 🔌
 The gap between labeled pack capacity and actual input energy reveals charger and BMS inefficiencies. The INIU P771 Qi2 pulled 38.00 Wh to deliver 31.94 Wh, while the Samsung 45W EB-P4520 Unit 2 pulled 76.00 Wh to deliver 60.39 Wh. The AlzaPower Parade Gen2 100W averaged 111.99 Wh in to deliver 81.16 Wh out.
