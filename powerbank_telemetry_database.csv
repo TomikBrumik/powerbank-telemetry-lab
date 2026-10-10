@@ -1,5 +1,5 @@
 Tier,Model,Rated_Capacity_mAh,Rated_Energy_Wh,Measured_Energy_Wh,Measured_Capacity_mAh,Efficiency_Percent,Input_Energy_Wh,Cycle_Efficiency_Percent,Weight_g,Energy_Density_Wh_kg,Cell_Architecture,Telemetry_Notes
-S,INIU 45W w/ Built-in Cable (20k),20000,74.00,70.30,14291,95.00,,,335.20,209.72,High-Density Li-Po,"Average of 2 units (69.36Wh & 71.23Wh)"
+S,INIU 45W w/ Built-in Cable (20k),20000,74.00,70.30,14291,95.00,,,335.20,209.72,High-Density Li-Po,"Average of 2 units (69.36Wh & 71.23Wh). Second unit hit 96.27% - new lab record"
 S,AlzaPower Vision 100W (10k),10000,36.00,32.82,6645,91.17,,,343.60,95.52,Li-Ion (2x 21700),"Average of 4 units (33.04, 32.97, 33.26, 31.99 Wh)"
 S,ChoeTech Digital 22.5W (50k),50000,185.00,166.75,33397,90.14,,,955.30,174.55,Li-Po Block,"16h runtime, massive capacity"
 S,INIU P771 Qi2 25W Magnetic (10k),10000,36.00,31.94,6327,88.72,38.00,84.05,215.00,148.56,High-Density Li-Po + Qi2,"36Wh nominal pack, 88.72% pack eff, 84.05% cycle eff (38Wh in -> 31.94Wh out)"
@@ -15,7 +15,7 @@ A,UGreen 145W (25k),25000,90.00,74.49,14789,82.77,,,493.50,150.94,Li-Ion (21700)
 A,AlzaPower Qi2 Slim (5k),5000,18.50,15.30,3123,82.70,,,125.20,122.20,Ultra-slim Li-Po,Exceptional compact Qi2 efficiency
 A,PanzerGlass Empower Qi2 (10k),10000,38.50,31.80,6759,82.60,,,195.40,162.74,High-Voltage Li-Po + Qi2,High efficiency for a wireless powerbank
 A,O2 Built-in Cable 10k,10000,37.00,30.48,6100,82.38,,,205.00,148.68,Li-Po Pouch,"Low-resistance flex cables, 2.4A OCP on 9V"
-A,AlzaPower Parade Gen2 100W (27k),27000,99.90,81.16,16084,81.21,111.99,72.88,532.80,152.31,Li-Po Pouch,"4 units: 81.07, 82.35, 81.21, 79.99 Wh. Wh in values: 111.88, 112.00, 112.20, 111.88 (avg 111.99)"
+A,AlzaPower Parade Gen2 100W (27k),27000,99.90,81.16,16084,81.21,111.99,72.88,532.80,152.31,Li-Po Pouch,"4 units: 81.07, 82.35, 81.21, 79.99 Wh. Wh in: 111.88, 112.00, 112.20, 111.88 (avg 111.99)"
 A,WG 10k QC/PD,10000,37.00,30.10,6000,81.35,,,220.00,136.82,Li-Po Pouch,Clean rail regulation without transient spikes
 A,Samsung 10k 25W PD (Beige),10000,37.00,30.00,6551,81.08,,,222.00,135.14,Li-Po Pouch,High-efficiency 25W PPS/PD converter
 A,AlzaPower WorkMate 100W (20k),20000,74.00,59.99,12303,81.07,,,432.80,138.61,Li-Po,Solid 100W performance
