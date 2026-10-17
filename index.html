@@ -106,8 +106,8 @@
                     <span class="text-xs font-bold uppercase tracking-wider" data-i18n="kpiTotalUnits">🔬 Total Units Tested</span>
                     <span class="text-xl group-hover:scale-110 transition-transform float-icon">⚡</span>
                 </div>
-                <div id="totalUnits" class="text-3xl font-extrabold text-accentGreen">45 Units</div>
-                <p class="text-xs text-[#a6adc8] mt-1 font-semibold" data-i18n="kpiTotalUnitsSub">Across 33 models from 5k to 50k mAh</p>
+                <div id="totalUnits" class="text-3xl font-extrabold text-accentGreen">44 Units</div>
+                <p id="totalModelsSub" class="text-xs text-[#a6adc8] mt-1 font-semibold" data-i18n="kpiTotalUnitsSub">Across 32 models from 5k to 50k mAh</p>
             </div>
             <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentBlue transition-colors duration-300">
                 <div class="flex justify-between items-center text-[#bac2de] mb-2">
@@ -203,7 +203,7 @@
                 kpiRecordSub: "INIU 45W 20k (Lab Record Unit 2)",
                 kpiTopCycle: "🔌 Top Wall-to-Load",
                 kpiTotalUnits: "🔬 Total Units Tested",
-                kpiTotalUnitsSub: "Across 33 models from 5k to 50k mAh",
+                kpiTotalUnitsSub: "Across 32 models from 5k to 50k mAh",
                 kpiMaxDensity: "🚀 Max Gravimetric Density",
                 searchPlaceholder: "🔍 Search models, brands, cell architecture...",
                 tierAll: "All",
@@ -222,7 +222,8 @@
                 thDensity: "🚀 Wh/kg",
                 thCellTech: "🧪 Cell Tech",
                 showingModels: "📊 Showing {count} models (averages)",
-                showingUnits: "📋 Showing individual units"
+                showingUnits: "📋 Showing {units} individual runs across {count} models",
+                unitsLabel: "{units} Units"
             },
             cz: {
                 tagline: "Standardizovaný testovací pult DL24P • 🔌 30cm měřicí kabeláž • 📊 Reálná Wh účinnost • 🔄 Účinnost cyklu ze zásuvky do zátěže",
@@ -231,7 +232,7 @@
                 kpiRecordSub: "INIU 45W 20k (Laboratorní rekord Unit 2)",
                 kpiTopCycle: "🔌 Nejvyšší cyklická účinnost",
                 kpiTotalUnits: "🔬 Otestovaných kusů celkem",
-                kpiTotalUnitsSub: "Napříč 33 modely od 5k do 50k mAh",
+                kpiTotalUnitsSub: "Napříč 32 modely od 5k do 50k mAh",
                 kpiMaxDensity: "🚀 Max. gravimetrická hustota",
                 searchPlaceholder: "🔍 Hledat model, značku, architekturu...",
                 tierAll: "Vše",
@@ -250,7 +251,8 @@
                 thDensity: "🚀 Wh/kg",
                 thCellTech: "🧪 Technologie článků",
                 showingModels: "📊 Zobrazeno {count} modelů (průměry)",
-                showingUnits: "📋 Zobrazeny jednotlivé testované kusy"
+                showingUnits: "📋 Zobrazeno {units} jednotlivých měření napříč {count} modely",
+                unitsLabel: "{units} kusů"
             }
         };
 
@@ -264,16 +266,16 @@
             // A-TIER
             { "Tier":"A","Model":"Vention 165W TFT (20k)","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":61.62,"Efficiency_Percent":83.27,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":439.70,"Energy_Density_Wh_kg":140.14,"Cell_Architecture":"Li-Ion (21700)","Note":"Paper split 100W + 65W, color TFT display, and high overall power ceiling.","NoteCZ":"Papírový split 100 W + 65 W, barevný TFT displej a vysoký celkový výkonový strop.","Units":[{"Unit":"Unit 1","Wh":61.62,"Eff":83.27,"In":null}] },
             { "Tier":"A","Model":"AlzaPower Vision 100W (10k)","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":32.82,"Efficiency_Percent":91.17,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":343.60,"Energy_Density_Wh_kg":95.52,"Cell_Architecture":"Li-Ion (2x 21700)","Note":"Full 100W input and output, but immediate severe thermal throttling during its own charging, dropping power to 15–22 W. Also suffers from 5V drop when sharing C-C ports.","NoteCZ":"Plnohodnotný 100W vstup i výstup, ale trápí ho zásadní nešvar – při vlastním nabíjení se okamžitě spouští silný tepelný throttling, který výkon stahuje dolů na 15–22 W. Při sdílení C-C portů navíc trpí 5V pádem.","Units":[{"Unit":"Unit 1","Wh":33.04,"Eff":91.78,"In":null},{"Unit":"Unit 2","Wh":32.97,"Eff":91.58,"In":null},{"Unit":"Unit 3","Wh":33.26,"Eff":92.39,"In":null},{"Unit":"Unit 4","Wh":31.99,"Eff":88.86,"In":null}] },
-            { "Tier":"A","Model":"AlzaPower Vision 100W (20k)","Rated_Energy_Wh":72.00,"Measured_Energy_Wh":60.62,"Efficiency_Percent":84.19,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":477.90,"Energy_Density_Wh_kg":126.85,"Cell_Architecture":"Li-Ion","Note":"Full 100W input and output, but immediate thermal throttling during charging (drops to 15-22W) and 5V drop on C-C sharing.","NoteCZ":"Plnohodnotný 100W vstup i výstup, ale okamžitý tepelný throttling při nabíjení (spadne na 15–22 W) a 5V pád při sdílení C-C.","Units":[{"Unit":"Unit 1","Wh":60.62,"Eff":84.19,"In":null}] },
+            { "Tier":"A","Model":"AlzaPower Vision 100W (20k)","Rated_Energy_Wh":72.00,"Measured_Energy_Wh":60.62,"Efficiency_Percent":84.19,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":477.90,"Energy_Density_Wh_kg":126.85,"Cell_Architecture":"Li-Ion (4x 21700)","Note":"Full 100W input and output, but immediate thermal throttling during charging (drops to 15-22W) and 5V drop on C-C sharing.","NoteCZ":"Plnohodnotný 100W vstup i výstup, ale okamžitý tepelný throttling při nabíjení (spadne na 15–22 W) a 5V pád při sdílení C-C.","Units":[{"Unit":"Unit 1","Wh":60.62,"Eff":84.19,"In":null}] },
             { "Tier":"A","Model":"Samsung 20k 45W (EB-P4520)","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":62.20,"Efficiency_Percent":84.05,"Input_Energy_Wh":76.00,"Cycle_Efficiency":79.46,"Weight_g":400.40,"Energy_Density_Wh_kg":155.34,"Cell_Architecture":"Li-Po Pouch • Symmetrical 22+22W","Note":"Perfect symmetrical 22W + 22W split without 5V drop, and full 5A PPS support for Super Fast Charging 2.0 (45W for Samsung devices).","NoteCZ":"Perfektní symetrický split 22 W + 22 W bez pádu na 5 V a plná podpora 5A PPS pro Super Fast Charging 2.0 (45 W pro Samsung zařízení).","Units":[{"Unit":"Unit 1","Wh":64.01,"Eff":86.50,"In":null},{"Unit":"Unit 2","Wh":60.39,"Eff":81.61,"In":76.00}] },
-            { "Tier":"A","Model":"AlzaPower WorkMate 100W (20k)","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":59.99,"Efficiency_Percent":81.07,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":432.80,"Energy_Density_Wh_kg":138.61,"Cell_Architecture":"Li-Po","Note":"Great internal port distribution and power allocation, but completely lacks 5A PPS (locks modern phones to fixed 9V / 3A).","NoteCZ":"Skvělé vnitřní rozdělení portů a alokace výkonu, ale zcela bez 5A PPS (moderní telefony zamyká na fixních 9 V / 3 A).","Units":[{"Unit":"Unit 1","Wh":59.99,"Eff":81.07,"In":null}] },
+            { "Tier":"A","Model":"AlzaPower WorkMate 100W (20k)","Rated_Energy_Wh":72.00,"Measured_Energy_Wh":59.99,"Efficiency_Percent":83.32,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":432.80,"Energy_Density_Wh_kg":138.61,"Cell_Architecture":"Li-Ion (4x 21700)","Note":"Great internal port distribution and power allocation, but lacks 5A PPS (locks modern phones to 3A PPS / fixed 9V 3A).","NoteCZ":"Skvělé vnitřní rozdělení portů a alokace výkonu, ale zcela bez 5A PPS (moderní telefony zamyká na 3A PPS / fixních 9 V 3 A).","Units":[{"Unit":"Unit 1","Wh":59.99,"Eff":83.32,"In":null}] },
             { "Tier":"A","Model":"CUKTECH 45W / 55W (20k)","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":64.09,"Efficiency_Percent":86.61,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":496.90,"Energy_Density_Wh_kg":128.98,"Cell_Architecture":"Li-Ion","Note":"Excellent internal efficiency (86.61%), full 5A PPS, and 40W input.","NoteCZ":"Vynikající vnitřní účinnost 86,61 %, plné 5A PPS a 40W vstup.","Units":[{"Unit":"Unit 1","Wh":64.09,"Eff":86.61,"In":null}] },
             { "Tier":"A","Model":"INIU Pocket 10k (P50)","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":30.56,"Efficiency_Percent":84.89,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":162.00,"Energy_Density_Wh_kg":188.64,"Cell_Architecture":"2S Li-Po","Note":"Pocket EDC (162 g, 188 Wh/kg) with full 45W for phones and fast charging of the power bank itself.","NoteCZ":"Kapesní EDC (162 g, 188 Wh/kg) s plnými 45 W pro telefon i rychlé dobíjení powerbanky.","Units":[{"Unit":"Unit 1","Wh":30.56,"Eff":84.89,"In":null}] },
 
             // B-TIER
             { "Tier":"B","Model":"AlzaPower Metal 40k","Rated_Energy_Wh":148.00,"Measured_Energy_Wh":119.69,"Efficiency_Percent":80.87,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":790.90,"Energy_Density_Wh_kg":151.33,"Cell_Architecture":"Li-Po / Li-Ion","Note":"Moved up due to 100W power and a durable aluminum body, but suffers from poor power sharing when multiple devices are plugged in at once.","NoteCZ":"Posunuto výše díky 100W výkonu a odolnému hliníkovému tělu, ale doplácí na špatné sdílení výkonu při zapojení více zařízení najednou.","Units":[{"Unit":"Unit 1","Wh":119.69,"Eff":80.87,"In":null}] },
             { "Tier":"B","Model":"O2 Spark 35W (10k)","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":28.97,"Efficiency_Percent":80.47,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":173.90,"Energy_Density_Wh_kg":166.59,"Cell_Architecture":"Li-Ion (2x 21700)","Note":"Hidden talent. Thanks to quality 21700 cells and converter headroom, it can push up to 40W at peak.","NoteCZ":"Skrytý talent. Díky kvalitním 21700 článkům a rezervě měniče dokáže ve špičce bez problému tlačit až ke 40 W výkonu.","Units":[{"Unit":"Unit 1","Wh":28.97,"Eff":80.47,"In":null}] },
-            { "Tier":"B","Model":"AlzaPower Parade Gen2 100W (27k)","Rated_Energy_Wh":99.90,"Measured_Energy_Wh":81.16,"Efficiency_Percent":81.21,"Input_Energy_Wh":111.99,"Cycle_Efficiency":72.88,"Weight_g":532.80,"Energy_Density_Wh_kg":152.31,"Cell_Architecture":"Li-Po Pouch","Note":"Huge 99.9 Wh capacity and 100W input & output (both ways), but suffers from unstable behavior and power sharing when discharged below 45%.","NoteCZ":"Obří kapacita 99,9 Wh a 100W vstup i výstup (tam i zpět), ale trápí ho nestabilní chování a sdílení výkonu při vybití pod 45 %.","Units":[{"Unit":"Unit 1","Wh":81.07,"Eff":81.15,"In":null},{"Unit":"Unit 2","Wh":82.35,"Eff":82.43,"In":null},{"Unit":"Unit 3","Wh":81.21,"Eff":81.21,"In":null},{"Unit":"Unit 4","Wh":79.99,"Eff":80.06,"In":null}],"InValues":[111.88,112.00,112.20,111.88] },
+            { "Tier":"B","Model":"AlzaPower Parade Gen2 100W (27k)","Rated_Energy_Wh":99.90,"Measured_Energy_Wh":81.16,"Efficiency_Percent":81.21,"Input_Energy_Wh":111.99,"Cycle_Efficiency":72.88,"Weight_g":532.80,"Energy_Density_Wh_kg":152.31,"Cell_Architecture":"Li-Po Pouch","Note":"Huge 99.9 Wh capacity and 100W input & output (both ways), but suffers from unstable behavior and power sharing when discharged below 45%.","NoteCZ":"Obří kapacita 99,9 Wh a 100W vstup i výstup (tam i zpět), ale trápí ho nestabilní chování a sdílení výkonu při vybití pod 45 %.","Units":[{"Unit":"Unit 1","Wh":81.07,"Eff":81.15,"In":111.88},{"Unit":"Unit 2","Wh":82.35,"Eff":82.43,"In":112.00},{"Unit":"Unit 3","Wh":81.21,"Eff":81.21,"In":112.20},{"Unit":"Unit 4","Wh":79.99,"Eff":80.06,"In":111.88}],"InValues":[111.88,112.00,112.20,111.88] },
             { "Tier":"B","Model":"Samsung 10k 25W PD (Beige)","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":30.00,"Efficiency_Percent":81.08,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":222.00,"Energy_Density_Wh_kg":135.14,"Cell_Architecture":"Li-Po Pouch","Note":"Reliable foundation with 9W+9W split and 25W input.","NoteCZ":"Spolehlivý základ s 9W+9W splitem a 25W vstupem.","Units":[{"Unit":"Unit 1","Wh":30.00,"Eff":81.08,"In":null}] },
             { "Tier":"B","Model":"PanzerGlass Empower Qi2 (10k)","Rated_Energy_Wh":38.50,"Measured_Energy_Wh":31.80,"Efficiency_Percent":82.60,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":195.40,"Energy_Density_Wh_kg":162.74,"Cell_Architecture":"High-Voltage Li-Po + Qi2","Note":"Honest Qi2 wireless with 82.6% efficiency.","NoteCZ":"Poctivý Qi2 bezdrát s účinností 82,6 %.","Units":[{"Unit":"Unit 1","Wh":31.80,"Eff":82.60,"In":null}] },
             { "Tier":"B","Model":"O2 Built-in Cable 10k","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":30.48,"Efficiency_Percent":82.38,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":205.00,"Energy_Density_Wh_kg":148.68,"Cell_Architecture":"Li-Po Pouch","Note":"Practical city bank with 82.38% efficiency.","NoteCZ":"Praktická městská banka s účinností 82,38 %.","Units":[{"Unit":"Unit 1","Wh":30.48,"Eff":82.38,"In":null}] },
@@ -286,7 +288,7 @@
             { "Tier":"C","Model":"Samsung 10k Wireless","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":29.79,"Efficiency_Percent":80.51,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":240.00,"Energy_Density_Wh_kg":124.13,"Cell_Architecture":"Li-Po + Qi coil","Note":"Older slow wireless.","NoteCZ":"Starší pomalý bezdrát.","Units":[{"Unit":"Unit 1","Wh":29.79,"Eff":80.51,"In":null}] },
 
             // D-TIER
-            { "Tier":"D","Model":"ChoeTech PD20W (5k)","Rated_Energy_Wh":18.50,"Measured_Energy_Wh":13.93,"Efficiency_Percent":75.28,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":0,"Energy_Density_Wh_kg":0,"Cell_Architecture":"Li-Po Pouch","Note":"Small, compact design with a built-in USB-C connector directly on the body. The catch? It has a slow charging quirk.","NoteCZ":"Malá a kompaktní powerbanka s vestavěným USB-C konektorem přímo na těle. Má ale neduh – pomalé nabíjení.","Units":[{"Unit":"Unit 1","Wh":13.93,"Eff":75.28,"In":null}] },
+            { "Tier":"D","Model":"ChoeTech PD20W (5k)","Rated_Energy_Wh":18.50,"Measured_Energy_Wh":13.93,"Efficiency_Percent":75.28,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":null,"Energy_Density_Wh_kg":null,"Cell_Architecture":"Li-Po Pouch","Note":"Small, compact design with a built-in USB-C connector directly on the body. Major catch: it only recharges with a slow 5V charger and refuses to charge on fast PD adapters.","NoteCZ":"Malá a kompaktní powerbanka s vestavěným USB-C konektorem přímo na těle. Zásadní neduh: musí se nabíjet jen pomalou 5V nabíječkou, na rychlých PD adaptérech se vůbec nenabije.","Units":[{"Unit":"Unit 1","Wh":13.93,"Eff":75.28,"In":null}] },
             { "Tier":"D","Model":"WG 20+ (20k)","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":62.74,"Efficiency_Percent":84.78,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":421.00,"Energy_Density_Wh_kg":148.98,"Cell_Architecture":"Li-Po Pouch","Note":"Outdated 20W concept with slow 18W input from the wall and 5V drop with multiple devices.","NoteCZ":"Zastaralá 20W koncepce s pomalým 18W vstupem ze sítě a pádem na 5V při více zařízeních.","Units":[{"Unit":"Unit 1","Wh":62.74,"Eff":84.78,"In":null}] },
             { "Tier":"D","Model":"Vention 5k (No Built-in Cable)","Rated_Energy_Wh":18.50,"Measured_Energy_Wh":14.10,"Efficiency_Percent":76.22,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":129.20,"Energy_Density_Wh_kg":109.13,"Cell_Architecture":"Li-Po Pouch","Note":"Basic model without any built-in cables, average efficiency.","NoteCZ":"Základní model bez jakýchkoliv vestavěných kabelů, průměrná účinnost.","Units":[{"Unit":"Unit 1","Wh":14.10,"Eff":76.22,"In":null}] },
             { "Tier":"D","Model":"Vention Magnetic Wireless 20W Pink (5k)","Rated_Energy_Wh":18.50,"Measured_Energy_Wh":15.71,"Efficiency_Percent":84.92,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":126.40,"Energy_Density_Wh_kg":124.29,"Cell_Architecture":"Li-Po","Note":"Old heating 7.5W wireless charging masked as a magnet.","NoteCZ":"Staré zahřívající se 7,5W bezdrátové nabíjení maskované za magnet.","Units":[{"Unit":"Unit 1","Wh":15.71,"Eff":84.92,"In":null}] },
@@ -310,6 +312,11 @@
 
         const tierRank = { 'S': 1, 'A': 2, 'B': 3, 'C': 4, 'D': 5, 'E': 6, 'F': 7 };
 
+        function updateKpiCounts() {
+            const totalUnitsCount = rawData.reduce((sum, item) => sum + (item.Units ? item.Units.length : 1), 0);
+            document.getElementById('totalUnits').innerText = i18n[currentLang].unitsLabel.replace('{units}', totalUnitsCount);
+        }
+
         function setLanguage(lang) {
             currentLang = lang;
             const btnEN = document.getElementById('langEN');
@@ -328,6 +335,7 @@
             document.getElementById('searchInput').placeholder = i18n[lang].searchPlaceholder;
             const viewBtn = document.getElementById('viewToggle');
             viewBtn.innerHTML = showAverages ? `👁 <span>${i18n[lang].viewAverages}</span>` : `📋 <span>${i18n[lang].viewUnits}</span>`;
+            updateKpiCounts();
             applyFiltersAndSort();
         }
 
@@ -396,12 +404,16 @@
         function renderTable(data) {
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = '';
+            let visibleUnits = 0;
+
             data.forEach(item => {
                 const tr = document.createElement('tr');
                 tr.className = 'table-row-hover transition text-xs md:text-sm';
                 
                 const noteText = currentLang === 'cz' ? (item.NoteCZ || item.Note) : item.Note;
                 const noteHtml = noteText ? `<div class="mt-1 text-[11px] font-normal ${item.Tier === 'F' ? 'text-accentRed font-semibold' : 'text-[#a6adc8]'}">${noteText}</div>` : '';
+                const weightDisplay = item.Weight_g ? `${item.Weight_g.toFixed(2)} g` : '<span class="text-[#6c7086]">—</span>';
+                const densityDisplay = item.Energy_Density_Wh_kg ? `🚀 ${item.Energy_Density_Wh_kg.toFixed(2)}` : '<span class="text-[#6c7086]">—</span>';
 
                 if (showAverages) {
                     const hasMultiple = item.Units && item.Units.length > 1;
@@ -440,15 +452,17 @@
                         <td class="py-3 px-3">${getEfficiencyBar(item.Efficiency_Percent)}</td>
                         <td class="py-3 px-3 text-right text-[#f9e2af] font-bold">${item.Input_Energy_Wh !== null ? '🔌 ' + item.Input_Energy_Wh.toFixed(2) + ' Wh' : '<span class="text-[#6c7086]">—</span>'}</td>
                         <td class="py-3 px-3">${getEfficiencyBar(item.Cycle_Efficiency)}</td>
-                        <td class="py-3 px-3 text-right text-[#bac2de]">${item.Weight_g.toFixed(2)} g</td>
-                        <td class="py-3 px-3 text-right font-extrabold text-[#89b4fa]">🚀 ${item.Energy_Density_Wh_kg.toFixed(2)}</td>
+                        <td class="py-3 px-3 text-right text-[#bac2de]">${weightDisplay}</td>
+                        <td class="py-3 px-3 text-right font-extrabold text-[#89b4fa]">${densityDisplay}</td>
                         <td class="py-3 px-4 text-[#a6adc8]">${item.Cell_Architecture}</td>
                     `;
                     tbody.appendChild(tr);
                 } else {
                     item.Units.forEach((unit, index) => {
+                        visibleUnits++;
                         const unitTr = document.createElement('tr');
                         unitTr.className = 'table-row-hover transition text-xs md:text-sm border-b border-borderCol/50';
+                        const unitCycleEff = (unit.In && unit.Wh) ? (unit.Wh / unit.In * 100) : null;
                         if (index === 0) {
                             unitTr.innerHTML = `
                                 <td class="py-3 px-4 text-center" rowspan="${item.Units.length}">${getTierBadge(item.Tier)}</td>
@@ -459,14 +473,14 @@
                             `;
                         }
                         unitTr.innerHTML += `
-                            <td class="py-3 px-3 text-right text-[#bac2de]">${unit.Unit}</td>
+                            <td class="py-3 px-3 text-right text-[#bac2de]">${unit.Unit} <span class="text-[10px] text-[#6c7086] block">(${item.Rated_Energy_Wh.toFixed(1)} Wh)</span></td>
                             <td class="py-3 px-3 text-right font-extrabold text-[#a6e3a1]">⚡ ${unit.Wh.toFixed(2)} Wh</td>
                             <td class="py-3 px-3">${getEfficiencyBar(unit.Eff)}</td>
-                            <td class="py-3 px-3 text-right text-[#f9e2af]">${unit.In !== null ? '🔌 ' + unit.In.toFixed(2) + ' Wh' : '—'}</td>
-                            <td class="py-3 px-3">—</td>
-                            <td class="py-3 px-3 text-right text-[#bac2de]">—</td>
-                            <td class="py-3 px-3 text-right font-extrabold text-[#89b4fa]">—</td>
-                            <td class="py-3 px-4 text-[#a6adc8]">—</td>
+                            <td class="py-3 px-3 text-right text-[#f9e2af]">${unit.In !== null ? '🔌 ' + unit.In.toFixed(2) + ' Wh' : '<span class="text-[#6c7086]">—</span>'}</td>
+                            <td class="py-3 px-3">${getEfficiencyBar(unitCycleEff)}</td>
+                            <td class="py-3 px-3 text-right text-[#bac2de]">${weightDisplay}</td>
+                            <td class="py-3 px-3 text-right font-extrabold text-[#89b4fa]">${densityDisplay}</td>
+                            <td class="py-3 px-4 text-[#a6adc8]">${item.Cell_Architecture}</td>
                         `;
                         tbody.appendChild(unitTr);
                     });
@@ -474,7 +488,7 @@
             });
             lucide.createIcons();
             const countTemplate = showAverages ? i18n[currentLang].showingModels : i18n[currentLang].showingUnits;
-            document.getElementById('filteredCountText').innerText = countTemplate.replace('{count}', data.length);
+            document.getElementById('filteredCountText').innerText = countTemplate.replace('{count}', data.length).replace('{units}', visibleUnits);
         }
 
         function setTierFilter(tier) {
@@ -523,7 +537,7 @@
         function updateChart(data) {
             const ctx = document.getElementById('benchmarkChart').getContext('2d');
             const labels = data.map(d => d.Model.length > 18 ? d.Model.substring(0, 16) + '...' : d.Model);
-            const densities = data.map(d => d.Energy_Density_Wh_kg);
+            const densities = data.map(d => d.Energy_Density_Wh_kg || 0);
             const efficiencies = data.map(d => d.Efficiency_Percent);
             if (chartInstance) chartInstance.destroy();
             chartInstance = new Chart(ctx, {
@@ -548,7 +562,7 @@
         }
 
         document.getElementById('searchInput').addEventListener('input', applyFiltersAndSort);
-        window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); applyFiltersAndSort(); });
+        window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); updateKpiCounts(); applyFiltersAndSort(); });
     </script>
 </body>
 </html>
