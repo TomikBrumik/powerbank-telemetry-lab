@@ -2,7 +2,7 @@
 
 A publicly accessible, standardized telemetry database and engineering benchmark for portable power banks. All units undergo controlled continuous discharge and recharge cycles to expose real usable energy, DC-DC converter efficiency, thermal behavior, and BMS limits.
 
-**Total Units Tested:** 🔬 45 individual units across **33 models** (from 5,000 mAh to 50,000 mAh)
+**Total Units Tested:** 🔬 44 individual runs/units across **32 models** (from 5,000 mAh to 50,000 mAh)
 
 ---
 
@@ -25,14 +25,14 @@ A publicly accessible, standardized telemetry database and engineering benchmark
 ### ⚡ S-Tier: Absolute Technological Elite
 - **UGREEN Nexode 200W (25k)** — **72.29 Wh (80.32%)** | **127.95 Wh/kg** | *Dual independent buck-boost converters (100W+100W simultaneous without reset), 140W EPR profile, and 65W input.*
 - **UGREEN 145W (25k)** — **74.49 Wh (82.77%)** | **150.94 Wh/kg** | *Top laptop reference with independent 100W + 45W split, fast 65W input, and honest cells.*
-- **INIU 45W w/ Cable (20k)** — **70.30 Wh (95.00%)** | **209.72 Wh/kg** | *Laboratory record holder. Average efficiency 95.00% (second unit hit 96.27%), exceptional gravimetric density 209.72 Wh/kg.*
+- **INIU 45W w/ Built-in Cable (20k)** — **70.30 Wh (95.00%)** | **209.72 Wh/kg** | *Laboratory record holder. Average efficiency 95.00% (second unit hit 96.27%), exceptional gravimetric density 209.72 Wh/kg.*
 - **INIU P771 Qi2.2 25W (10k)** — **31.94 Wh (88.72%)** | **148.56 Wh/kg** | *Most modern magnetic charging with full Qi2.2 certification (25W), excellent wired efficiency (88.72%), and top thermal management with record wall-to-load cycle efficiency (84.05%).*
 
 ### 🔋 A-Tier: Top Work and Daily Models
 - **Vention 165W TFT (20k)** — **61.62 Wh (83.27%)** | **140.14 Wh/kg** | *Paper split 100W + 65W, color TFT display, and high overall power ceiling.*
 - **AlzaPower Vision 100W (10k & 20k)** — **32.82 Wh (91.17%) & 60.62 Wh (84.19%)** | *Full 100W input and output, but immediate severe thermal throttling during its own charging (drops power to 15–22 W). Also suffers from 5V drop when sharing C-C ports.*
 - **Samsung 45W EB-P4520 (20k)** — **62.20 Wh (84.05%)** | **155.34 Wh/kg** | *Perfect symmetrical 22W + 22W split without 5V drop, and full 5A PPS support for Super Fast Charging 2.0 (45W for Samsung devices).*
-- **AlzaPower WorkMate 100W (20k)** — **59.99 Wh (81.07%)** | **138.61 Wh/kg** | *Great internal port distribution and power allocation, but completely lacks 5A PPS (locks modern phones to fixed 9V / 3A).*
+- **AlzaPower WorkMate 100W (20k)** — **59.99 Wh (83.32%)** | **138.61 Wh/kg** | *4x 21700 Li-Ion pack (72 Wh). Great internal port distribution and power allocation, but lacks 5A PPS (locks modern phones to 3A PPS / fixed 9V 3A).*
 - **CUKTECH 45W / 55W (20k)** — **64.09 Wh (86.61%)** | **128.98 Wh/kg** | *Excellent internal efficiency (86.61%), full 5A PPS, and 40W input.*
 - **INIU Pocket 10k (P50)** — **30.56 Wh (84.89%)** | **188.64 Wh/kg** | *Pocket EDC (162 g, 188 Wh/kg) with full 45W for phones and fast charging of the power bank itself.*
 
@@ -52,7 +52,7 @@ A publicly accessible, standardized telemetry database and engineering benchmark
 - **Samsung 10k Wireless** — **29.79 Wh (80.51%)** | **124.13 Wh/kg** | *Older slow wireless.*
 
 ### 📉 D-Tier: Outdated Concepts & Weak Magnets
-- **ChoeTech PD20W (5k)** — **13.93 Wh (75.28%)** | **-** | *Small, compact design with a built-in USB-C connector directly on the body. The catch? It has a slow charging quirk.*
+- **ChoeTech PD20W (5k)** — **13.93 Wh (75.28%)** | **-** | *Small, compact design with a built-in USB-C connector directly on the body. Major catch: it only recharges via a slow 5V charger and refuses to charge on fast PD chargers.*
 - **WG 20+ (20k)** — **62.74 Wh (84.78%)** | **148.98 Wh/kg** | *Outdated 20W concept with slow 18W input from the wall and 5V drop with multiple devices.*
 - **Vention 5k (No Built-in Cable)** — **14.10 Wh (76.22%)** | **109.13 Wh/kg** | *Basic model without any built-in cables, average efficiency.*
 - **Vention Magnetic Wireless 20W Pink (5k)** — **15.71 Wh (84.92%)** | **124.29 Wh/kg** | *Old heating 7.5W wireless charging masked as a magnet.*
