@@ -46,12 +46,13 @@ A publicly accessible, standardized telemetry database and engineering benchmark
 
 ### 🔹 C-Tier: Capacity Workhorses & Older Foundations
 - **ROMOSS 65W Fast Charge (27k)** — **75.44 Wh (75.52%)** | **111.35 Wh/kg** | *The body is large and efficiency lags (75.52%), but it safely delivers an honest 65W.*
-- **ChoeTech Digital 22.5W (50k)** — **166.75 Wh (90.14%)** | **174.55 Wh/kg** | *Works, but has a very annoying trait – it must be charged exclusively with a slow charger, otherwise it refuses protocol cooperation and won't charge at all.*
+- **ChoeTech Digital 22.5W (50k)** — **166.75 Wh (90.14%)** | **174.55 Wh/kg** | *Super efficiency (90.14%) driven by a massive parallel cell array (50,000 mAh / 185 Wh) with LED display and 3 ports. However, the total output is limited to 22.5W, and forum reviews suggest real-world output often caps around 15W.*
 - **WG 10k QC/PD** — **30.10 Wh (81.35%)** | **136.82 Wh/kg** | *Standard 20W base.*
 - **AlzaPower Vision 10k (30W)** — **28.46 Wh (79.06%)** | **119.73 Wh/kg** | *Older 30W concept.*
 - **Samsung 10k Wireless** — **29.79 Wh (80.51%)** | **124.13 Wh/kg** | *Older slow wireless.*
 
 ### 📉 D-Tier: Outdated Concepts & Weak Magnets
+- **ChoeTech PD20W (5k)** — **13.93 Wh (75.28%)** | **-** | *Small, compact design with a built-in USB-C connector directly on the body. The catch? It has a slow charging quirk.*
 - **WG 20+ (20k)** — **62.74 Wh (84.78%)** | **148.98 Wh/kg** | *Outdated 20W concept with slow 18W input from the wall and 5V drop with multiple devices.*
 - **Vention 5k (No Built-in Cable)** — **14.10 Wh (76.22%)** | **109.13 Wh/kg** | *Basic model without any built-in cables, average efficiency.*
 - **Vention Magnetic Wireless 20W Pink (5k)** — **15.71 Wh (84.92%)** | **124.29 Wh/kg** | *Old heating 7.5W wireless charging masked as a magnet.*
