@@ -57,39 +57,39 @@
                     <span class="text-4xl float-icon">⚡</span>
                     <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Powerbank Lab <span class="text-accentYellow">⚡</span></h1>
                 </div>
-                <p class="text-sm text-[#bac2de] mt-2 font-medium flex items-center gap-2">
+                <p id="headerSubtitle" class="text-sm text-[#bac2de] mt-2 font-medium flex items-center gap-2 flex-wrap">
                     <span class="text-accentYellow">🔋</span>
-                    Standardized DL24P Load Testbench
-                    <span class="text-[#45475a]">•</span>
-                    <span class="text-accentTeal">🔌</span> 30cm Cable Harness
-                    <span class="text-[#45475a]">•</span>
-                    <span class="text-accentGreen">📊</span> Real Wh Efficiency
-                    <span class="text-[#45475a]">•</span>
-                    <span class="text-accentPink">🔄</span> Wall-to-Load Cycle Efficiency
+                    <span data-i18n="tagline">Standardized DL24P Load Testbench • 🔌 30cm Cable Harness • 📊 Real Wh Efficiency • 🔄 Wall-to-Load Cycle Efficiency</span>
                 </p>
             </div>
             <div class="flex items-center gap-3 flex-wrap z-10">
+                <!-- Language Switcher -->
+                <div class="flex items-center bg-[#11111b] p-1 rounded-xl border border-borderCol shadow-md">
+                    <button id="langEN" onclick="setLanguage('en')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#313244] text-white transition">🇬🇧 EN</button>
+                    <button id="langCZ" onclick="setLanguage('cz')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-[#a6adc8] hover:text-white transition">🇨🇿 CZ</button>
+                </div>
                 <a href="https://github.com/TomikBrumik/powerbank-telemetry-lab" target="_blank" class="flex items-center gap-2 bg-[#313244] hover:bg-[#45475a] text-white text-sm px-5 py-2.5 rounded-xl border border-borderCol shadow-md transition-all">
                     <i data-lucide="github" class="w-4 h-4"></i> GitHub Repo
                 </a>
                 <a href="powerbank_telemetry_database.csv" download class="flex items-center gap-2 bg-accentYellow hover:opacity-90 text-[#11111b] text-sm px-5 py-2.5 rounded-xl font-bold shadow-md transition-all">
-                    <i data-lucide="download" class="w-4 h-4"></i> Download CSV
+                    <i data-lucide="download" class="w-4 h-4"></i> <span data-i18n="downloadCsv">Download CSV</span>
                 </a>
             </div>
         </header>
 
+        <!-- KPI Summary Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentYellow transition-colors duration-300">
                 <div class="flex justify-between items-center text-[#bac2de] mb-2">
-                    <span class="text-xs font-bold uppercase tracking-wider">⚡ Record Discharge Eff</span>
+                    <span class="text-xs font-bold uppercase tracking-wider" data-i18n="kpiRecordEff">⚡ Record Discharge Eff</span>
                     <span class="text-xl group-hover:scale-110 transition-transform float-icon">✨</span>
                 </div>
                 <div class="text-3xl font-extrabold text-accentYellow">96.27%</div>
-                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">INIU 45W 20k (New Record)</p>
+                <p class="text-xs text-[#a6adc8] mt-1 font-semibold" data-i18n="kpiRecordSub">INIU 45W 20k (New Record)</p>
             </div>
             <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentTeal transition-colors duration-300">
                 <div class="flex justify-between items-center text-[#bac2de] mb-2">
-                    <span class="text-xs font-bold uppercase tracking-wider">🔌 Top Wall-to-Load</span>
+                    <span class="text-xs font-bold uppercase tracking-wider" data-i18n="kpiTopCycle">🔌 Top Wall-to-Load</span>
                     <span class="text-xl group-hover:scale-110 transition-transform float-icon">🔋</span>
                 </div>
                 <div class="text-3xl font-extrabold text-accentTeal">84.05%</div>
@@ -97,15 +97,15 @@
             </div>
             <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentGreen transition-colors duration-300">
                 <div class="flex justify-between items-center text-[#bac2de] mb-2">
-                    <span class="text-xs font-bold uppercase tracking-wider">🔬 Total Units Tested</span>
+                    <span class="text-xs font-bold uppercase tracking-wider" data-i18n="kpiTotalUnits">🔬 Total Units Tested</span>
                     <span class="text-xl group-hover:scale-110 transition-transform float-icon">⚡</span>
                 </div>
-                <div id="totalUnits" class="text-3xl font-extrabold text-accentGreen">43 Units</div>
-                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">Across 31 models from 5k to 50k mAh</p>
+                <div id="totalUnits" class="text-3xl font-extrabold text-accentGreen">45 Units</div>
+                <p class="text-xs text-[#a6adc8] mt-1 font-semibold" data-i18n="kpiTotalUnitsSub">Across 32 models from 5k to 50k mAh</p>
             </div>
             <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentBlue transition-colors duration-300">
                 <div class="flex justify-between items-center text-[#bac2de] mb-2">
-                    <span class="text-xs font-bold uppercase tracking-wider">🚀 Max Gravimetric Density</span>
+                    <span class="text-xs font-bold uppercase tracking-wider" data-i18n="kpiMaxDensity">🚀 Max Gravimetric Density</span>
                     <span class="text-xl group-hover:scale-110 transition-transform float-icon">⚡</span>
                 </div>
                 <div class="text-3xl font-extrabold text-accentBlue">209.72 <span class="text-base font-semibold opacity-70">Wh/kg</span></div>
@@ -113,14 +113,15 @@
             </div>
         </div>
 
+        <!-- Filter & Search Bar -->
         <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg space-y-4">
             <div class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center">
                 <div class="relative flex-1">
                     <i data-lucide="search" class="w-4 h-4 absolute left-4 top-3.5 text-[#6c7086]"></i>
-                    <input type="text" id="searchInput" placeholder="🔍 Search models, brands (e.g. INIU, Vention, AlzaPower)..." class="w-full pl-11 pr-4 py-2.5 rounded-xl border text-sm font-semibold transition-all">
+                    <input type="text" id="searchInput" placeholder="🔍 Search models, brands (e.g. INIU, Vention, UGREEN, AlzaPower)..." class="w-full pl-11 pr-4 py-2.5 rounded-xl border text-sm font-semibold transition-all">
                 </div>
                 <div class="flex items-center gap-2 flex-wrap">
-                    <button onclick="setTierFilter('ALL')" class="tier-btn active px-4 py-2 rounded-xl text-xs font-bold bg-[#313244] text-white border border-[#45475a] transition" data-tier="ALL">All</button>
+                    <button onclick="setTierFilter('ALL')" class="tier-btn active px-4 py-2 rounded-xl text-xs font-bold bg-[#313244] text-white border border-[#45475a] transition" data-tier="ALL"><span data-i18n="tierAll">All</span></button>
                     <button onclick="setTierFilter('S')" class="tier-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#11111b] text-accentYellow border border-borderCol hover:border-accentYellow transition" data-tier="S">⚡ S-Tier</button>
                     <button onclick="setTierFilter('A')" class="tier-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#11111b] text-accentGreen border border-borderCol hover:border-accentGreen transition" data-tier="A">🔋 A-Tier</button>
                     <button onclick="setTierFilter('B')" class="tier-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#11111b] text-accentBlue border border-borderCol hover:border-accentBlue transition" data-tier="B">📉 B-Tier</button>
@@ -128,16 +129,17 @@
                 </div>
                 <div class="flex items-center gap-2">
                     <button id="viewToggle" onclick="toggleView()" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-accentTeal text-[#11111b] border border-accentTeal transition-all shadow-md">
-                        👁 View: Averages
+                        👁 <span data-i18n="viewAverages">View: Averages</span>
                     </button>
                 </div>
             </div>
         </div>
 
+        <!-- Chart Section -->
         <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-base font-extrabold text-white flex items-center gap-2">
-                    <i data-lucide="bar-chart-2" class="w-5 h-5 text-accentYellow"></i> ⚡ Efficiency vs. Density
+                    <i data-lucide="bar-chart-2" class="w-5 h-5 text-accentYellow"></i> <span data-i18n="chartTitle">⚡ Efficiency vs. Density</span>
                 </h2>
             </div>
             <div class="h-64 md:h-80 w-full">
@@ -145,10 +147,11 @@
             </div>
         </div>
 
+        <!-- Telemetry Database Table -->
         <div class="bg-cardBg border border-borderCol rounded-2xl shadow-lg overflow-hidden">
             <div class="p-5 border-b border-borderCol flex justify-between items-center bg-[#181825]">
                 <h2 class="text-sm font-extrabold text-white flex items-center gap-2">
-                    <i data-lucide="database" class="w-4 h-4 text-accentTeal"></i> 🔋 Telemetry Database
+                    <i data-lucide="database" class="w-4 h-4 text-accentTeal"></i> <span data-i18n="tableTitle">🔋 Telemetry Database</span>
                 </h2>
                 <span id="filteredCountText" class="text-xs font-bold text-[#a6adc8]"></span>
             </div>
@@ -156,29 +159,94 @@
                 <table class="w-full text-left text-sm border-collapse">
                     <thead>
                         <tr class="border-b border-borderCol bg-[#11111b] text-xs font-extrabold uppercase text-[#a6adc8] tracking-wider">
-                            <th class="py-4 px-4 text-center sortable" onclick="sortTable('Tier')">🏆 Tier <span class="arrow">↕</span></th>
-                            <th class="py-4 px-4 sortable" onclick="sortTable('Model')">📱 Model <span class="arrow">↕</span></th>
-                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Rated_Energy_Wh')">Rated Pack <span class="arrow">↕</span></th>
-                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Measured_Energy_Wh')">⚡ Measured Wh <span class="arrow">↕</span></th>
-                            <th class="py-4 px-3 sortable" onclick="sortTable('Efficiency_Percent')">📊 Pack Eff % <span class="arrow">↕</span></th>
-                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Input_Energy_Wh')">🔌 Input Wh <span class="arrow">↕</span></th>
-                            <th class="py-4 px-3 sortable" onclick="sortTable('Cycle_Efficiency')">🔄 Wall → Load Eff <span class="arrow">↕</span></th>
-                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Weight_g')">⚖️ Weight <span class="arrow">↕</span></th>
-                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Energy_Density_Wh_kg')">🚀 Wh/kg <span class="arrow">↕</span></th>
-                            <th class="py-4 px-4 sortable" onclick="sortTable('Cell_Architecture')">🧪 Cell Tech <span class="arrow">↕</span></th>
+                            <th class="py-4 px-4 text-center sortable" onclick="sortTable('Tier')"><span data-i18n="thTier">🏆 Tier</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-4 sortable" onclick="sortTable('Model')"><span data-i18n="thModel">📱 Model</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Rated_Energy_Wh')"><span data-i18n="thRatedPack">Rated Pack</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Measured_Energy_Wh')"><span data-i18n="thMeasuredWh">⚡ Measured Wh</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 sortable" onclick="sortTable('Efficiency_Percent')"><span data-i18n="thPackEff">📊 Pack Eff %</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Input_Energy_Wh')"><span data-i18n="thInputWh">🔌 Input Wh</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 sortable" onclick="sortTable('Cycle_Efficiency')"><span data-i18n="thCycleEff">🔄 Wall → Load Eff</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Weight_g')"><span data-i18n="thWeight">⚖️ Weight</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Energy_Density_Wh_kg')"><span data-i18n="thDensity">🚀 Wh/kg</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-4 sortable" onclick="sortTable('Cell_Architecture')"><span data-i18n="thCellTech">🧪 Cell Tech</span> <span class="arrow">↕</span></th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody" class="divide-y divide-borderCol font-semibold"></tbody>
+                    <tbody id="tableBody" class="divide-y border-borderCol font-semibold"></tbody>
                 </table>
             </div>
         </div>
 
         <footer class="text-center text-xs text-[#6c7086] py-4">
-            ⚡ Powerbank Telemetry Lab • {new Date().getFullYear()} • Made with 🧪 rigor
+            ⚡ Powerbank Telemetry Lab • <span id="currentYear"></span> • <span data-i18n="footerText">Made with 🧪 rigor</span>
         </footer>
     </div>
 
     <script>
+        document.getElementById('currentYear').innerText = new Date().getFullYear();
+
+        let currentLang = 'en';
+
+        const i18n = {
+            en: {
+                tagline: "Standardized DL24P Load Testbench • 🔌 30cm Cable Harness • 📊 Real Wh Efficiency • 🔄 Wall-to-Load Cycle Efficiency",
+                downloadCsv: "Download CSV",
+                kpiRecordEff: "⚡ Record Discharge Eff",
+                kpiRecordSub: "INIU 45W 20k (New Record)",
+                kpiTopCycle: "🔌 Top Wall-to-Load",
+                kpiTotalUnits: "🔬 Total Units Tested",
+                kpiTotalUnitsSub: "Across 32 models from 5k to 50k mAh",
+                kpiMaxDensity: "🚀 Max Gravimetric Density",
+                searchPlaceholder: "🔍 Search models, brands (e.g. INIU, Vention, UGREEN, AlzaPower)...",
+                tierAll: "All",
+                viewAverages: "View: Averages",
+                viewUnits: "View: Individual Units",
+                chartTitle: "⚡ Efficiency vs. Density",
+                tableTitle: "🔋 Telemetry Database",
+                thTier: "🏆 Tier",
+                thModel: "📱 Model",
+                thRatedPack: "Rated Pack",
+                thMeasuredWh: "⚡ Measured Wh",
+                thPackEff: "📊 Pack Eff %",
+                thInputWh: "🔌 Input Wh",
+                thCycleEff: "🔄 Wall → Load Eff",
+                thWeight: "⚖️ Weight",
+                thDensity: "🚀 Wh/kg",
+                thCellTech: "🧪 Cell Tech",
+                footerText: "Made with 🧪 rigor",
+                showingModels: "📊 Showing {count} models (averages)",
+                showingUnits: "📋 Showing individual units"
+            },
+            cz: {
+                tagline: "Standardizovaný testovací pult DL24P • 🔌 30cm měřicí kabeláž • 📊 Reálná Wh účinnost • 🔄 Účinnost cyklu ze zásuvky do zátěže",
+                downloadCsv: "Stáhnout CSV",
+                kpiRecordEff: "⚡ Rekordní účinnost vybíjení",
+                kpiRecordSub: "INIU 45W 20k (Nový laboratorní rekord)",
+                kpiTopCycle: "🔌 Nejvyšší cyklická účinnost",
+                kpiTotalUnits: "🔬 Otestovaných kusů celkem",
+                kpiTotalUnitsSub: "Napříč 32 modely od 5k do 50k mAh",
+                kpiMaxDensity: "🚀 Max. gravimetrická hustota",
+                searchPlaceholder: "🔍 Hledat model, značku (např. INIU, Vention, UGREEN, AlzaPower)...",
+                tierAll: "Vše",
+                viewAverages: "Zobrazení: Průměry",
+                viewUnits: "Zobrazení: Jednotlivé kusy",
+                chartTitle: "⚡ Účinnost vs. Energetická hustota",
+                tableTitle: "🔋 Telemetrická databáze",
+                thTier: "🏆 Třída",
+                thModel: "📱 Model",
+                thRatedPack: "Štítek (Wh)",
+                thMeasuredWh: "⚡ Změřeno Wh",
+                thPackEff: "📊 Účinnost %",
+                thInputWh: "🔌 Nabito Wh",
+                thCycleEff: "🔄 Cyklus Ze zdi → Zátěž",
+                thWeight: "⚖️ Hmotnost",
+                thDensity: "🚀 Wh/kg",
+                thCellTech: "🧪 Technologie článků",
+                footerText: "Vytvořeno s 🧪 laboratorní precizností",
+                showingModels: "📊 Zobrazeno {count} modelů (průměry)",
+                showingUnits: "📋 Zobrazeny jednotlivé testované kusy"
+            }
+        };
+
         const rawData = [
             { "Tier":"S","Model":"INIU 45W w/ Built-in Cable (20k)","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":70.30,"Efficiency_Percent":95.00,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":335.20,"Energy_Density_Wh_kg":209.72,"Cell_Architecture":"High-Density Li-Po","Units":[{"Unit":"Unit 1","Wh":69.36,"Eff":93.73,"In":null},{"Unit":"Unit 2","Wh":71.23,"Eff":96.27,"In":null}] },
             { "Tier":"S","Model":"AlzaPower Vision 100W (10k)","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":32.82,"Efficiency_Percent":91.17,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":343.60,"Energy_Density_Wh_kg":95.52,"Cell_Architecture":"Li-Ion (2x 21700)","Units":[{"Unit":"Unit 1","Wh":33.04,"Eff":91.78,"In":null},{"Unit":"Unit 2","Wh":32.97,"Eff":91.58,"In":null},{"Unit":"Unit 3","Wh":33.26,"Eff":92.39,"In":null},{"Unit":"Unit 4","Wh":31.99,"Eff":88.86,"In":null}] },
@@ -196,6 +264,7 @@
             { "Tier":"A","Model":"AlzaPower Qi2 Slim (5k)","Rated_Energy_Wh":18.50,"Measured_Energy_Wh":15.30,"Efficiency_Percent":82.70,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":125.20,"Energy_Density_Wh_kg":122.20,"Cell_Architecture":"Ultra-slim Li-Po","Units":[{"Unit":"Unit 1","Wh":15.30,"Eff":82.70,"In":null}] },
             { "Tier":"A","Model":"PanzerGlass Empower Qi2 (10k)","Rated_Energy_Wh":38.50,"Measured_Energy_Wh":31.80,"Efficiency_Percent":82.60,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":195.40,"Energy_Density_Wh_kg":162.74,"Cell_Architecture":"High-Voltage Li-Po + Qi2","Units":[{"Unit":"Unit 1","Wh":31.80,"Eff":82.60,"In":null}] },
             { "Tier":"A","Model":"O2 Built-in Cable 10k","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":30.48,"Efficiency_Percent":82.38,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":205.00,"Energy_Density_Wh_kg":148.68,"Cell_Architecture":"Li-Po Pouch","Units":[{"Unit":"Unit 1","Wh":30.48,"Eff":82.38,"In":null}] },
+            { "Tier":"A","Model":"Samsung 45W (EB-P4520 Unit 2)","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":60.39,"Efficiency_Percent":81.61,"Input_Energy_Wh":76.00,"Cycle_Efficiency":79.46,"Weight_g":400.40,"Energy_Density_Wh_kg":150.82,"Cell_Architecture":"Li-Po Pouch","Units":[{"Unit":"Unit 1","Wh":60.39,"Eff":81.61,"In":76.00}] },
             { "Tier":"A","Model":"AlzaPower Parade Gen2 100W (27k)","Rated_Energy_Wh":99.90,"Measured_Energy_Wh":81.16,"Efficiency_Percent":81.21,"Input_Energy_Wh":111.99,"Cycle_Efficiency":72.88,"Weight_g":532.80,"Energy_Density_Wh_kg":152.31,"Cell_Architecture":"Li-Po Pouch","Units":[{"Unit":"Unit 1","Wh":81.07,"Eff":81.15,"In":null},{"Unit":"Unit 2","Wh":82.35,"Eff":82.43,"In":null},{"Unit":"Unit 3","Wh":81.21,"Eff":81.21,"In":null},{"Unit":"Unit 4","Wh":79.99,"Eff":80.06,"In":null}],"InValues":[111.88,112.00,112.20,111.88] },
             { "Tier":"A","Model":"WG 10k QC/PD","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":30.10,"Efficiency_Percent":81.35,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":220.00,"Energy_Density_Wh_kg":136.82,"Cell_Architecture":"Li-Po Pouch","Units":[{"Unit":"Unit 1","Wh":30.10,"Eff":81.35,"In":null}] },
             { "Tier":"A","Model":"Samsung 10k 25W PD (Beige)","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":30.00,"Efficiency_Percent":81.08,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":222.00,"Energy_Density_Wh_kg":135.14,"Cell_Architecture":"Li-Po Pouch","Units":[{"Unit":"Unit 1","Wh":30.00,"Eff":81.08,"In":null}] },
@@ -203,13 +272,14 @@
             { "Tier":"A","Model":"AlzaPower Metal 40k","Rated_Energy_Wh":148.00,"Measured_Energy_Wh":119.69,"Efficiency_Percent":80.87,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":790.90,"Energy_Density_Wh_kg":151.33,"Cell_Architecture":"Li-Po / Li-Ion","Units":[{"Unit":"Unit 1","Wh":119.69,"Eff":80.87,"In":null}] },
             { "Tier":"A","Model":"O2 Spark 35W (10k)","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":28.97,"Efficiency_Percent":80.47,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":173.90,"Energy_Density_Wh_kg":166.59,"Cell_Architecture":"Li-Ion (2x 21700)","Units":[{"Unit":"Unit 1","Wh":28.97,"Eff":80.47,"In":null}] },
             { "Tier":"A","Model":"Samsung 10k Wireless","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":29.79,"Efficiency_Percent":80.51,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":240.00,"Energy_Density_Wh_kg":124.13,"Cell_Architecture":"Li-Po + Qi coil","Units":[{"Unit":"Unit 1","Wh":29.79,"Eff":80.51,"In":null}] },
+            { "Tier":"A","Model":"UGREEN Nexode 200W (25k)","Rated_Energy_Wh":90.00,"Measured_Energy_Wh":72.29,"Efficiency_Percent":80.32,"Input_Energy_Wh":99.00,"Cycle_Efficiency":73.02,"Weight_g":565.00,"Energy_Density_Wh_kg":127.95,"Cell_Architecture":"Li-Ion (5S 21700)","Units":[{"Unit":"Unit 1","Wh":72.29,"Eff":80.32,"In":99.00}] },
             { "Tier":"A","Model":"AlzaPower Vision 10k (30W)","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":28.46,"Efficiency_Percent":79.06,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":237.70,"Energy_Density_Wh_kg":119.73,"Cell_Architecture":"Li-Ion","Units":[{"Unit":"Unit 1","Wh":27.63,"Eff":76.75,"In":null},{"Unit":"Unit 2","Wh":28.18,"Eff":78.28,"In":null},{"Unit":"Unit 3","Wh":29.57,"Eff":82.14,"In":null},{"Unit":"Unit 4","Wh":28.44,"Eff":79.00,"In":null}] },
             { "Tier":"B","Model":"Vention Cables Yellow (5k)","Rated_Energy_Wh":18.50,"Measured_Energy_Wh":14.10,"Efficiency_Percent":76.22,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":129.20,"Energy_Density_Wh_kg":109.13,"Cell_Architecture":"Li-Po Pouch","Units":[{"Unit":"Unit 1","Wh":14.10,"Eff":76.22,"In":null}] },
-            { "Tier":"B","Model":"Vention Mini 35W w/ Cable (10k)","Rated_Energy_Wh":38.50,"Measured_Energy_Wh":29.15,"Efficiency_Percent":75.71,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":176.50,"Energy_Density_Wh_kg":165.16,"Cell_Architecture":"High-Voltage Li-Po","Units":[{"Unit":"Unit 1","Wh":29.15,"Eff":75.71,"In":null}] },
             { "Tier":"B","Model":"ROMOSS 65W Fast Charge (27k)","Rated_Energy_Wh":99.90,"Measured_Energy_Wh":75.44,"Efficiency_Percent":75.52,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":677.50,"Energy_Density_Wh_kg":111.35,"Cell_Architecture":"Li-Po / High-Cap","Units":[{"Unit":"Unit 1","Wh":75.44,"Eff":75.52,"In":null}] },
             { "Tier":"B","Model":"AlzaPower Garnet 20k (White)","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":54.72,"Efficiency_Percent":73.95,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":415.00,"Energy_Density_Wh_kg":131.86,"Cell_Architecture":"Li-Po Pouch","Units":[{"Unit":"Unit 1","Wh":54.72,"Eff":73.95,"In":null}] },
             { "Tier":"B","Model":"AlzaPower Parade Gen2 22.5W (20k)","Rated_Energy_Wh":75.00,"Measured_Energy_Wh":53.86,"Efficiency_Percent":71.81,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":409.50,"Energy_Density_Wh_kg":131.53,"Cell_Architecture":"Li-Po Pouch","Units":[{"Unit":"Unit 1","Wh":53.86,"Eff":71.81,"In":null}] },
             { "Tier":"B","Model":"UGreen Qi2 Black (10k)","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":25.34,"Efficiency_Percent":68.49,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":212.80,"Energy_Density_Wh_kg":119.08,"Cell_Architecture":"Li-Po + Qi2 coil","Units":[{"Unit":"Unit 1","Wh":25.34,"Eff":68.49,"In":null}] },
+            { "Tier":"F","Model":"Vention Mini 35W w/ Cable (10k)","Rated_Energy_Wh":38.50,"Measured_Energy_Wh":26.59,"Efficiency_Percent":69.07,"Input_Energy_Wh":35.00,"Cycle_Efficiency":75.98,"Weight_g":176.50,"Energy_Density_Wh_kg":165.16,"Cell_Architecture":"High-Voltage Li-Po","Units":[{"Unit":"9V Stress Run (CC 2.77A)","Wh":26.59,"Eff":69.07,"In":35.00},{"Unit":"5V Baseline Run (CC 2.0A)","Wh":29.15,"Eff":75.71,"In":35.00}] },
             { "Tier":"F","Model":"TRONIC 10k (Lidl)","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":18.20,"Efficiency_Percent":49.19,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":219.80,"Energy_Density_Wh_kg":82.80,"Cell_Architecture":"Low-grade Li-Po","Units":[{"Unit":"Unit 1","Wh":18.20,"Eff":49.19,"In":null}] }
         ];
 
@@ -219,14 +289,36 @@
         let currentSortKey = null;
         let currentSortAsc = true;
 
+        function setLanguage(lang) {
+            currentLang = lang;
+            const btnEN = document.getElementById('langEN');
+            const btnCZ = document.getElementById('langCZ');
+            if (lang === 'cz') {
+                btnCZ.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#313244] text-white transition';
+                btnEN.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-[#a6adc8] hover:text-white transition';
+            } else {
+                btnEN.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#313244] text-white transition';
+                btnCZ.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-[#a6adc8] hover:text-white transition';
+            }
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key]) el.innerText = i18n[lang][key];
+            });
+            document.getElementById('searchInput').placeholder = i18n[lang].searchPlaceholder;
+            const viewBtn = document.getElementById('viewToggle');
+            viewBtn.innerHTML = showAverages ? `👁 <span>${i18n[lang].viewAverages}</span>` : `📋 <span>${i18n[lang].viewUnits}</span>`;
+            applyFiltersAndSort();
+        }
+
         function toggleView() {
             showAverages = !showAverages;
             const btn = document.getElementById('viewToggle');
+            const text = showAverages ? i18n[currentLang].viewAverages : i18n[currentLang].viewUnits;
             if (showAverages) {
-                btn.innerText = '👁 View: Averages';
+                btn.innerHTML = `👁 <span>${text}</span>`;
                 btn.className = 'px-4 py-2.5 rounded-xl text-xs font-bold bg-accentTeal text-[#11111b] border border-accentTeal transition-all shadow-md';
             } else {
-                btn.innerText = '📋 View: Individual Units';
+                btn.innerHTML = `📋 <span>${text}</span>`;
                 btn.className = 'px-4 py-2.5 rounded-xl text-xs font-bold bg-accentYellow text-[#11111b] border border-accentYellow transition-all shadow-md';
             }
             applyFiltersAndSort();
@@ -244,13 +336,6 @@
                 const arrow = th.querySelector('.arrow');
                 if (arrow) arrow.innerText = '↕';
             });
-            const headerMap = { 'Tier':'🏆 Tier', 'Model':'📱 Model', 'Rated_Energy_Wh':'Rated Pack', 'Measured_Energy_Wh':'⚡ Measured Wh', 'Efficiency_Percent':'📊 Pack Eff', 'Input_Energy_Wh':'🔌 Input Wh', 'Cycle_Efficiency':'🔄 Wall', 'Weight_g':'⚖️ Weight', 'Energy_Density_Wh_kg':'🚀 Wh/kg', 'Cell_Architecture':'🧪 Cell Tech' };
-            const header = Array.from(document.querySelectorAll('th.sortable')).find(th => th.innerText.includes(headerMap[key]));
-            if (header) {
-                header.classList.add('active');
-                const arrow = header.querySelector('.arrow');
-                if (arrow) arrow.innerText = currentSortAsc ? '↑' : '↓';
-            }
             applyFiltersAndSort();
         }
 
@@ -288,7 +373,7 @@
                 const tr = document.createElement('tr');
                 tr.className = 'table-row-hover transition text-xs md:text-sm';
                 if (showAverages) {
-                    const hasMultiple = item.Units.length > 1;
+                    const hasMultiple = item.Units && item.Units.length > 1;
                     let detailHtml = '';
                     if (hasMultiple) {
                         detailHtml = `<details>
@@ -298,16 +383,16 @@
                             </summary>
                             <div class="mt-2 p-2 bg-[#11111b] rounded-lg border border-borderCol text-xs font-normal">
                                 <div class="grid grid-cols-4 gap-1 font-bold text-[#a6adc8] mb-1 pb-1 border-b border-borderCol">
-                                    <span>Unit</span><span class="text-right">In (Wh)</span><span class="text-right">Out (Wh)</span><span class="text-right">Eff</span>
+                                    <span>${currentLang === 'cz' ? 'Kus / Profil' : 'Unit / Run'}</span><span class="text-right">In (Wh)</span><span class="text-right">Out (Wh)</span><span class="text-right">Eff</span>
                                 </div>
                                 ${item.Units.map(u => `<div class="grid grid-cols-4 gap-1 py-0.5"><span>${u.Unit}</span><span class="text-right text-[#f9e2af]">${u.In !== null ? u.In.toFixed(2) : '—'}</span><span class="text-right text-accentGreen">${u.Wh.toFixed(2)}</span><span class="text-right text-accentPink">${u.Eff.toFixed(2)}%</span></div>`).join('')}`;
                         if (item.InValues) {
-                            detailHtml += `<div class="border-t border-borderCol mt-2 pt-2 font-bold text-[#a6adc8] mb-1">⚡ Input Energy (4 values):</div>
+                            detailHtml += `<div class="border-t border-borderCol mt-2 pt-2 font-bold text-[#a6adc8] mb-1">⚡ ${currentLang === 'cz' ? 'Vstupní energie (4 testy):' : 'Input Energy (4 runs):'}</div>
                                 <div class="grid grid-cols-4 gap-1 text-[#f9e2af] text-center">${item.InValues.map(v => `<span>${v.toFixed(2)}</span>`).join('')}</div>
-                                <div class="text-center text-[#f9e2af] font-bold mt-1">Average In: ${item.Input_Energy_Wh.toFixed(2)} Wh</div>`;
+                                <div class="text-center text-[#f9e2af] font-bold mt-1">${currentLang === 'cz' ? 'Průměrný vstup:' : 'Average In:'} ${item.Input_Energy_Wh.toFixed(2)} Wh</div>`;
                         }
                         detailHtml += `<div class="border-t border-borderCol mt-2 pt-2 grid grid-cols-3 gap-1 font-bold text-white">
-                                    <span>📊 Average</span>
+                                    <span>📊 ${currentLang === 'cz' ? 'Průměr / Souhrn' : 'Average / Summary'}</span>
                                     <span class="text-right">${item.Measured_Energy_Wh.toFixed(2)} Wh</span>
                                     <span class="text-right">${item.Efficiency_Percent.toFixed(2)}%</span>
                                 </div>
@@ -336,7 +421,7 @@
                         if (index === 0) {
                             unitTr.innerHTML = `
                                 <td class="py-3 px-4 text-center" rowspan="${item.Units.length}">${getTierBadge(item.Tier)}</td>
-                                <td class="py-3 px-4 font-extrabold text-white" rowspan="${item.Units.length}">${item.Model} <span class="text-[#6c7086] text-xs font-normal">(${item.Units.length} Units)</span></td>
+                                <td class="py-3 px-4 font-extrabold text-white" rowspan="${item.Units.length}">${item.Model} <span class="text-[#6c7086] text-xs font-normal">(${item.Units.length} ${currentLang === 'cz' ? 'záznamů' : 'Runs'})</span></td>
                             `;
                         }
                         unitTr.innerHTML += `
@@ -354,7 +439,8 @@
                 }
             });
             lucide.createIcons();
-            document.getElementById('filteredCountText').innerText = showAverages ? `📊 Showing ${data.length} models (averages)` : `📋 Showing individual units`;
+            const countTemplate = showAverages ? i18n[currentLang].showingModels : i18n[currentLang].showingUnits;
+            document.getElementById('filteredCountText').innerText = countTemplate.replace('{count}', data.length);
         }
 
         function setTierFilter(tier) {
@@ -403,8 +489,8 @@
                 data: {
                     labels: labels,
                     datasets: [
-                        { label: '🚀 Energy Density (Wh/kg)', data: densities, backgroundColor: 'rgba(249, 226, 175, 0.7)', borderColor: '#f9e2af', borderWidth: 1, borderRadius: 4, yAxisID: 'y' },
-                        { label: '⚡ Discharge Eff (%)', data: efficiencies, backgroundColor: 'rgba(245, 194, 231, 0.7)', borderColor: '#f5c2e7', borderWidth: 1, borderRadius: 4, yAxisID: 'y1' }
+                        { label: currentLang === 'cz' ? '🚀 Hustota (Wh/kg)' : '🚀 Energy Density (Wh/kg)', data: densities, backgroundColor: 'rgba(249, 226, 175, 0.7)', borderColor: '#f9e2af', borderWidth: 1, borderRadius: 4, yAxisID: 'y' },
+                        { label: currentLang === 'cz' ? '⚡ Účinnost vybíjení (%)' : '⚡ Discharge Eff (%)', data: efficiencies, backgroundColor: 'rgba(245, 194, 231, 0.7)', borderColor: '#f5c2e7', borderWidth: 1, borderRadius: 4, yAxisID: 'y1' }
                     ]
                 },
                 options: {
@@ -412,12 +498,13 @@
                     scales: {
                         x: { ticks: { color: '#a6adc8', font: { family: 'Nunito', size: 10, weight: 'bold' } }, grid: { color: '#313244' } },
                         y: { type: 'linear', position: 'left', title: { display: true, text: '⚡ Wh/kg', color: '#f9e2af', font: { weight: 'bold' } }, ticks: { color: '#bac2de' }, grid: { color: '#313244' } },
-                        y1: { type: 'linear', position: 'right', min: 30, max: 100, title: { display: true, text: '🔋 Discharge %', color: '#f5c2e7', font: { weight: 'bold' } }, ticks: { color: '#bac2de' }, grid: { drawOnChartArea: false } }
+                        y1: { type: 'linear', position: 'right', min: 30, max: 100, title: { display: true, text: currentLang === 'cz' ? '🔋 Účinnost %' : '🔋 Discharge %', color: '#f5c2e7', font: { weight: 'bold' } }, ticks: { color: '#bac2de' }, grid: { drawOnChartArea: false } }
                     },
                     plugins: { legend: { labels: { color: '#cdd6f4', font: { family: 'Nunito', weight: 'bold' }, boxWidth: 12 } } }
                 }
             });
         }
+
         document.getElementById('searchInput').addEventListener('input', applyFiltersAndSort);
         window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); applyFiltersAndSort(); });
     </script>
