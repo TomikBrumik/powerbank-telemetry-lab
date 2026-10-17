@@ -10,38 +10,38 @@ A publicly accessible, standardized telemetry database and rigorous engineering 
 
 | Model | Labeled Pack | Input (Wall) | Output (Load) | Total Loss | Pack Discharge Eff. | Wall-to-Load Cycle Eff. | Circuitry & Diagnostic Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **INIU P771 Qi2.2 Magnetic (10k)** 🏆 | 36.00 Wh | 38.00 Wh | 31.94 Wh | -6.06 Wh | **88.72%** | **84.05%** | 🏆 **Lab World Record:** Highest round-trip cycle efficiency ever recorded. Qi2.2 25W magnetic + 45W wired PD/PPS. Temp°Guard 3.0 active cooling. |
-| **Samsung 45W EB-P4520 (Unit 1)** | 74.00 Wh | **TBD** | 64.01 Wh | **-** | **86.50%** | **TBD** | Baseline reference run; pack discharge verified; input recharge pending |
-| **Samsung 45W EB-P4520 (Unit 2)** | 74.00 Wh | 76.00 Wh | 60.39 Wh | -15.61 Wh | **81.61%** | **79.46%** | Second production sample; complete wall-to-load cycle verified |
 | **UGREEN Nexode 200W (25k)** 🆕 | 90.00 Wh | 99.00 Wh | 72.29 Wh | -26.71 Wh | **80.32%** | **73.02%** | Full cycle: 9.07V in (10,939 mAh) → 15,133 mAh @ 5V/2A out; 5S 21700 cell pack |
+| **INIU P771 Qi2.2 Magnetic (10k)** 🏆 | 36.00 Wh | 38.00 Wh | 31.94 Wh | -6.06 Wh | **88.72%** | **84.05%** | 🏆 **Lab World Record:** Highest round-trip cycle efficiency ever recorded. Qi2.2 25W magnetic + 45W wired PD/PPS. Temp°Guard 3.0 active cooling. |
 | **AlzaPower Parade Gen2 100W (Run 2)** | 99.90 Wh | 111.88 Wh | 82.35 Wh | -29.53 Wh | **82.43%** | **73.60%** | Peak discharge pass; 16,232 mAh @ 5V/2A; reached clean 00% cut |
 | **AlzaPower Parade Gen2 100W (Run 1)** | 99.90 Wh | 111.88 Wh | 81.07 Wh | -30.81 Wh | **81.15%** | **72.46%** | High thermal dissipation during 65W input replenishment stage |
+| **Samsung 45W EB-P4520 (Unit 2)** | 74.00 Wh | 76.00 Wh | 60.39 Wh | -15.61 Wh | **81.61%** | **79.46%** | Second production sample; complete wall-to-load cycle verified |
+| **Samsung 45W EB-P4520 (Unit 1)** | 74.00 Wh | **TBD** | 64.01 Wh | **-** | **86.50%** | **TBD** | Baseline reference run; pack discharge verified; input recharge pending |
 | **Vention 35W Dash Series (9V Stress)** 💀 | 38.50 Wh | 35.00 Wh | 26.59 Wh | -8.41 Wh | **69.07%** | **75.98%** | **F-Tier Failure:** 20W input absorbed only 35Wh; 3x thermal shutdowns (OTP) under 24W load |
 
 ---
 
-## 🏆 Full 7-Tier Classification & Standards
+## 🏆 Full 7-Tier Classification & Standards (r/UsbCHardware Aligned)
 
 ### ⚡ S-Tier: Absolute Technological Elite
-*Class-leading innovation, true independent multi-port rails, steel cylindrical 21700 cells, or absolute world efficiency records.*
-- **INIU P771 Qi2.2 25W (10k)** — **31.94 Wh (88.72%)** | **148.56 Wh/kg** | 🏆 **World Lab Record:** Record round-trip Wall-to-Load cycle efficiency (**84.05%**). Certified Qi2.2 25W magnetic wireless charging, 45W wired USB-C output with 5A PPS, integrated 60W GoCord lanyard cable, Temp°Guard 3.0 thermal regulation, and Auto Low-Power Mode.
-- **INIU 45W w/ Built-in Cable (20k)** — **70.30 Wh (95.00%)** | **209.72 Wh/kg** | 🏆 **Lab Record Holder:** Average efficiency 95.00% (Unit 2 reached **96.27%** discharge efficiency), world-class gravimetric density of 209.72 Wh/kg, full 5A PPS, integrated durable cable, Auto Low-Power Mode.
-- **UGREEN Nexode 200W (25k)** — **72.29 Wh (80.32%)** | **127.95 Wh/kg** | *Heavyweight King:* 5S 21700 cylindrical cells (zero swelling risk), dual independent buck-boost converters (100W+100W simultaneous without reset or 5V drop), 140W EPR 28V/5A profile, full 5A PPS, color TFT live wattmeter (V/A/W), 3s Low-Power Mode.
-- **UGREEN 145W (25k)** — **74.49 Wh (82.77%)** | **150.94 Wh/kg** | *Laptop Benchmark Reference:* 21700 cylindrical cells, independent 100W + 45W split, 65W fast input without throttling, full 5A PPS, 3s Low-Power Mode.
+*Steel cylindrical 21700 cells with zero swelling risk, true independent multi-port rails, or breakthrough world efficiency records.*
+- **UGREEN Nexode 200W (25k)** — **72.29 Wh (80.32%)** | **127.95 Wh/kg** | *Overall Benchmark Champion:* Steel cylindrical 5S 21700 cells (zero swelling risk), dual independent buck-boost converters (100W+100W simultaneous without reset or 5V drop), 140W EPR 28V/5A profile, full 5A PPS, color TFT live wattmeter (V/A/W), 3s Low-Power Mode.
+- **UGREEN 145W (25k)** — **74.49 Wh (82.77%)** | **150.94 Wh/kg** | *Laptop Gold Standard:* Heavy-duty 21700 cells, independent 100W + 45W split, 65W fast input without throttling, full 5A PPS, 3s Low-Power Mode.
+- **INIU P771 Qi2.2 25W (10k)** — **31.94 Wh (88.72%)** | **148.56 Wh/kg** | 🏆 **World Lab Record Holder:** Unmatched **84.05%** round-trip Wall-to-Load cycle efficiency. Certified Qi2.2 25W magnetic wireless charging, 45W wired USB-C output with 5A PPS, integrated 60W GoCord lanyard cable, Temp°Guard 3.0 thermal regulation, and Auto Low-Power Mode. (S-Tier exception for groundbreaking efficiency & thermal design despite reinforced pouch).
+- **INIU 45W w/ Built-in Cable (20k)** — **70.30 Wh (95.00%)** | **209.72 Wh/kg** | 🏆 **Discharge Efficiency Record Holder:** Average efficiency 95.00% (Unit 2 reached **96.27%** discharge efficiency), extreme gravimetric density of 209.72 Wh/kg, full 5A PPS, integrated durable cable, Auto Low-Power Mode.
 
 ### 🔋 A-Tier: Top Work and Daily Models
 *High continuous output, cylindrical cells or advanced 2S packs, excellent regulation.*
-- **AlzaPower WorkMate 100W (20k)** — **59.99 Wh (83.32%)** | **138.61 Wh/kg** | *Best AlzaPower tested:* 4x 21700 cylindrical cells (72 Wh pack). Independent multi-port rail (zero 5V drop!), telemetry digital display showing live Volts (V) and Amps (A), Low-Power Mode. Lacks 5A PPS (locked to 3A).
-- **AlzaPower Vision 100W (20k)** — **60.62 Wh (84.19%)** | **126.85 Wh/kg** | *4x 21700 cylindrical cells, full 5A PPS, color TFT live wattmeter (V, A, W, time), Low-Power Mode, full-speed input without throttling. Penalized only for shared rail 5V drop on multi-port.*
+- **AlzaPower Vision 100W (20k)** — **60.62 Wh (84.19%)** | **126.85 Wh/kg** | *4x 21700 cylindrical cells (zero swelling risk), full 5A PPS, color TFT live wattmeter (V, A, W, time), Low-Power Mode, full-speed input without throttling. Penalized for shared rail 5V drop on multi-port.*
 - **AlzaPower Vision 100W (10k)** — **32.82 Wh (91.17%)** | **95.52 Wh/kg** | *2x 21700 cylindrical cells, exceptional 91.17% discharge efficiency, full 5A PPS, color TFT live wattmeter (V, A, W, time), Low-Power Mode. Penalized for 5V multi-port drop and high mass (343 g).*
 - **Vention 165W TFT (20k)** — **61.62 Wh (83.27%)** | **140.14 Wh/kg** | *21700 cells, paper split 100W + 65W, color TFT display, high power ceiling. Lacks Low-Power Mode.*
 - **CUKTECH 45W / 55W (PB200N)** — **64.09 Wh (86.61%)** | **128.98 Wh/kg** | *2S Li-Po block (7.4V), full 5A PPS (up to 55W Xiaomi Turbo), dedicated 2-hour Low-Power Mode (double-click), integrated lanyard cable.*
+- **AlzaPower WorkMate 100W (20k)** — **59.99 Wh (83.32%)** | **138.61 Wh/kg** | *4x 21700 cylindrical cells (72 Wh pack). Independent multi-port rail (zero 5V drop!), telemetry digital display showing live Volts and Amps, Low-Power Mode. Demoted from top tiers due to obsolete lack of 5A PPS (locked to fixed 9V/3A or 3A PPS).*
 - **Samsung 45W EB-P4520 (20k)** — **62.20 Wh (84.05%)** | **155.34 Wh/kg** | *Symmetrical 22W + 22W split without 5V drop, full 5A PPS for Super Fast Charging 2.0 (45W). Soft pouch cells, lacks dedicated Low-Power Mode.*
 - **INIU Pocket 10k (P50)** — **30.56 Wh (84.89%)** | **188.64 Wh/kg** | *Pocket EDC (162 g, 188 Wh/kg) with 45W output, 5A PPS, and fast recharge.*
 
 ### 💎 B-Tier: Solid Daily Drivers with Minor Compromises
 - **O2 Spark 35W (10k)** — **28.97 Wh (80.47%)** | **166.59 Wh/kg** | *Heavy-duty 2x 21700 cylindrical cells with up to 40W peak headroom without voltage sag. Lacks Low-Power Mode.*
-- **AlzaPower Parade Gen2 100W (27k)** — **81.16 Wh (81.21%)** | **152.31 Wh/kg** | *Huge 99.9 Wh pack, 100W in/out, Low-Power Mode, but soft pouch cell, 5V multi-port drop, and voltage instability below 45% SoC.*
+- **AlzaPower Parade Gen2 100W (27k)** — **81.16 Wh (81.21%)** | **152.31 Wh/kg** | *Huge 99.9 Wh pack, 100W in/out, Low-Power Mode, but soft pouch cell, 5V multi-port drop, and severe voltage instability below 45% SoC.*
 - **AlzaPower Metal 40k** — **119.69 Wh (80.87%)** | **151.33 Wh/kg** | *100W output and durable metal body, but suffers from poor multi-port power sharing and lacks Low-Power Mode.*
 - **Samsung 10k 25W PD (Beige)** — **30.00 Wh (81.08%)** | **135.14 Wh/kg** | *Reliable foundation with 9W+9W split and 25W input. Soft pouch.*
 - **PanzerGlass Empower Qi2 (10k)** — **31.80 Wh (82.60%)** | **162.74 Wh/kg** | *Honest Qi2 wireless with 82.6% efficiency. Soft pouch.*
