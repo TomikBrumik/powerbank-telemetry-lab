@@ -3,32 +3,32 @@ S,INIU 45W w/ Built-in Cable (20k),20000,74.00,70.30,14291,95.00,,,335.20,209.72
 S,AlzaPower Vision 100W (10k),10000,36.00,32.82,6645,91.17,,,343.60,95.52,Li-Ion (2x 21700),"Average of 4 units (33.04, 32.97, 33.26, 31.99 Wh)"
 S,ChoeTech Digital 22.5W (50k),50000,185.00,166.75,33397,90.14,,,955.30,174.55,Li-Po Block,"16h runtime, massive capacity"
 S,INIU P771 Qi2 25W Magnetic (10k),10000,36.00,31.94,6327,88.72,38.00,84.05,215.00,148.56,High-Density Li-Po + Qi2,"36Wh nominal pack, 88.72% pack eff, 84.05% cycle eff (38Wh in -> 31.94Wh out)"
-S,CUKTECH 45W (20k),20000,74.00,64.09,12822,86.61,,,496.90,128.98,Li-Ion,"Clean ripple, sync buck-boost topology"
-S,Samsung 20k 45W (EB-P4520),20000,74.00,62.20,12793,84.05,76.00,79.46,400.40,155.34,Li-Po Pouch,"Average of 2 units: Unit 1: 64.01Wh (86.50%); Unit 2: 76Wh in -> 60.39Wh out (81.61% pack eff)"
-S,Vention Magnetic Wireless 20W Pink (5k),5000,18.50,15.71,3150,84.92,,,126.40,124.29,Li-Po,"Solid DC-DC conversion, previously misidentified as Ineo"
-S,INIU Pocket 10k (P50),10000,36.00,30.56,6105,84.89,,,162.00,188.64,2S Li-Po,"Exceptional density, 45W support"
-S,WG 20+ (20k),20000,74.00,62.74,12522,84.78,,,421.00,148.98,Li-Po Pouch,"New King of 20k, 6h 15m test runtime, precise output"
-S,AlzaPower Vision 100W (20k),20000,72.00,60.62,12069,84.19,,,477.90,126.85,Li-Ion,Used healthy unit (Kus 1) for benchmark
-S,AlzaPower Parade 22.5W (20k),20000,74.00,62.27,12343,84.15,,,415.00,150.05,Li-Po Pouch,"Re-tested (USB-C 30cm), highly efficient Li-Po pouch workhorse"
-S,Vention 165W TFT (20k),20000,74.00,61.62,11958,83.27,,,439.70,140.14,Li-Ion (21700),"Independent DC-DC lines, dedicated telemetry IC"
-A,UGreen 145W (25k),25000,90.00,74.49,14789,82.77,,,493.50,150.94,Li-Ion (21700),Sustained 100W PD
-A,AlzaPower Qi2 Slim (5k),5000,18.50,15.30,3123,82.70,,,125.20,122.20,Ultra-slim Li-Po,Exceptional compact Qi2 efficiency
-A,PanzerGlass Empower Qi2 (10k),10000,38.50,31.80,6759,82.60,,,195.40,162.74,High-Voltage Li-Po + Qi2,High efficiency for a wireless powerbank
-A,O2 Built-in Cable 10k,10000,37.00,30.48,6100,82.38,,,205.00,148.68,Li-Po Pouch,"Low-resistance flex cables, 2.4A OCP on 9V"
-A,Samsung 45W EB-P4520 (Unit 2),20000,74.00,60.39,12793,81.61,76.00,79.46,400.40,150.82,Li-Po Pouch,High-density 4S pack; full wall-to-load cycle verified
-A,AlzaPower Parade Gen2 100W (27k),27000,99.90,81.16,16084,81.21,111.99,72.88,532.80,152.31,Li-Po Pouch,"4 units: 81.07, 82.35, 81.21, 79.99 Wh. Wh in: 111.88, 112.00, 112.20, 111.88 (avg 111.99)"
-A,WG 10k QC/PD,10000,37.00,30.10,6000,81.35,,,220.00,136.82,Li-Po Pouch,Clean rail regulation without transient spikes
-A,Samsung 10k 25W PD (Beige),10000,37.00,30.00,6551,81.08,,,222.00,135.14,Li-Po Pouch,High-efficiency 25W PPS/PD converter
-A,AlzaPower WorkMate 100W (20k),20000,74.00,59.99,12303,81.07,,,432.80,138.61,Li-Po,Solid 100W performance
-A,AlzaPower Metal 40k,40000,148.00,119.69,24000,80.87,,,790.90,151.33,Li-Po / Li-Ion,"Massive aluminum chassis, zero thermal sag"
-A,O2 Spark 35W (10k),10000,36.00,28.97,5800,80.47,,,173.90,166.59,Li-Ion (2x 21700),2S 21700 architecture minimizes Joule losses
-A,Samsung 10k Wireless,10000,37.00,29.79,5952,80.51,,,240.00,124.13,Li-Po + Qi coil,Much better wired efficiency with direct harness
-A,UGREEN Nexode 200W (25k),25000,90.00,72.29,15133,80.32,99.00,73.02,565.00,127.95,Li-Ion (5S 21700),"Full cycle tested: 9.07V in (10,939 mAh; 99Wh) -> 72.29Wh out (15,133 mAh; 7h 34m runtime). 140W EPR out"
-A,AlzaPower Vision 10k (30W),10000,36.00,28.46,5725,79.06,,,237.70,119.73,Li-Ion,"Average of 4 units (27.63, 28.18, 29.57, 28.44 Wh)"
-B,Vention Cables Yellow (5k),5000,18.50,14.10,2850,76.22,,,129.20,109.13,Li-Po Pouch,Slight voltage sag over 2.0A on 5V rail
-B,ROMOSS 65W Fast Charge (27k),27000,99.90,75.44,15202,75.52,,,677.50,111.35,Li-Po / High-Cap,"Massive 65W brick, safe sub-100Wh flight limit"
-B,AlzaPower Garnet 20k (White),20000,74.00,54.72,11104,73.95,,,415.00,131.86,Li-Po Pouch,Drops from 15% to 0% abruptly
-B,AlzaPower Parade Gen2 22.5W (20k),20000,75.00,53.86,10798,71.81,,,409.50,131.53,Li-Po Pouch,Lower efficiency compared to older generation
-B,UGREEN Qi2 Black (10k),10000,37.00,25.34,5043,68.49,,,212.80,119.08,Li-Po + Qi2 coil,Wireless coil circuit parasitic losses
+A,CUKTECH 45W (20k),20000,74.00,64.09,12822,86.61,,,496.90,128.98,Li-Ion,"Clean ripple, sync buck-boost topology"
+A,Samsung 20k 45W (EB-P4520),20000,74.00,62.20,12793,84.05,76.00,79.46,400.40,155.34,Li-Po Pouch,"Average of 2 units: Unit 1: 64.01Wh (86.50%); Unit 2: 76Wh in -> 60.39Wh out (81.61% pack eff)"
+A,Vention Magnetic Wireless 20W Pink (5k),5000,18.50,15.71,3150,84.92,,,126.40,124.29,Li-Po,"Solid DC-DC conversion, previously misidentified as Ineo"
+A,INIU Pocket 10k (P50),10000,36.00,30.56,6105,84.89,,,162.00,188.64,2S Li-Po,"Exceptional density, 45W support"
+A,WG 20+ (20k),20000,74.00,62.74,12522,84.78,,,421.00,148.98,Li-Po Pouch,"New King of 20k, 6h 15m test runtime, precise output"
+A,AlzaPower Vision 100W (20k),20000,72.00,60.62,12069,84.19,,,477.90,126.85,Li-Ion,Used healthy unit (Kus 1) for benchmark
+A,AlzaPower Parade 22.5W (20k),20000,74.00,62.27,12343,84.15,,,415.00,150.05,Li-Po Pouch,"Re-tested (USB-C 30cm), highly efficient Li-Po pouch workhorse"
+B,Vention 165W TFT (20k),20000,74.00,61.62,11958,83.27,,,439.70,140.14,Li-Ion (21700),"Independent DC-DC lines, dedicated telemetry IC"
+B,UGreen 145W (25k),25000,90.00,74.49,14789,82.77,,,493.50,150.94,Li-Ion (21700),Sustained 100W PD
+B,AlzaPower Qi2 Slim (5k),5000,18.50,15.30,3123,82.70,,,125.20,122.20,Ultra-slim Li-Po,Exceptional compact Qi2 efficiency
+B,PanzerGlass Empower Qi2 (10k),10000,38.50,31.80,6759,82.60,,,195.40,162.74,High-Voltage Li-Po + Qi2,High efficiency for a wireless powerbank
+B,O2 Built-in Cable 10k,10000,37.00,30.48,6100,82.38,,,205.00,148.68,Li-Po Pouch,"Low-resistance flex cables, 2.4A OCP on 9V"
+B,Samsung 45W EB-P4520 (Unit 2),20000,74.00,60.39,12793,81.61,76.00,79.46,400.40,150.82,Li-Po Pouch,High-density 4S pack; full wall-to-load cycle verified
+B,AlzaPower Parade Gen2 100W (27k),27000,99.90,81.16,16084,81.21,111.99,72.88,532.80,152.31,Li-Po Pouch,"4 units: 81.07, 82.35, 81.21, 79.99 Wh. Wh in: 111.88, 112.00, 112.20, 111.88 (avg 111.99)"
+B,WG 10k QC/PD,10000,37.00,30.10,6000,81.35,,,220.00,136.82,Li-Po Pouch,Clean rail regulation without transient spikes
+B,Samsung 10k 25W PD (Beige),10000,37.00,30.00,6551,81.08,,,222.00,135.14,Li-Po Pouch,High-efficiency 25W PPS/PD converter
+B,AlzaPower WorkMate 100W (20k),20000,74.00,59.99,12303,81.07,,,432.80,138.61,Li-Po,Solid 100W performance
+C,AlzaPower Metal 40k,40000,148.00,119.69,24000,80.87,,,790.90,151.33,Li-Po / Li-Ion,"Massive aluminum chassis, zero thermal sag"
+C,O2 Spark 35W (10k),10000,36.00,28.97,5800,80.47,,,173.90,166.59,Li-Ion (2x 21700),2S 21700 architecture minimizes Joule losses
+C,Samsung 10k Wireless,10000,37.00,29.79,5952,80.51,,,240.00,124.13,Li-Po + Qi coil,Much better wired efficiency with direct harness
+C,UGREEN Nexode 200W (25k),25000,90.00,72.29,15133,80.32,99.00,73.02,565.00,127.95,Li-Ion (5S 21700),"Full cycle tested: 9.07V in (10,939 mAh; 99Wh) -> 72.29Wh out (15,133 mAh; 7h 34m runtime). 140W EPR out"
+C,AlzaPower Vision 10k (30W),10000,36.00,28.46,5725,79.06,,,237.70,119.73,Li-Ion,"Average of 4 units (27.63, 28.18, 29.57, 28.44 Wh)"
+D,Vention Cables Yellow (5k),5000,18.50,14.10,2850,76.22,,,129.20,109.13,Li-Po Pouch,Slight voltage sag over 2.0A on 5V rail
+D,ROMOSS 65W Fast Charge (27k),27000,99.90,75.44,15202,75.52,,,677.50,111.35,Li-Po / High-Cap,"Massive 65W brick, safe sub-100Wh flight limit"
+D,AlzaPower Garnet 20k (White),20000,74.00,54.72,11104,73.95,,,415.00,131.86,Li-Po Pouch,Drops from 15% to 0% abruptly
+E,AlzaPower Parade Gen2 22.5W (20k),20000,75.00,53.86,10798,71.81,,,409.50,131.53,Li-Po Pouch,Lower efficiency compared to older generation
+E,UGREEN Qi2 Black (10k),10000,37.00,25.34,5043,68.49,,,212.80,119.08,Li-Po + Qi2 coil,Wireless coil circuit parasitic losses
 F,Vention Mini 35W w/ Cable (10k),10000,38.50,26.59,3045,69.07,35.00,75.98,176.50,165.16,High-Voltage Li-Po,"CRITICAL THERMAL & HARDWARE FAILURE: Faked 35W burst rating; fails continuous 24W load (9V 2.77A). 3x thermal OTP shutdowns at 54%, 37%, and 18% flashing error 188. Reached 26.59Wh (69.07% eff) on 9V. Input recharge capped at 35Wh exposing undersized ~8,000 mAh cell instead of 10,000 mAh."
 F,TRONIC 10k (Lidl),10000,37.00,18.20,3663,49.19,,,219.80,82.80,Low-grade Li-Po,"18.8Wh wasted as heat, fake CV gauge"
