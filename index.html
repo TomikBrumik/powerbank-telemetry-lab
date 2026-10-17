@@ -48,10 +48,12 @@
 
     <div class="max-w-7xl mx-auto space-y-6">
 
-        <header class="bg-cardBg border border-borderCol rounded-2xl p-6 shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative overflow-hidden">
+        <!-- Header with Clean Flex Layout -->
+        <header class="bg-cardBg border border-borderCol rounded-2xl p-6 shadow-xl flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 relative overflow-hidden">
             <div class="absolute -right-10 -top-10 w-40 h-40 bg-accentYellow glow-pulse rounded-full blur-3xl"></div>
             <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-accentPink glow-pulse rounded-full blur-3xl"></div>
             <div class="absolute right-1/3 top-0 w-32 h-32 bg-accentTeal glow-pulse rounded-full blur-3xl"></div>
+            
             <div class="z-10">
                 <div class="flex items-center gap-3">
                     <span class="text-4xl float-icon">⚡</span>
@@ -62,17 +64,21 @@
                     <span data-i18n="tagline">Standardized DL24P Load Testbench • 🔌 30cm Cable Harness • 📊 Real Wh Efficiency • 🔄 Wall-to-Load Cycle Efficiency</span>
                 </p>
             </div>
-            <div class="flex items-center gap-3 flex-wrap z-10">
+
+            <!-- Action Buttons Group (Clean, No Wrapping Issues) -->
+            <div class="flex items-center gap-3 flex-wrap z-10 w-full lg:w-auto justify-start lg:justify-end">
                 <!-- Language Switcher -->
                 <div class="flex items-center bg-[#11111b] p-1 rounded-xl border border-borderCol shadow-md">
-                    <button id="langEN" onclick="setLanguage('en')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#313244] text-white transition">🇬🇧 EN</button>
-                    <button id="langCZ" onclick="setLanguage('cz')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-[#a6adc8] hover:text-white transition">🇨🇿 CZ</button>
+                    <button id="langEN" onclick="setLanguage('en')" class="px-3 py-2 rounded-lg text-xs font-bold bg-[#313244] text-white transition">🇬🇧 EN</button>
+                    <button id="langCZ" onclick="setLanguage('cz')" class="px-3 py-2 rounded-lg text-xs font-bold text-[#a6adc8] hover:text-white transition">🇨🇿 CZ</button>
                 </div>
-                <a href="https://github.com/TomikBrumik/powerbank-telemetry-lab" target="_blank" class="flex items-center gap-2 bg-[#313244] hover:bg-[#45475a] text-white text-sm px-5 py-2.5 rounded-xl border border-borderCol shadow-md transition-all">
-                    <i data-lucide="github" class="w-4 h-4"></i> GitHub Repo
+                
+                <a href="https://github.com/TomikBrumik/powerbank-telemetry-lab" target="_blank" class="flex items-center gap-2 bg-[#313244] hover:bg-[#45475a] text-white text-sm px-4 py-2.5 rounded-xl border border-borderCol shadow-md transition-all font-semibold">
+                    <i data-lucide="github" class="w-4 h-4"></i> GitHub
                 </a>
-                <a href="powerbank_telemetry_database.csv" download class="flex items-center gap-2 bg-accentYellow hover:opacity-90 text-[#11111b] text-sm px-5 py-2.5 rounded-xl font-bold shadow-md transition-all">
-                    <i data-lucide="download" class="w-4 h-4"></i> <span data-i18n="downloadCsv">Download CSV</span>
+                
+                <a href="powerbank_telemetry_database.csv" download class="flex items-center gap-2 bg-accentYellow hover:opacity-90 text-[#11111b] text-sm px-4 py-2.5 rounded-xl font-bold shadow-md transition-all">
+                    <i data-lucide="download" class="w-4 h-4"></i> <span data-i18n="downloadCsv">CSV</span>
                 </a>
             </div>
         </header>
@@ -171,7 +177,7 @@
                             <th class="py-4 px-4 sortable" onclick="sortTable('Cell_Architecture')"><span data-i18n="thCellTech">🧪 Cell Tech</span> <span class="arrow">↕</span></th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody" class="divide-y border-borderCol font-semibold"></tbody>
+                    <tbody id="tableBody" class="divide-y divide-borderCol font-semibold"></tbody>
                 </table>
             </div>
         </div>
@@ -189,7 +195,7 @@
         const i18n = {
             en: {
                 tagline: "Standardized DL24P Load Testbench • 🔌 30cm Cable Harness • 📊 Real Wh Efficiency • 🔄 Wall-to-Load Cycle Efficiency",
-                downloadCsv: "Download CSV",
+                downloadCsv: "CSV",
                 kpiRecordEff: "⚡ Record Discharge Eff",
                 kpiRecordSub: "INIU 45W 20k (New Record)",
                 kpiTopCycle: "🔌 Top Wall-to-Load",
@@ -218,7 +224,7 @@
             },
             cz: {
                 tagline: "Standardizovaný testovací pult DL24P • 🔌 30cm měřicí kabeláž • 📊 Reálná Wh účinnost • 🔄 Účinnost cyklu ze zásuvky do zátěže",
-                downloadCsv: "Stáhnout CSV",
+                downloadCsv: "CSV",
                 kpiRecordEff: "⚡ Rekordní účinnost vybíjení",
                 kpiRecordSub: "INIU 45W 20k (Nový laboratorní rekord)",
                 kpiTopCycle: "🔌 Nejvyšší cyklická účinnost",
@@ -289,16 +295,18 @@
         let currentSortKey = null;
         let currentSortAsc = true;
 
+        const tierRank = { 'S': 1, 'A': 2, 'B': 3, 'F': 4 };
+
         function setLanguage(lang) {
             currentLang = lang;
             const btnEN = document.getElementById('langEN');
             const btnCZ = document.getElementById('langCZ');
             if (lang === 'cz') {
-                btnCZ.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#313244] text-white transition';
-                btnEN.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-[#a6adc8] hover:text-white transition';
+                btnCZ.className = 'px-3 py-2 rounded-lg text-xs font-bold bg-[#313244] text-white transition';
+                btnEN.className = 'px-3 py-2 rounded-lg text-xs font-bold text-[#a6adc8] hover:text-white transition';
             } else {
-                btnEN.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#313244] text-white transition';
-                btnCZ.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-[#a6adc8] hover:text-white transition';
+                btnEN.className = 'px-3 py-2 rounded-lg text-xs font-bold bg-[#313244] text-white transition';
+                btnCZ.className = 'px-3 py-2 rounded-lg text-xs font-bold text-[#a6adc8] hover:text-white transition';
             }
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -466,9 +474,13 @@
                 filtered.sort((a, b) => {
                     let valA = a[currentSortKey];
                     let valB = b[currentSortKey];
+                    if (currentSortKey === 'Tier') {
+                        valA = tierRank[valA] || 99;
+                        valB = tierRank[valB] || 99;
+                    }
                     if (valA === null || valA === undefined) valA = -Infinity;
                     if (valB === null || valB === undefined) valB = -Infinity;
-                    if (typeof valA === 'string') {
+                    if (typeof valA === 'string' && currentSortKey !== 'Tier') {
                         return currentSortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
                     }
                     return currentSortAsc ? valA - valB : valB - valA;
