@@ -25,16 +25,16 @@ A publicly accessible, standardized telemetry database and rigorous engineering 
 
 Steel cylindrical 21700 cells eliminate pouch pillowing, handle high continuous C-rates, and feature mechanical CID pressure relief valves.
 
-| Model | Cell Configuration | Max Output | Independent Rails (No 5V Drop) | 5A PPS | Low-Power Mode (LPM) | Input Throttling | Telemetry Display |
+| Model | Cell Configuration | Max Output | Multi-Port Topology | 5A PPS | Low-Power Mode (LPM) | Input Throttling | Telemetry Display |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **UGREEN Nexode 200W 25000mAh** | 5S 21700 | 200W (140W EPR) | ✅ YES (100W+100W) | ✅ YES | 🟢 Dedicated | None (65W clean) | 📊 Color TFT Wattmeter |
-| **UGREEN 145W 25000mAh** | 21700 Pack | 145W (100W C1) | ✅ YES (100W+45W) | ✅ YES | 🟢 Dedicated | None (65W clean) | 🔢 Digital % |
-| **AlzaPower WorkMate 100W 20000mAh** | 4S 21700 | 100W | ✅ YES (No 5V drop) | ❌ NO (Locked to 3A) | 🟢 Dedicated | None (65W clean) | 🔢 Digital (V/A) |
+| **UGREEN Nexode 200W 25000mAh** | 5S 21700 | 200W (140W EPR) | ✅ Independent (100W+100W) | ✅ YES | 🟢 Dedicated | None (65W clean) | 📊 Color TFT Wattmeter |
+| **UGREEN 145W 25000mAh** | 21700 Pack | 145W (100W C1) | ✅ Independent (100W+45W) | ✅ YES | 🟢 Dedicated | None (65W clean) | 🔢 Digital % |
+| **AlzaPower WorkMate 100W 20000mAh** | 4S 21700 | 100W | ✅ Independent (No 5V drop) | ❌ NO (Locked to 3A) | 🟢 Dedicated | None (65W clean) | 🔢 Digital (V/A) |
 | **AlzaPower Vision 100W 20000mAh** | 4S 21700 | 130W (100W C + 30W A) | ⚠️ C+A OK (130W) / C1+C2 5V drop | ✅ YES | 🟢 Dedicated | None (100W clean) | 📊 Color TFT Wattmeter |
 | **AlzaPower Vision 100W 10000mAh** | 2S 21700 | 130W (100W C + 30W A) | ⚠️ C+A OK (130W) / C1+C2 5V drop | ✅ YES | 🟢 Dedicated | None (100W clean) | 📊 Color TFT Wattmeter |
-| **Vention 165W TFT 20000mAh** | 21700 Pack | 165W (100W C1) | ✅ YES (100W+65W) | ✅ YES | ❌ None | None (65W clean) | 📊 Color TFT Wattmeter |
-| **O2 Spark 35W 10000mAh** | 2S 21700 | 35W (40W Peak) | ❌ NO (5V Drop) | ❌ NO (Max 3A) | ❌ None | None (20W clean) | 🔢 Digital % |
-| **AlzaPower Vision 30W 10000mAh** | 2S 21700 | 30W | ❌ NO (5V Drop / 15W shared) | ❌ NO | ❌ None | ⚠️ **Severe (15–22W)** | 📊 Color TFT Wattmeter |
+| **Vention 165W TFT 20000mAh** | 21700 Pack | 165W (100W C1) | ✅ Independent (100W+65W) | ✅ YES | ❌ None | None (65W clean) | 📊 Color TFT Wattmeter |
+| **O2 Spark 35W 10000mAh** | 2S 21700 | 35W (40W Peak) | ❌ 5V Drop (Shared) | ❌ NO (Max 3A) | ❌ None | None (20W clean) | 🔢 Digital % |
+| **AlzaPower Vision 30W 10000mAh** | 2S 21700 | 30W | ❌ 5V Drop (Shared 15W) | ❌ NO | ❌ None | ⚠️ **Severe (15–22W)** | 📊 Color TFT Wattmeter |
 
 ---
 
@@ -58,7 +58,7 @@ Steel cylindrical 21700 cells eliminate pouch pillowing, handle high continuous 
 - **INIU Pocket P50 45W 10000mAh** — **30.56 Wh (84.89%)** | **188.64 Wh/kg** | *Pocket EDC (162 g, 188 Wh/kg) with 45W output, 5A PPS, and fast recharge. Ports: 1× USB-C, 1× USB-A.*
 
 ### 💎 B-Tier: Solid Daily Drivers with Minor Compromises
-- **O2 Spark 35W 10000mAh** — **28.97 Wh (80.47%)** | **166.59 Wh/kg** | *Heavy-duty 2x 21700 cylindrical cells with up to 40W peak headroom. Digital segment display showing percentage. Fast 20W input. Drops to 5V when both ports are used. Lacks 5A PPS and Low-Power Mode. Ports: 1× USB-C, 1× USB-A.*
+- **O2 Spark 35W 10000mAh** — **28.97 Wh (80.47%)** | **166.59 Wh/kg** | *Heavy-duty 2x 21700 cylindrical cells with up to 40W peak headroom. 1x USB-C port + 1x built-in USB-C cable (no USB-A). Digital segment display showing percentage. Fast 20W input. Drops to 5V when both are used. Lacks 5A PPS and Low-Power Mode. Ports: 1× USB-C, 1× Built-in USB-C Cable.*
 - **AlzaPower Parade Gen2 100W 27000mAh** — **81.16 Wh (81.21%)** | **152.31 Wh/kg** | *Huge 99.9 Wh pack, 100W in/out, dedicated Low-Power Mode, but soft pouch cell, 5V multi-port drop, and voltage instability below 45% SoC. Ports: 2× USB-C, 2× USB-A.*
 - **AlzaPower Metal 100W 40000mAh** — **119.69 Wh (80.87%)** | **151.33 Wh/kg** | *100W output and durable metal body, but suffers from poor multi-port power sharing and lacks Low-Power Mode. Ports: 1× USB-C, 2× USB-A, 1× Micro-USB.*
 - **Samsung 25W PD 10000mAh** — **30.00 Wh (81.08%)** | **135.14 Wh/kg** | *Reliable foundation with 9W+9W split and 25W input. Soft pouch. Ports: 2× USB-C.*
