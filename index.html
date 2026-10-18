@@ -1,1 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Powerbank Telemetry & Efficiency Benchmark Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#1e1e2e', cardBg: '#181825', borderCol: '#313244',
+                        accentBlue: '#89b4fa', accentGreen: '#a6e3a1', accentPink: '#f5c2e7',
+                        accentYellow: '#f9e2af', accentRed: '#f38ba8', accentTeal: '#94e2d5',
+                        accentPeach: '#fab387', accentMauve: '#cba6f7'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #1e1e2e; color: #cdd6f4; font-family: "Nunito", -apple-system, sans-serif; }
+        .table-row-hover:hover { background-color: rgba(137, 180, 250, 0.08); }
+        input, select { background-color: #11111b !important; border-color: #313244 !important; color: #cdd6f4 !important; }
+        input:focus, select:focus { border-color: #f5c2e7 !important; outline: none; box-shadow: 0 0 0 3px rgba(245, 194, 231, 0.2); }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #1e1e2e; }
+        ::-webkit-scrollbar-thumb { background: #45475a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #585b70; }
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] .chevron { transform: rotate(180deg); }
+        th.sortable { cursor: pointer; user-select: none; transition: color 0.2s; }
+        th.sortable:hover { color: #f5c2e7; }
+        th.sortable .arrow { font-size: 0.7rem; opacity: 0.5; }
+        th.sortable.active .arrow { opacity: 1; color: #f5c2e7; }
+        @keyframes pulse-glow { 0%,100% { opacity: 0.15; } 50% { opacity: 0.3; } }
+        .glow-pulse { animation: pulse-glow 3s ease-in-out infinite; }
+        @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-4px); } }
+        .float-icon { animation: float 2.5s ease-in-out infinite; display: inline-block; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen p-4 md:p-8">
 
+    <div class="max-w-7xl mx-auto space-y-6">
+
+        <!-- Header -->
+        <header class="bg-cardBg border border-borderCol rounded-2xl p-6 shadow-xl flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-accentYellow glow-pulse rounded-full blur-3xl"></div>
+            <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-accentPink glow-pulse rounded-full blur-3xl"></div>
+            <div class="absolute right-1/3 top-0 w-32 h-32 bg-accentTeal glow-pulse rounded-full blur-3xl"></div>
+            
+            <div class="z-10">
+                <div class="flex items-center gap-3">
+                    <span class="text-4xl float-icon">⚡</span>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Powerbank Lab <span class="text-accentYellow">⚡</span></h1>
+                </div>
+                <p id="headerSubtitle" class="text-sm text-[#bac2de] mt-2 font-medium flex items-center gap-2 flex-wrap">
+                    <span class="text-accentYellow">🔋</span>
+                    <span data-i18n="tagline">Standardized DL24P Load Testbench • 🔌 30cm Cable Harness • 📊 Real Wh Efficiency • 🔄 r/UsbCHardware Leaderboard</span>
+                </p>
+            </div>
+
+            <!-- Action Buttons Group -->
+            <div class="flex items-center gap-3 flex-wrap z-10 w-full lg:w-auto justify-start lg:justify-end">
+                <div class="flex items-center bg-[#11111b] p-1 rounded-xl border border-borderCol shadow-md">
+                    <button id="langEN" onclick="setLanguage('en')" class="px-3 py-2 rounded-lg text-xs font-bold bg-[#313244] text-white transition">🇬🇧 EN</button>
+                    <button id="langCZ" onclick="setLanguage('cz')" class="px-3 py-2 rounded-lg text-xs font-bold text-[#a6adc8] hover:text-white transition">🇨🇿 CZ</button>
+                </div>
+                
+                <a href="https://github.com/TomikBrumik/powerbank-telemetry-lab" target="_blank" class="flex items-center gap-2 bg-[#313244] hover:bg-[#45475a] text-white text-sm px-4 py-2.5 rounded-xl border border-borderCol shadow-md transition-all font-semibold">
+                    <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                </a>
+                
+                <a href="powerbank_telemetry_database.csv" download class="flex items-center gap-2 bg-accentYellow hover:opacity-90 text-[#11111b] text-sm px-4 py-2.5 rounded-xl font-bold shadow-md transition-all">
+                    <i data-lucide="download" class="w-4 h-4"></i> <span data-i18n="downloadCsv">CSV</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- KPI Summary Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentYellow transition-colors duration-300">
+                <div class="flex justify-between items-center text-[#bac2de] mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider" data-i18n="kpiRecordEff">⚡ Record Discharge Eff</span>
+                    <span class="text-xl group-hover:scale-110 transition-transform float-icon">✨</span>
+                </div>
+                <div class="text-3xl font-extrabold text-accentYellow">96.27%</div>
+                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">INIU P52L 20000mAh (Unit 2)</p>
+            </div>
+            <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentTeal transition-colors duration-300">
+                <div class="flex justify-between items-center text-[#bac2de] mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider" data-i18n="kpiTopCycle">🔌 Top Wall-to-Load</span>
+                    <span class="text-xl group-hover:scale-110 transition-transform float-icon">🔋</span>
+                </div>
+                <div class="text-3xl font-extrabold text-accentTeal">84.05%</div>
+                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">INIU P771 Qi2.2 10000mAh</p>
+            </div>
+            <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentGreen transition-colors duration-300">
+                <div class="flex justify-between items-center text-[#bac2de] mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider" data-i18n="kpiTotalUnits">🔬 Total Units Tested</span>
+                    <span class="text-xl group-hover:scale-110 transition-transform float-icon">⚡</span>
+                </div>
+                <div id="totalUnits" class="text-3xl font-extrabold text-accentGreen">46 Units</div>
+                <p id="totalModelsSub" class="text-xs text-[#a6adc8] mt-1 font-semibold" data-i18n="kpiTotalUnitsSub">Across 34 models from 5000 to 50000 mAh</p>
+            </div>
+            <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentBlue transition-colors duration-300">
+                <div class="flex justify-between items-center text-[#bac2de] mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider" data-i18n="kpiMaxDensity">🚀 Max Gravimetric Density</span>
+                    <span class="text-xl group-hover:scale-110 transition-transform float-icon">⚡</span>
+                </div>
+                <div class="text-3xl font-extrabold text-accentBlue">209.72 <span class="text-base font-semibold opacity-70">Wh/kg</span></div>
+                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">INIU P52L 20000mAh (avg)</p>
+            </div>
+        </div>
+
+        <!-- Filter & Search Bar with All 7 Tiers + Direct LPM Checkbox -->
+        <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg space-y-4">
+            <div class="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center">
+                <div class="relative flex-1">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-4 top-3.5 text-[#6c7086]"></i>
+                    <input type="text" id="searchInput" placeholder="🔍 Search models, brands, cell architecture..." class="w-full pl-11 pr-4 py-2.5 rounded-xl border text-sm font-semibold transition-all">
+                </div>
+                
+                <!-- Quick LPM Checkbox -->
+                <label class="flex items-center gap-2 cursor-pointer bg-[#11111b] px-3.5 py-2.5 rounded-xl border border-borderCol text-xs font-bold text-accentGreen hover:border-accentGreen transition select-none">
+                    <input type="checkbox" id="lpmQuickCheckbox" onchange="applyFiltersAndSort()" class="accent-accentGreen w-4 h-4 cursor-pointer">
+                    <span data-i18n="quickLpmLabel">⚡ Only with LPM</span>
+                </label>
+
+                <div class="flex items-center gap-1.5 flex-wrap">
+                    <button onclick="setTierFilter('ALL')" class="tier-btn active px-3 py-1.5 rounded-xl text-xs font-bold bg-[#313244] text-white border border-[#45475a] transition" data-tier="ALL"><span data-i18n="tierAll">All</span></button>
+                    <button onclick="setTierFilter('S')" class="tier-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#11111b] text-accentYellow border border-borderCol hover:border-accentYellow transition" data-tier="S">⚡ S</button>
+                    <button onclick="setTierFilter('A')" class="tier-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#11111b] text-accentGreen border border-borderCol hover:border-accentGreen transition" data-tier="A">🔋 A</button>
+                    <button onclick="setTierFilter('B')" class="tier-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#11111b] text-accentTeal border border-borderCol hover:border-accentTeal transition" data-tier="B">💎 B</button>
+                    <button onclick="setTierFilter('C')" class="tier-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#11111b] text-accentBlue border border-borderCol hover:border-accentBlue transition" data-tier="C">🔹 C</button>
+                    <button onclick="setTierFilter('D')" class="tier-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#11111b] text-[#fab387] border border-borderCol hover:border-[#fab387] transition" data-tier="D">📉 D</button>
+                    <button onclick="setTierFilter('E')" class="tier-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#11111b] text-[#cba6f7] border border-borderCol hover:border-[#cba6f7] transition" data-tier="E">⚠️ E</button>
+                    <button onclick="setTierFilter('F')" class="tier-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#11111b] text-accentRed border border-borderCol hover:border-accentRed transition" data-tier="F">💀 F</button>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="filterToggleBtn" onclick="toggleDropdownFilters()" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-[#313244] hover:bg-[#45475a] text-white border border-borderCol transition-all shadow-md flex items-center gap-1.5">
+                        <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-accentYellow"></i> <span data-i18n="filterToggle">⚙️ Filters</span>
+                    </button>
+                    <button id="viewToggle" onclick="toggleView()" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-accentTeal text-[#11111b] border border-accentTeal transition-all shadow-md">
+                        👁 <span data-i18n="viewAverages">View: Averages</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Expandable Dropdown Filter Panel -->
+            <div id="filterDropdownPanel" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-3 border-t border-borderCol/60">
+                <div>
+                    <label class="block text-[11px] font-bold text-[#a6adc8] mb-1">🧪 <span data-i18n="filterCell">Cell Chemistry</span></label>
+                    <select id="cellFilter" onchange="applyFiltersAndSort()" class="w-full text-xs p-2 rounded-xl border">
+                        <option value="ALL">All Chemistries</option>
+                        <option value="Li-Ion (21700)">🛡️ Li-Ion (21700 Cylindrical)</option>
+                        <option value="Li-Po (2S Block)">🔋 Li-Po (2S Block)</option>
+                        <option value="Li-Po (High-Density)">⚡ Li-Po (High-Density)</option>
+                        <option value="Li-Po (Pouch)">📦 Li-Po (Standard Pouch)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold text-[#a6adc8] mb-1">🔌 <span data-i18n="filterPorts">Port Setup</span></label>
+                    <select id="portsFilter" onchange="applyFiltersAndSort()" class="w-full text-xs p-2 rounded-xl border">
+                        <option value="ALL">All Port Configurations</option>
+                        <option value="2x USB-C">Min. 2× USB-C</option>
+                        <option value="USB-A">Includes USB-A</option>
+                        <option value="Attached Cable">Built-in Cable / Plug</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold text-[#a6adc8] mb-1">⚡ <span data-i18n="filterProtocols">Protocols / Output</span></label>
+                    <select id="protocolFilter" onchange="applyFiltersAndSort()" class="w-full text-xs p-2 rounded-xl border">
+                        <option value="ALL">All Protocols</option>
+                        <option value="5A PPS">⚡ 5A PPS (Samsung SFC 2.0 / 45W+)</option>
+                        <option value="100W">🚀 100W+ High-Power Laptops</option>
+                        <option value="Qi2">🧲 Qi2 / Qi2.2 Magnetic</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold text-[#a6adc8] mb-1">🔋 <span data-i18n="filterLPM">Low-Power Mode</span></label>
+                    <select id="lpmFilter" onchange="applyFiltersAndSort()" class="w-full text-xs p-2 rounded-xl border">
+                        <option value="ALL">All LPM Implementations</option>
+                        <option value="YES">🟢 Dedicated / Full (Manual Toggle)</option>
+                        <option value="AUTO">⚡ Auto-Sensing Trickle</option>
+                        <option value="NO">❌ None (Auto Shutdown)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dedicated Collapsible 21700 Index Section -->
+        <details class="bg-cardBg border border-borderCol rounded-2xl shadow-lg overflow-hidden group">
+            <summary class="p-4 bg-[#181825] hover:bg-[#202030] transition flex justify-between items-center cursor-pointer select-none">
+                <span class="text-sm font-extrabold text-white flex items-center gap-2">
+                    <span class="text-accentYellow">🛡️</span> <span data-i18n="sec21700Title">Dedicated 21700 Cylindrical Cell Index (Zero Swelling Risk)</span>
+                </span>
+                <i data-lucide="chevron-down" class="w-4 h-4 chevron transition-transform text-[#6c7086]"></i>
+            </summary>
+            <div class="p-4 overflow-x-auto border-t border-borderCol">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead>
+                        <tr class="border-b border-borderCol text-[11px] font-extrabold uppercase text-[#a6adc8]">
+                            <th class="py-2.5 px-3">📱 Model</th>
+                            <th class="py-2.5 px-3">🔋 Cell Config</th>
+                            <th class="py-2.5 px-3 text-right">Max Output</th>
+                            <th class="py-2.5 px-3 text-center">Multi-Port Topology</th>
+                            <th class="py-2.5 px-3 text-center">5A PPS</th>
+                            <th class="py-2.5 px-3 text-center">LPM</th>
+                            <th class="py-2.5 px-3 text-center">Recharge Input</th>
+                            <th class="py-2.5 px-3">Telemetry</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-borderCol/50 font-semibold text-white">
+                        <tr><td class="py-2.5 px-3">UGREEN Nexode 200W 25000mAh</td><td class="py-2.5 px-3 text-[#bac2de]">5S 21700</td><td class="py-2.5 px-3 text-right text-accentYellow font-bold">200W (140W EPR)</td><td class="py-2.5 px-3 text-center text-accentGreen">✅ Independent (100W+100W)</td><td class="py-2.5 px-3 text-center text-accentGreen">✅ YES</td><td class="py-2.5 px-3 text-center text-accentGreen">🟢 Dedicated</td><td class="py-2.5 px-3 text-center text-accentGreen">65W (Clean)</td><td class="py-2.5 px-3 text-accentTeal">📊 Color TFT (V/A/W)</td></tr>
+                        <tr><td class="py-2.5 px-3">UGREEN 145W 25000mAh</td><td class="py-2.5 px-3 text-[#bac2de]">21700 Pack</td><td class="py-2.5 px-3 text-right text-accentYellow font-bold">145W (100W C1)</td><td class="py-2.5 px-3 text-center text-accentGreen">✅ Independent (100W+45W)</td><td class="py-2.5 px-3 text-center text-accentGreen">✅ YES</td><td class="py-2.5 px-3 text-center text-accentGreen">🟢 Dedicated</td><td class="py-2.5 px-3 text-center text-accentGreen">65W (Clean)</td><td class="py-2.5 px-3 text-[#bac2de]">🔢 Digital %</td></tr>
+                        <tr><td class="py-2.5 px-3">AlzaPower WorkMate 100W 20000mAh</td><td class="py-2.5 px-3 text-[#bac2de]">4S 21700</td><td class="py-2.5 px-3 text-right text-accentYellow font-bold">100W</td><td class="py-2.5 px-3 text-center text-accentGreen">✅ Independent (No 5V drop)</td><td class="py-2.5 px-3 text-center text-accentRed">❌ NO (3A only)</td><td class="py-2.5 px-3 text-center text-accentGreen">🟢 Dedicated</td><td class="py-2.5 px-3 text-center text-accentGreen">65W (Clean)</td><td class="py-2.5 px-3 text-accentTeal">🔢 Digital (V/A)</td></tr>
+                        <tr><td class="py-2.5 px-3">AlzaPower Vision 100W 20000mAh</td><td class="py-2.5 px-3 text-[#bac2de]">4S 21700</td><td class="py-2.5 px-3 text-right text-accentYellow font-bold">130W (100W C + 30W A)</td><td class="py-2.5 px-3 text-center text-[#fab387]">⚠️ C+A OK (130W) / C1+C2 5V drop</td><td class="py-2.5 px-3 text-center text-accentGreen">✅ YES</td><td class="py-2.5 px-3 text-center text-accentGreen">🟢 Dedicated</td><td class="py-2.5 px-3 text-center text-accentGreen">100W (Clean)</td><td class="py-2.5 px-3 text-accentTeal">📊 Color TFT (V/A/W)</td></tr>
+                        <tr><td class="py-2.5 px-3">AlzaPower Vision 100W 10000mAh</td><td class="py-2.5 px-3 text-[#bac2de]">2S 21700</td><td class="py-2.5 px-3 text-right text-accentYellow font-bold">130W (100W C + 30W A)</td><td class="py-2.5 px-3 text-center text-[#fab387]">⚠️ C+A OK (130W) / C1+C2 5V drop</td><td class="py-2.5 px-3 text-center text-accentGreen">✅ YES</td><td class="py-2.5 px-3 text-center text-accentGreen">🟢 Dedicated</td><td class="py-2.5 px-3 text-center text-accentGreen">100W (Clean)</td><td class="py-2.5 px-3 text-accentTeal">📊 Color TFT (V/A/W)</td></tr>
+                        <tr><td class="py-2.5 px-3">Vention 165W TFT 20000mAh</td><td class="py-2.5 px-3 text-[#bac2de]">21700 Pack</td><td class="py-2.5 px-3 text-right text-accentYellow font-bold">165W (100W C1)</td><td class="py-2.5 px-3 text-center text-accentGreen">✅ Independent (100W+65W)</td><td class="py-2.5 px-3 text-center text-accentGreen">✅ YES</td><td class="py-2.5 px-3 text-center text-accentRed">❌ NO</td><td class="py-2.5 px-3 text-center text-accentGreen">65W (Clean)</td><td class="py-2.5 px-3 text-accentTeal">📊 Color TFT (V/A/W)</td></tr>
+                        <tr><td class="py-2.5 px-3">O2 Spark 35W 10000mAh</td><td class="py-2.5 px-3 text-[#bac2de]">2S 21700</td><td class="py-2.5 px-3 text-right text-[#bac2de]">35W (40W Peak)</td><td class="py-2.5 px-3 text-center text-accentRed">❌ 5V Drop (Shared)</td><td class="py-2.5 px-3 text-center text-accentRed">❌ NO (Max 3A)</td><td class="py-2.5 px-3 text-center text-accentRed">❌ NO</td><td class="py-2.5 px-3 text-center text-accentGreen">20W (Clean)</td><td class="py-2.5 px-3 text-[#bac2de]">🔢 Digital %</td></tr>
+                        <tr><td class="py-2.5 px-3">AlzaPower Vision 30W 10000mAh</td><td class="py-2.5 px-3 text-[#bac2de]">2S 21700</td><td class="py-2.5 px-3 text-right text-[#bac2de]">30W</td><td class="py-2.5 px-3 text-center text-accentRed">❌ 5V Drop (Shared 15W)</td><td class="py-2.5 px-3 text-center text-accentRed">❌ NO</td><td class="py-2.5 px-3 text-center text-accentRed">❌ NO</td><td class="py-2.5 px-3 text-center text-accentRed font-bold">⚠️ Throttles to 15–22W</td><td class="py-2.5 px-3 text-accentTeal">📊 Color TFT (V/A/W)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </details>
+
+        <!-- Chart Section -->
+        <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-base font-extrabold text-white flex items-center gap-2">
+                    <i data-lucide="bar-chart-2" class="w-5 h-5 text-accentYellow"></i> <span data-i18n="chartTitle">⚡ Efficiency vs. Energy Density</span>
+                </h2>
+            </div>
+            <div class="h-64 md:h-80 w-full">
+                <canvas id="benchmarkChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Telemetry Database Table -->
+        <div class="bg-cardBg border border-borderCol rounded-2xl shadow-lg overflow-hidden">
+            <div class="p-5 border-b border-borderCol flex justify-between items-center bg-[#181825]">
+                <h2 class="text-sm font-extrabold text-white flex items-center gap-2">
+                    <i data-lucide="database" class="w-4 h-4 text-accentTeal"></i> <span data-i18n="tableTitle">🔋 Telemetry Database</span>
+                </h2>
+                <span id="filteredCountText" class="text-xs font-bold text-[#a6adc8]"></span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm border-collapse">
+                    <thead>
+                        <tr class="border-b border-borderCol bg-[#11111b] text-xs font-extrabold uppercase text-[#a6adc8] tracking-wider">
+                            <th class="py-4 px-4 text-center sortable" onclick="sortTable('Tier')"><span data-i18n="thTier">🏆 Tier</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-4 sortable" onclick="sortTable('Model')"><span data-i18n="thModel">📱 Model</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Rated_Energy_Wh')"><span data-i18n="thRatedPack">Rated Pack</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Measured_Energy_Wh')"><span data-i18n="thMeasuredWh">⚡ Measured Wh</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 sortable" onclick="sortTable('Efficiency_Percent')"><span data-i18n="thPackEff">📊 Pack Eff %</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Input_Energy_Wh')"><span data-i18n="thInputWh">🔌 Input Wh</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 sortable" onclick="sortTable('Cycle_Efficiency')"><span data-i18n="thCycleEff">🔄 Wall → Load Eff</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Weight_g')"><span data-i18n="thWeight">⚖️ Weight</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 text-right sortable" onclick="sortTable('Energy_Density_Wh_kg')"><span data-i18n="thDensity">🚀 Wh/kg</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-4 sortable" onclick="sortTable('Ports_Summary')"><span data-i18n="thPorts">🔌 Ports</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-4 sortable" onclick="sortTable('Cell_Architecture')"><span data-i18n="thCellTech">🧪 Cell Tech</span> <span class="arrow">↕</span></th>
+                            <th class="py-4 px-3 text-center sortable" onclick="sortTable('LPM')"><span data-i18n="thLPM">🔋 LPM</span> <span class="arrow">↕</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="divide-y divide-borderCol font-semibold"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer class="text-center text-xs text-[#6c7086] py-4">
+            ⚡ Powerbank Telemetry Lab • r/UsbCHardware Standard • <span id="currentYear"></span>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('currentYear').innerText = new Date().getFullYear();
+
+        let currentLang = 'en';
+
+        const i18n = {
+            en: {
+                tagline: "Standardized DL24P Load Testbench • 🔌 30cm Cable Harness • 📊 Real Wh Efficiency • 🔄 r/UsbCHardware Leaderboard",
+                downloadCsv: "CSV",
+                kpiRecordEff: "⚡ Record Discharge Eff",
+                kpiTopCycle: "🔌 Top Wall-to-Load",
+                kpiTotalUnits: "🔬 Total Units Tested",
+                kpiTotalUnitsSub: "Across 34 models from 5000 to 50000 mAh",
+                kpiMaxDensity: "🚀 Max Gravimetric Density",
+                searchPlaceholder: "🔍 Search models, brands, cell architecture...",
+                quickLpmLabel: "⚡ Only with LPM",
+                tierAll: "All",
+                filterToggle: "⚙️ Filters",
+                filterCell: "Cell Chemistry",
+                filterPorts: "Port Setup",
+                filterProtocols: "Protocols / Output",
+                filterLPM: "Low-Power Mode",
+                sec21700Title: "Dedicated 21700 Cylindrical Cell Index (Zero Swelling Risk)",
+                viewAverages: "View: Averages",
+                viewUnits: "View: Individual Units",
+                chartTitle: "⚡ Efficiency vs. Energy Density",
+                tableTitle: "🔋 Telemetry Database",
+                thTier: "🏆 Tier",
+                thModel: "📱 Model",
+                thRatedPack: "Rated Pack",
+                thMeasuredWh: "⚡ Measured Wh",
+                thPackEff: "📊 Pack Eff %",
+                thInputWh: "🔌 Input Wh",
+                thCycleEff: "🔄 Wall → Load Eff",
+                thWeight: "⚖️ Weight",
+                thDensity: "🚀 Wh/kg",
+                thPorts: "🔌 Ports",
+                thCellTech: "🧪 Cell Tech",
+                thLPM: "🔋 LPM",
+                showingModels: "📊 Showing {count} models (averages)",
+                showingUnits: "📋 Showing {units} individual runs across {count} models",
+                unitsLabel: "{units} Units"
+            },
+            cz: {
+                tagline: "Standardizovaný testovací pult DL24P • 🔌 30cm měřicí kabeláž • 📊 Reálná Wh účinnost • 🔄 Standard r/UsbCHardware",
+                downloadCsv: "CSV",
+                kpiRecordEff: "⚡ Rekordní účinnost vybíjení",
+                kpiTopCycle: "🔌 Nejvyšší cyklická účinnost",
+                kpiTotalUnits: "🔬 Otestovaných kusů celkem",
+                kpiTotalUnitsSub: "Napříč 34 modely od 5000 do 50000 mAh",
+                kpiMaxDensity: "🚀 Max. gravimetrická hustota",
+                searchPlaceholder: "🔍 Hledat model, značku, architekturu...",
+                quickLpmLabel: "⚡ Pouze s LPM",
+                tierAll: "Vše",
+                filterToggle: "⚙️ Filtry",
+                filterCell: "Technologie článků",
+                filterPorts: "Rozložení portů",
+                filterProtocols: "Protokoly / Výkon",
+                filterLPM: "Režim nízkého odběru (LPM)",
+                sec21700Title: "Samostatná tabulka modelů s články 21700 (Ocelový plášť • 0% riziko nafouknutí)",
+                viewAverages: "Zobrazení: Průměry",
+                viewUnits: "Zobrazení: Jednotlivé kusy",
+                chartTitle: "⚡ Účinnost vs. Energetická hustota",
+                tableTitle: "🔋 Telemetrická databáze",
+                thTier: "🏆 Třída",
+                thModel: "📱 Model",
+                thRatedPack: "Štítek (Wh)",
+                thMeasuredWh: "⚡ Změřeno Wh",
+                thPackEff: "📊 Účinnost %",
+                thInputWh: "🔌 Nabito Wh",
+                thCycleEff: "🔄 Cyklus Ze zdi → Zátěž",
+                thWeight: "⚖️ Hmotnost",
+                thDensity: "🚀 Wh/kg",
+                thPorts: "🔌 Porty",
+                thCellTech: "🧪 Technologie článků",
+                thLPM: "🔋 LPM",
+                showingModels: "📊 Zobrazeno {count} modelů (průměry)",
+                showingUnits: "📋 Zobrazeno {units} jednotlivých měření napříč {count} modely",
+                unitsLabel: "{units} kusů"
+            }
+        };
+
+        const rawData = [
+            // S-TIER
+            { "Tier":"S","Model":"UGREEN Nexode 200W 25000mAh","Rated_Energy_Wh":90.00,"Measured_Energy_Wh":72.29,"Efficiency_Percent":80.32,"Input_Energy_Wh":99.00,"Cycle_Efficiency":73.02,"Weight_g":565.00,"Energy_Density_Wh_kg":127.95,"Cell_Architecture":"Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Color TFT (V/A/W)","Has5APPS":true,"MaxW":200,"Note":"Dual independent buck-boost converters (100W+100W simultaneous without reset or 5V drop), 140W EPR 28V/5A, 5S 21700 steel cylindrical cells, color TFT live wattmeter.","NoteCZ":"Duální nezávislé buck-boost měniče (100W+100W bez resetu a bez 5V pádu), 140W EPR 28V/5A, 5S 21700 ocelové články, barevný TFT wattmetr.","Units":[{"Unit":"140W Continuous Run (28V 5A)","Wh":72.29,"Eff":80.32,"In":99.00}] },
+            { "Tier":"S","Model":"UGREEN 145W 25000mAh","Rated_Energy_Wh":90.00,"Measured_Energy_Wh":74.49,"Efficiency_Percent":82.77,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":493.50,"Energy_Density_Wh_kg":150.94,"Cell_Architecture":"Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Digital %","Has5APPS":true,"MaxW":145,"Note":"Independent 100W + 45W split, 65W fast input without throttling, full 5A PPS, 21700 steel cylindrical cells, dedicated Low-Power Mode.","NoteCZ":"Nezávislý split 100 W + 45 W bez propadu, 65W rychlý vstup bez throttlingu, plné 5A PPS, 21700 články, dedikovaný Low-Power mód.","Units":[{"Unit":"Unit 1","Wh":74.49,"Eff":82.77,"In":null}] },
+            { "Tier":"S","Model":"INIU P771 Qi2.2 25W 10000mAh","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":31.94,"Efficiency_Percent":88.72,"Input_Energy_Wh":38.00,"Cycle_Efficiency":84.05,"Weight_g":215.00,"Energy_Density_Wh_kg":148.56,"Cell_Architecture":"Li-Po (High-Density)","Ports_Summary":"1× USB-C + Qi2 Magnetic","LPM":"YES (Auto)","Telemetry":"Paw Indicator","Has5APPS":true,"MaxW":45,"Note":"Lab World Record: highest round-trip cycle efficiency (84.05%). Qi2.2 25W wireless, 45W wired PD/PPS, GoCord cable, Temp°Guard 3.0.","NoteCZ":"Světový laboratorní rekord: nejvyšší účinnost cyklu ze zdi do zátěže (84,05 %). Qi2.2 25W bezdrát, 45W drátové PD/PPS, GoCord kabel, Temp°Guard 3.0.","Units":[{"Unit":"Unit 1","Wh":31.94,"Eff":88.72,"In":38.00}] },
+            { "Tier":"S","Model":"INIU P52L 45W 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":70.30,"Efficiency_Percent":95.00,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":335.20,"Energy_Density_Wh_kg":209.72,"Cell_Architecture":"Li-Po (High-Density)","Ports_Summary":"1× USB-C, 1× USB-A, 1× USB-C Cable","LPM":"YES (Auto)","Telemetry":"Segment LED","Has5APPS":true,"MaxW":45,"Note":"Laboratory record holder. Average efficiency 95.00% (Unit 2 reached 96.27%), exceptional gravimetric density 209.72 Wh/kg, 5A PPS, attached cable.","NoteCZ":"Laboratorní rekordman. Průměrná účinnost 95,00 % (kus 2 dosáhl 96,27 %), výjimečná hustota 209,72 Wh/kg, 5A PPS, integrovaný kabel.","Units":[{"Unit":"Unit 1","Wh":69.36,"Eff":93.73,"In":null},{"Unit":"Unit 2","Wh":71.23,"Eff":96.27,"In":null}] },
+
+            // A-TIER
+            { "Tier":"A","Model":"AlzaPower Vision 100W 20000mAh","Rated_Energy_Wh":72.00,"Measured_Energy_Wh":60.62,"Efficiency_Percent":84.19,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":477.90,"Energy_Density_Wh_kg":126.85,"Cell_Architecture":"Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Color TFT (V/A/W)","Has5APPS":true,"MaxW":130,"Note":"4x 21700 cells, combined output up to 130W (100W C + 30W A, 100W in/out), full 5A PPS, color TFT live wattmeter (V, A, W, time), dedicated Low-Power Mode. C+A works at full power without 5V drop; drops to 5V only when C1+C2 are shared.","NoteCZ":"4x 21700 články, kombinovaný výkon až 130 W (100 W C + 30 W A, 100 W vstup i výstup), plné 5A PPS, barevný TFT wattmetr (V/A/W/čas), dedikovaný Low-Power mód. Kombinace C+A drží plný výkon bez pádu na 5V; na 5V padá pouze při sdílení C1+C2.","Units":[{"Unit":"Unit 1","Wh":60.62,"Eff":84.19,"In":null}] },
+            { "Tier":"A","Model":"AlzaPower Vision 100W 10000mAh","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":32.82,"Efficiency_Percent":91.17,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":343.60,"Energy_Density_Wh_kg":95.52,"Cell_Architecture":"Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Color TFT (V/A/W)","Has5APPS":true,"MaxW":130,"Note":"2x 21700 cells, exceptional 91.17% lab efficiency, combined output up to 130W (100W C + 30W A), full 5A PPS, color TFT live wattmeter, dedicated Low-Power Mode. C+A works at full power without 5V drop; drops to 5V only when C1+C2 are shared. Weight 343g.","NoteCZ":"2x 21700 články, skvělá 91,17% účinnost, kombinovaný výkon až 130 W (100 W C + 30 W A), plné 5A PPS, barevný TFT wattmetr, dedikovaný Low-Power mód. Kombinace C+A drží plný výkon bez pádu na 5V; na 5V padá pouze při sdílení C1+C2. Hmotnost 343 g.","Units":[{"Unit":"Unit 1","Wh":33.04,"Eff":91.78,"In":null},{"Unit":"Unit 2","Wh":32.97,"Eff":91.58,"In":null},{"Unit":"Unit 3","Wh":33.26,"Eff":92.39,"In":null},{"Unit":"Unit 4","Wh":31.99,"Eff":88.86,"In":null}] },
+            { "Tier":"A","Model":"Vention 165W TFT 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":61.62,"Efficiency_Percent":83.27,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":439.70,"Energy_Density_Wh_kg":140.14,"Cell_Architecture":"Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"NO","Telemetry":"Color TFT (V/A/W)","Has5APPS":true,"MaxW":165,"Note":"Paper split 100W + 65W, 21700 cells, color TFT display, high power ceiling. Lacks Low-Power Mode.","NoteCZ":"Papírový split 100 W + 65 W, 21700 články, barevný TFT displej. Chybí Low-Power mód.","Units":[{"Unit":"Unit 1","Wh":61.62,"Eff":83.27,"In":null}] },
+            { "Tier":"A","Model":"CUKTECH PB200N 55W 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":64.09,"Efficiency_Percent":86.61,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":496.90,"Energy_Density_Wh_kg":128.98,"Cell_Architecture":"Li-Po (2S Block)","Ports_Summary":"1× USB-C, 1× USB-A, 1× USB-C Cable","LPM":"YES (Dedicated)","Telemetry":"Digital %","Has5APPS":true,"MaxW":55,"Note":"2S Li-Po block (7.4V), full 5A PPS (up to 55W Xiaomi Turbo), dedicated 2-hour Low-Power Mode (double-click), integrated lanyard cable.","NoteCZ":"2S Li-Po blok (7,4 V), plné 5A PPS (až 55 W Xiaomi Turbo), dedikovaný 2h Low-Power mód (dvojklik), poutkový kabel.","Units":[{"Unit":"Unit 1","Wh":64.09,"Eff":86.61,"In":null}] },
+            { "Tier":"A","Model":"AlzaPower WorkMate 100W 20000mAh","Rated_Energy_Wh":72.00,"Measured_Energy_Wh":59.99,"Efficiency_Percent":83.32,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":432.80,"Energy_Density_Wh_kg":138.61,"Cell_Architecture":"Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Digital (V/A)","Has5APPS":false,"MaxW":100,"Note":"Independent multi-port rail (zero 5V drop!), 4x 21700 cells, digital display showing live Volts and Amps, Low-Power Mode. Demoted from top tiers due to lack of 5A PPS.","NoteCZ":"Nezávislé větve bez 5V pádu, 4x 21700 články, digitální displej s teleometrií V a A, Low-Power mód. Sražen kvůli absenci 5A PPS (zamčeno na 3 A).","Units":[{"Unit":"Unit 1","Wh":59.99,"Eff":83.32,"In":null}] },
+            { "Tier":"A","Model":"Samsung 45W EB-P4520 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":62.20,"Efficiency_Percent":84.05,"Input_Energy_Wh":76.00,"Cycle_Efficiency":79.46,"Weight_g":400.40,"Energy_Density_Wh_kg":155.34,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"3× USB-C","LPM":"NO","Telemetry":"4-LED","Has5APPS":true,"MaxW":45,"Note":"Symmetrical 22W + 22W split on 2 ports, but collapses to 10W (5V drop) on all 3 ports. Full 5A PPS (SFC 2.0). Slow 25W input (~3.5h). Missing 12V fixed PDO. Soft pouch cells.","NoteCZ":"Symetrický split 22 W + 22 W na 2 portech, ale na 3 portech padá na 5V (10 W + 10 W + 10 W). Plné 5A PPS. Pomalý 25W vstup (~3,5h). Chybí 12V PDO. Měkký pouch.","Units":[{"Unit":"Unit 1","Wh":64.01,"Eff":86.50,"In":null},{"Unit":"Unit 2","Wh":60.39,"Eff":81.61,"In":76.00}] },
+            { "Tier":"A","Model":"INIU Pocket P50 45W 10000mAh","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":30.56,"Efficiency_Percent":84.89,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":162.00,"Energy_Density_Wh_kg":188.64,"Cell_Architecture":"Li-Po (2S Block)","Ports_Summary":"1× USB-C, 1× USB-A","LPM":"YES (Auto)","Telemetry":"Digital %","Has5APPS":true,"MaxW":45,"Note":"Pocket EDC (162g, 188 Wh/kg) with 45W output, 5A PPS, and fast recharge.","NoteCZ":"Kapesní EDC (162 g, 188 Wh/kg) s 45W výkonem, 5A PPS a rychlým dobíjením.","Units":[{"Unit":"Unit 1","Wh":30.56,"Eff":84.89,"In":null}] },
+
+            // B-TIER
+            { "Tier":"B","Model":"O2 Spark 35W 10000mAh","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":28.97,"Efficiency_Percent":80.47,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":173.90,"Energy_Density_Wh_kg":166.59,"Cell_Architecture":"Li-Ion (21700)","Ports_Summary":"1× USB-C, 1× USB-A","LPM":"NO","Telemetry":"Digital %","Has5APPS":false,"MaxW":40,"Note":"Solid 2x 21700 cylindrical cells with up to 40W peak headroom. Digital segment display showing percentage. Fast 20W input. Drops to 5V when both ports are used. Lacks 5A PPS and Low-Power Mode.","NoteCZ":"Poctivé 2x 21700 články zvládají až 40 W ve špičce. Digitální segmentový displej s %. Rychlý 20W vstup. Při obsazení obou portů padá na 5V. Chybí 5A PPS i Low-Power mód.","Units":[{"Unit":"Unit 1","Wh":28.97,"Eff":80.47,"In":null}] },
+            { "Tier":"B","Model":"AlzaPower Parade Gen2 100W 27000mAh","Rated_Energy_Wh":99.90,"Measured_Energy_Wh":81.16,"Efficiency_Percent":81.21,"Input_Energy_Wh":111.99,"Cycle_Efficiency":72.47,"Weight_g":532.80,"Energy_Density_Wh_kg":152.31,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"2× USB-C, 2× USB-A","LPM":"YES (Dedicated)","Telemetry":"Digital %","Has5APPS":true,"MaxW":100,"Note":"Huge 99.9 Wh pack, 100W in/out, dedicated Low-Power Mode, but soft pouch cell, 5V multi-port drop, and voltage instability below 45% SoC.","NoteCZ":"Obří 99,9 Wh pack, 100W vstup i výstup, dedikovaný Low-Power mód, ale pouch článek, 5V pád a nestabilita pod 45 % kapacity.","Units":[{"Unit":"Unit 1","Wh":81.07,"Eff":81.15,"In":111.88},{"Unit":"Unit 2","Wh":82.35,"Eff":82.43,"In":112.00},{"Unit":"Unit 3","Wh":81.21,"Eff":81.21,"In":112.20},{"Unit":"Unit 4","Wh":79.99,"Eff":80.06,"In":111.88}],"InValues":[111.88,112.00,112.20,111.88] },
+            { "Tier":"B","Model":"AlzaPower Metal 100W 40000mAh","Rated_Energy_Wh":148.00,"Measured_Energy_Wh":119.69,"Efficiency_Percent":80.87,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":790.90,"Energy_Density_Wh_kg":151.33,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C, 2× USB-A, 1× Micro-USB","LPM":"NO","Telemetry":"Digital %","Has5APPS":false,"MaxW":100,"Note":"100W output and metal body, but suffers from poor multi-port power sharing and lacks Low-Power Mode.","NoteCZ":"100W výkon a kovové tělo, ale doplácí na sdílení výkonu a absenci Low-Power módu.","Units":[{"Unit":"Unit 1","Wh":119.69,"Eff":80.87,"In":null}] },
+            { "Tier":"B","Model":"Samsung 25W PD 10000mAh","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":30.00,"Efficiency_Percent":81.08,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":222.00,"Energy_Density_Wh_kg":135.14,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"2× USB-C","LPM":"NO","Telemetry":"4-LED","Has5APPS":true,"MaxW":25,"Note":"9W+9W split and 25W input. Reliable foundation, soft pouch.","NoteCZ":"9W+9W split a 25W vstup. Spolehlivý základ, měkký pouch.","Units":[{"Unit":"Unit 1","Wh":30.00,"Eff":81.08,"In":null}] },
+            { "Tier":"B","Model":"PanzerGlass Empower Qi2 10000mAh","Rated_Energy_Wh":38.50,"Measured_Energy_Wh":31.80,"Efficiency_Percent":82.60,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":195.40,"Energy_Density_Wh_kg":162.74,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C + Qi2 Magnetic","LPM":"YES (Auto)","Telemetry":"4-LED","Has5APPS":false,"MaxW":25,"Note":"Honest Qi2 wireless with 82.6% efficiency. Soft pouch.","NoteCZ":"Poctivý Qi2 bezdrát s účinností 82,6 %. Měkký pouch.","Units":[{"Unit":"Unit 1","Wh":31.80,"Eff":82.60,"In":null}] },
+            { "Tier":"B","Model":"O2 Built-in Cable 10000mAh","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":30.48,"Efficiency_Percent":82.38,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":205.00,"Energy_Density_Wh_kg":148.68,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C, 1× USB-A, 1× USB-C Cable","LPM":"NO","Telemetry":"4-LED","Has5APPS":false,"MaxW":22.5,"Note":"Practical city bank with 82.38% efficiency. Soft pouch.","NoteCZ":"Praktická městská banka s účinností 82,38 %. Měkký pouch.","Units":[{"Unit":"Unit 1","Wh":30.48,"Eff":82.38,"In":null}] },
+
+            // C-TIER
+            { "Tier":"C","Model":"AlzaPower Parade Gen2 22.5W 10000mAh","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":32.43,"Efficiency_Percent":87.64,"Input_Energy_Wh":43.48,"Cycle_Efficiency":74.58,"Weight_g":227.40,"Energy_Density_Wh_kg":142.59,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Digital %","Has5APPS":false,"MaxW":22.5,"Note":"Full cycle: 43.48 Wh in (4,781 mAh @ 9V) -> 32.43 Wh out (6,471 mAh), 74.58% cycle efficiency. 20W PD / 22.5W max, Low-Power Mode, 5V drop under load.","NoteCZ":"Celý cyklus: 43,48 Wh ze zdi (4 781 mAh @ 9V) -> 32,43 Wh ven (6 471 mAh), cyklická účinnost 74,58 %. 20W PD / 22,5W max, Low-Power mód, pád na 5V při zátěži.","Units":[{"Unit":"Unit 1 (DL24P Run)","Wh":32.43,"Eff":87.64,"In":43.48}] },
+            { "Tier":"C","Model":"ChoeTech Digital 22.5W 50000mAh","Rated_Energy_Wh":185.00,"Measured_Energy_Wh":166.75,"Efficiency_Percent":90.14,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":955.30,"Energy_Density_Wh_kg":174.55,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C, 2× USB-A","LPM":"NO","Telemetry":"Digital %","Has5APPS":false,"MaxW":22.5,"Note":"Massive 50,000 mAh parallel block, but output is capped at 22.5W and sags above 15W.","NoteCZ":"Masivní 50k mAh paralelní pole, ale výstup končí na 22,5 W a nad 15 W vadne.","Units":[{"Unit":"Unit 1","Wh":166.75,"Eff":90.14,"In":null}] },
+            { "Tier":"C","Model":"ROMOSS 65W Fast Charge 27000mAh","Rated_Energy_Wh":99.90,"Measured_Energy_Wh":75.44,"Efficiency_Percent":75.52,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":677.50,"Energy_Density_Wh_kg":111.35,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C, 2× USB-A, 1× Micro-USB","LPM":"NO","Telemetry":"Digital %","Has5APPS":false,"MaxW":65,"Note":"Large body, honest 65W output, average 75.52% efficiency.","NoteCZ":"Velké tělo, poctivých 65 W, průměrná 75,52% účinnost.","Units":[{"Unit":"Unit 1","Wh":75.44,"Eff":75.52,"In":null}] },
+            { "Tier":"C","Model":"WG QC/PD 20W 10000mAh","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":30.10,"Efficiency_Percent":81.35,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":220.00,"Energy_Density_Wh_kg":136.82,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C, 2× USB-A","LPM":"NO","Telemetry":"4-LED","Has5APPS":false,"MaxW":20,"Note":"Standard 20W base.","NoteCZ":"Standardní 20W základ.","Units":[{"Unit":"Unit 1","Wh":30.10,"Eff":81.35,"In":null}] },
+            { "Tier":"C","Model":"AlzaPower Vision 30W 10000mAh","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":28.46,"Efficiency_Percent":79.06,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":237.70,"Energy_Density_Wh_kg":119.73,"Cell_Architecture":"Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"NO","Telemetry":"Color TFT (V/A/W)","Has5APPS":false,"MaxW":30,"Note":"Has 2x 21700 cells and Color TFT display with alarm/timer, but suffers a triple flaw: 5V multi-port drop (shared 15W), severe thermal throttling during recharge (drops to 15–22W), and NO Low-Power Mode.","NoteCZ":"Má 2x 21700 články a barevný TFT displej (s doplňkovým budíkem a stopkami), ale trpí trojitou vadou: 5V pád při multi-portu (sdílených 15 W), silný tepelný throttling při dobíjení (15-22 W) a nemá Low-Power mód.","Units":[{"Unit":"Unit 1","Wh":27.63,"Eff":76.75,"In":null},{"Unit":"Unit 2","Wh":28.18,"Eff":78.28,"In":null},{"Unit":"Unit 3","Wh":29.57,"Eff":82.14,"In":null},{"Unit":"Unit 4","Wh":28.44,"Eff":79.00,"In":null}] },
+            { "Tier":"C","Model":"Samsung Wireless 10000mAh","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":29.79,"Efficiency_Percent":80.51,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":240.00,"Energy_Density_Wh_kg":124.13,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C, 1× USB-A + Wireless Pad","LPM":"NO","Telemetry":"4-LED","Has5APPS":false,"MaxW":15,"Note":"Older slow wireless bank.","NoteCZ":"Starší pomalá bezdrátová powerbanka.","Units":[{"Unit":"Unit 1","Wh":29.79,"Eff":80.51,"In":null}] },
+
+            // D-TIER
+            { "Tier":"D","Model":"AlzaPower Parade Gen1 22.5W 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":62.27,"Efficiency_Percent":84.15,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":410.90,"Energy_Density_Wh_kg":151.55,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"2× USB-C, 1× USB-A, 1× Micro-USB","LPM":"NO","Telemetry":"Digital %","Has5APPS":false,"MaxW":22.5,"Note":"Tested run 06:10:18 (12,343 mAh out). Good efficiency, but obsolete: capped at 22.5W (20W on C), slow 18W recharge, 5V multi-port drop.","NoteCZ":"Otestováno 06:10:18 (12 343 mAh). Slušná účinnost, ale zastaralá: strop 22,5 W (20 W na C), pomalý 18W vstup, 5V pád při zátěži.","Units":[{"Unit":"Unit 1 (DL24P Run)","Wh":62.27,"Eff":84.15,"In":null}] },
+            { "Tier":"D","Model":"AlzaPower Parade Gen2 22.5W 20000mAh","Rated_Energy_Wh":75.00,"Measured_Energy_Wh":53.86,"Efficiency_Percent":71.81,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":409.50,"Energy_Density_Wh_kg":131.53,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Digital %","Has5APPS":false,"MaxW":22.5,"Note":"Has dedicated Low-Power Mode, but crippled by 71.81% efficiency, prehistoric 18W input, and 5V multi-port drop.","NoteCZ":"Má dedikovaný Low-Power mód, ale sráží ji 71,81% účinnost, prehistorický 18W vstup a 5V pád při multi-portu.","Units":[{"Unit":"Unit 1","Wh":53.86,"Eff":71.81,"In":null}] },
+            { "Tier":"D","Model":"ChoeTech PD20W 5000mAh","Rated_Energy_Wh":18.50,"Measured_Energy_Wh":13.93,"Efficiency_Percent":75.28,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":101.10,"Energy_Density_Wh_kg":137.78,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C Plug, 1× USB-C Port","LPM":"NO","Telemetry":"4-LED","Has5APPS":false,"MaxW":20,"Note":"Compact body plug (101.1g), but only recharges via slow 5V USB-A adapters; completely refuses handshake on USB-C PD chargers. NO Low-Power Mode.","NoteCZ":"Kapesní konektor na těle (101,1 g), ale nabije se jen z pomalé 5V nabíječky; na USB-C PD se handshake vůbec nesepne. Bez Low-Power módu.","Units":[{"Unit":"Unit 1","Wh":13.93,"Eff":75.28,"In":null}] },
+            { "Tier":"D","Model":"WG 20+ 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":62.74,"Efficiency_Percent":84.78,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":421.00,"Energy_Density_Wh_kg":148.98,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C, 2× USB-A, 1× Micro-USB","LPM":"NO","Telemetry":"Digital %","Has5APPS":false,"MaxW":20,"Note":"Outdated 20W concept with slow 18W input from wall and 5V drop.","NoteCZ":"Zastaralá 20W koncepce s pomalým 18W vstupem ze sítě a 5V pádem.","Units":[{"Unit":"Unit 1","Wh":62.74,"Eff":84.78,"In":null}] },
+            { "Tier":"D","Model":"Vention 5000mAh","Rated_Energy_Wh":18.50,"Measured_Energy_Wh":14.10,"Efficiency_Percent":76.22,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":129.20,"Energy_Density_Wh_kg":109.13,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C, 1× USB-A","LPM":"NO","Telemetry":"4-LED","Has5APPS":false,"MaxW":15,"Note":"Basic model without cables, average efficiency.","NoteCZ":"Základní model bez kabelů, průměrná účinnost.","Units":[{"Unit":"Unit 1","Wh":14.10,"Eff":76.22,"In":null}] },
+            { "Tier":"D","Model":"Vention Magnetic Wireless 20W 5000mAh","Rated_Energy_Wh":18.50,"Measured_Energy_Wh":15.71,"Efficiency_Percent":84.92,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":126.40,"Energy_Density_Wh_kg":124.29,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C + Wireless Pad","LPM":"NO","Telemetry":"4-LED","Has5APPS":false,"MaxW":20,"Note":"Older heating 7.5W wireless coil.","NoteCZ":"Zahřívající se 7,5W bezdrátová cívka.","Units":[{"Unit":"Unit 1","Wh":15.71,"Eff":84.92,"In":null}] },
+            { "Tier":"D","Model":"AlzaPower Qi2 Slim 5000mAh","Rated_Energy_Wh":18.50,"Measured_Energy_Wh":15.30,"Efficiency_Percent":82.70,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":125.20,"Energy_Density_Wh_kg":122.20,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C + Qi2 Magnetic","LPM":"NO","Telemetry":"4-LED","Has5APPS":false,"MaxW":15,"Note":"Extremely thin, limited 5V/3A sharing.","NoteCZ":"Extrémně tenká, sdílení 5V/3A.","Units":[{"Unit":"Unit 1","Wh":15.30,"Eff":82.70,"In":null}] },
+
+            // E-TIER
+            { "Tier":"E","Model":"AlzaPower Garnet 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":54.72,"Efficiency_Percent":73.95,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":415.00,"Energy_Density_Wh_kg":131.86,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C, 2× USB-A, 1× Micro-USB","LPM":"NO","Telemetry":"4-LED","Has5APPS":false,"MaxW":20,"Note":"Soft pouch cell, prehistoric 18W input, 5V multi-port drop, NO Low-Power Mode.","NoteCZ":"Měkký pouch článek, prehistorický 18W vstup, 5V pád při zátěži, bez Low-Power módu.","Units":[{"Unit":"Unit 1","Wh":54.72,"Eff":73.95,"In":null}] },
+            { "Tier":"E","Model":"UGREEN Qi2 Magnetic 10000mAh","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":25.34,"Efficiency_Percent":68.49,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":212.80,"Energy_Density_Wh_kg":119.08,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C, 1× USB-A + Qi2 Pad","LPM":"NO","Telemetry":"Digital %","Has5APPS":false,"MaxW":15,"Note":"Poor thermal design of coil and converter with 68.49% efficiency.","NoteCZ":"Špatný tepelný návrh cívky a měniče s účinností 68,49 %.","Units":[{"Unit":"Unit 1","Wh":25.34,"Eff":68.49,"In":null}] },
+
+            // F-TIER
+            { "Tier":"F","Model":"Vention Mini 35W w/ Cable 10000mAh","Rated_Energy_Wh":38.50,"Measured_Energy_Wh":26.59,"Efficiency_Percent":69.07,"Input_Energy_Wh":35.00,"Cycle_Efficiency":75.98,"Weight_g":176.50,"Energy_Density_Wh_kg":165.16,"Cell_Architecture":"Li-Po (Pouch)","Ports_Summary":"1× USB-C, 1× USB-C Cable","LPM":"NO","Telemetry":"LED Display","Has5APPS":false,"MaxW":35,"Note":"Disqualified: Immediate 0.355V voltage sag, 3x OTP thermal shutdowns (flashing error 188) under modest 24W load. Real pack ~8,000 mAh.","NoteCZ":"Diskvalifikace: pád o 0,355 V, 3x po sobě tepelná havárie OTP (chyba 188) při 24W zátěži. Reálný pack jen ~8 000 mAh.","Units":[{"Unit":"9V Stress Run (CC 2.77A)","Wh":26.59,"Eff":69.07,"In":35.00},{"Unit":"5V Baseline Run (CC 2.0A)","Wh":29.15,"Eff":75.71,"In":35.00}] },
+            { "Tier":"F","Model":"TRONIC PD/QC 10000mAh","Rated_Energy_Wh":37.00,"Measured_Energy_Wh":18.20,"Efficiency_Percent":49.19,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":219.80,"Energy_Density_Wh_kg":82.80,"Cell_Architecture":"Li-Po (Low-Grade)","Ports_Summary":"1× USB-C, 1× USB-A","LPM":"NO","Telemetry":"4-LED","Has5APPS":false,"MaxW":15,"Note":"Disqualified: Catastrophic 49.19% efficiency, voltage collapses below 4.5V under basic 2A load. Low-grade dangerous e-waste.","NoteCZ":"Diskvalifikace: Katastrofální účinnost 49,19 %, napětí kolabuje pod 4,5 V. Nebezpečný e-waste.","Units":[{"Unit":"Unit 1","Wh":18.20,"Eff":49.19,"In":null}] }
+        ];
+
+        let activeTier = 'ALL';
+        let chartInstance = null;
+        let showAverages = true;
+        let currentSortKey = null;
+        let currentSortAsc = true;
+
+        const tierRank = { 'S': 1, 'A': 2, 'B': 3, 'C': 4, 'D': 5, 'E': 6, 'F': 7 };
+
+        function updateKpiCounts() {
+            const totalUnitsCount = rawData.reduce((sum, item) => sum + (item.Units ? item.Units.length : 1), 0);
+            document.getElementById('totalUnits').innerText = i18n[currentLang].unitsLabel.replace('{units}', totalUnitsCount);
+        }
+
+        function toggleDropdownFilters() {
+            const panel = document.getElementById('filterDropdownPanel');
+            panel.classList.toggle('hidden');
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const btnEN = document.getElementById('langEN');
+            const btnCZ = document.getElementById('langCZ');
+            if (lang === 'cz') {
+                btnCZ.className = 'px-3 py-2 rounded-lg text-xs font-bold bg-[#313244] text-white transition';
+                btnEN.className = 'px-3 py-2 rounded-lg text-xs font-bold text-[#a6adc8] hover:text-white transition';
+            } else {
+                btnEN.className = 'px-3 py-2 rounded-lg text-xs font-bold bg-[#313244] text-white transition';
+                btnCZ.className = 'px-3 py-2 rounded-lg text-xs font-bold text-[#a6adc8] hover:text-white transition';
+            }
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key]) el.innerText = i18n[lang][key];
+            });
+            document.getElementById('searchInput').placeholder = i18n[lang].searchPlaceholder;
+            const viewBtn = document.getElementById('viewToggle');
+            viewBtn.innerHTML = showAverages ? `👁 <span>${i18n[lang].viewAverages}</span>` : `📋 <span>${i18n[lang].viewUnits}</span>`;
+            updateKpiCounts();
+            applyFiltersAndSort();
+        }
+
+        function toggleView() {
+            showAverages = !showAverages;
+            const btn = document.getElementById('viewToggle');
+            const text = showAverages ? i18n[currentLang].viewAverages : i18n[currentLang].viewUnits;
+            if (showAverages) {
+                btn.innerHTML = `👁 <span>${text}</span>`;
+                btn.className = 'px-4 py-2.5 rounded-xl text-xs font-bold bg-accentTeal text-[#11111b] border border-accentTeal transition-all shadow-md';
+            } else {
+                btn.innerHTML = `📋 <span>${text}</span>`;
+                btn.className = 'px-4 py-2.5 rounded-xl text-xs font-bold bg-accentYellow text-[#11111b] border border-accentYellow transition-all shadow-md';
+            }
+            applyFiltersAndSort();
+        }
+
+        function sortTable(key) {
+            if (currentSortKey === key) {
+                currentSortAsc = !currentSortAsc;
+            } else {
+                currentSortKey = key;
+                currentSortAsc = true;
+            }
+            document.querySelectorAll('th.sortable').forEach(th => {
+                th.classList.remove('active');
+                const arrow = th.querySelector('.arrow');
+                if (arrow) arrow.innerText = '↕';
+            });
+            applyFiltersAndSort();
+        }
+
+        function getTierBadge(tier) {
+            const icons = { 'S': '⚡', 'A': '🔋', 'B': '💎', 'C': '🔹', 'D': '📉', 'E': '⚠️', 'F': '💀' };
+            const styles = {
+                'S': 'bg-[#f9e2af]/10 text-[#f9e2af] border-[#f9e2af]/30',
+                'A': 'bg-[#a6e3a1]/10 text-[#a6e3a1] border-[#a6e3a1]/30',
+                'B': 'bg-[#94e2d5]/10 text-[#94e2d5] border-[#94e2d5]/30',
+                'C': 'bg-[#89b4fa]/10 text-[#89b4fa] border-[#89b4fa]/30',
+                'D': 'bg-[#fab387]/10 text-[#fab387] border-[#fab387]/30',
+                'E': 'bg-[#cba6f7]/10 text-[#cba6f7] border-[#cba6f7]/30',
+                'F': 'bg-[#f38ba8]/10 text-[#f38ba8] border-[#f38ba8]/30'
+            };
+            return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-xl text-xs font-extrabold border ${styles[tier]}">${icons[tier]} ${tier}</span>`;
+        }
+
+        function getEfficiencyBar(eff) {
+            if (eff === null || eff === undefined) return '<span class="text-[#6c7086] text-xs">—</span>';
+            let color = 'bg-[#f38ba8]';
+            if (eff >= 88) color = 'bg-[#f9e2af]';
+            else if (eff >= 84) color = 'bg-[#a6e3a1]';
+            else if (eff >= 81) color = 'bg-[#94e2d5]';
+            else if (eff >= 78) color = 'bg-[#89b4fa]';
+            else if (eff >= 73) color = 'bg-[#fab387]';
+            else if (eff >= 65) color = 'bg-[#cba6f7]';
+            return `
+                <div class="flex items-center gap-2">
+                    <span class="font-extrabold text-white text-xs w-10">${eff.toFixed(2)}%</span>
+                    <div class="w-16 bg-[#313244] rounded-full h-2 overflow-hidden">
+                        <div class="${color} h-2 rounded-full" style="width: ${Math.min(eff, 100)}%"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            let visibleUnits = 0;
+
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'table-row-hover transition text-xs md:text-sm';
+                
+                const noteText = currentLang === 'cz' ? (item.NoteCZ || item.Note) : item.Note;
+                const noteHtml = noteText ? `<div class="mt-1 text-[11px] font-normal ${item.Tier === 'F' ? 'text-accentRed font-semibold' : 'text-[#a6adc8]'}">${noteText}</div>` : '';
+                const weightDisplay = item.Weight_g ? `${item.Weight_g.toFixed(2)} g` : '<span class="text-[#6c7086]">—</span>';
+                const densityDisplay = item.Energy_Density_Wh_kg ? `🚀 ${item.Energy_Density_Wh_kg.toFixed(2)}` : '<span class="text-[#6c7086]">—</span>';
+                
+                let lpmDisplay = `<span class="text-[#6c7086]">❌</span>`;
+                if (item.LPM.includes('Dedicated')) lpmDisplay = `<span class="text-accentGreen font-bold">🟢 ${currentLang === 'cz' ? 'Plný' : 'Full'}</span>`;
+                else if (item.LPM.includes('Auto')) lpmDisplay = `<span class="text-accentTeal font-bold">⚡ Auto</span>`;
+
+                if (showAverages) {
+                    const hasMultiple = item.Units && item.Units.length > 1;
+                    let detailHtml = '';
+                    if (hasMultiple) {
+                        detailHtml = `<details>
+                            <summary class="flex items-center gap-1 cursor-pointer">
+                                <span>${item.Model}</span>
+                                <i data-lucide="chevron-down" class="w-3 h-3 chevron transition-transform text-[#6c7086]"></i>
+                            </summary>
+                            <div class="mt-2 p-2 bg-[#11111b] rounded-lg border border-borderCol text-xs font-normal">
+                                <div class="grid grid-cols-4 gap-1 font-bold text-[#a6adc8] mb-1 pb-1 border-b border-borderCol">
+                                    <span>${currentLang === 'cz' ? 'Kus / Profil' : 'Unit / Run'}</span><span class="text-right">In (Wh)</span><span class="text-right">Out (Wh)</span><span class="text-right">Eff</span>
+                                </div>
+                                ${item.Units.map(u => `<div class="grid grid-cols-4 gap-1 py-0.5"><span>${u.Unit}</span><span class="text-right text-[#f9e2af]">${u.In !== null ? u.In.toFixed(2) : '—'}</span><span class="text-right text-accentGreen">${u.Wh.toFixed(2)}</span><span class="text-right text-accentPink">${u.Eff.toFixed(2)}%</span></div>`).join('')}`;
+                        if (item.InValues) {
+                            detailHtml += `<div class="border-t border-borderCol mt-2 pt-2 font-bold text-[#a6adc8] mb-1">⚡ ${currentLang === 'cz' ? 'Vstupní energie (4 testy):' : 'Input Energy (4 runs):'}</div>
+                                <div class="grid grid-cols-4 gap-1 text-[#f9e2af] text-center">${item.InValues.map(v => `<span>${v.toFixed(2)}</span>`).join('')}</div>
+                                <div class="text-center text-[#f9e2af] font-bold mt-1">${currentLang === 'cz' ? 'Průměrný vstup:' : 'Average In:'} ${item.Input_Energy_Wh.toFixed(2)} Wh</div>`;
+                        }
+                        detailHtml += `<div class="border-t border-borderCol mt-2 pt-2 grid grid-cols-3 gap-1 font-bold text-white">
+                                    <span>📊 ${currentLang === 'cz' ? 'Průměr / Souhrn' : 'Average / Summary'}</span>
+                                    <span class="text-right">${item.Measured_Energy_Wh.toFixed(2)} Wh</span>
+                                    <span class="text-right">${item.Efficiency_Percent.toFixed(2)}%</span>
+                                </div>
+                            </div>
+                        </details>${noteHtml}`;
+                    } else {
+                        detailHtml = `<span>${item.Model}</span>${noteHtml}`;
+                    }
+                    tr.innerHTML = `
+                        <td class="py-3 px-4 text-center">${getTierBadge(item.Tier)}</td>
+                        <td class="py-3 px-4 font-extrabold text-white">${detailHtml}</td>
+                        <td class="py-3 px-3 text-right text-[#bac2de]">${item.Rated_Energy_Wh.toFixed(2)} Wh</td>
+                        <td class="py-3 px-3 text-right font-extrabold text-[#a6e3a1]">⚡ ${item.Measured_Energy_Wh.toFixed(2)} Wh</td>
+                        <td class="py-3 px-3">${getEfficiencyBar(item.Efficiency_Percent)}</td>
+                        <td class="py-3 px-3 text-right text-[#f9e2af] font-bold">${item.Input_Energy_Wh !== null ? '🔌 ' + item.Input_Energy_Wh.toFixed(2) + ' Wh' : '<span class="text-[#6c7086]">—</span>'}</td>
+                        <td class="py-3 px-3">${getEfficiencyBar(item.Cycle_Efficiency)}</td>
+                        <td class="py-3 px-3 text-right text-[#bac2de]">${weightDisplay}</td>
+                        <td class="py-3 px-3 text-right font-extrabold text-[#89b4fa]">${densityDisplay}</td>
+                        <td class="py-3 px-4 text-white font-medium">${item.Ports_Summary}</td>
+                        <td class="py-3 px-4 text-[#a6adc8]">${item.Cell_Architecture}</td>
+                        <td class="py-3 px-3 text-center">${lpmDisplay}</td>
+                    `;
+                    tbody.appendChild(tr);
+                } else {
+                    item.Units.forEach((unit, index) => {
+                        visibleUnits++;
+                        const unitTr = document.createElement('tr');
+                        unitTr.className = 'table-row-hover transition text-xs md:text-sm border-b border-borderCol/50';
+                        const unitCycleEff = (unit.In && unit.Wh) ? (unit.Wh / unit.In * 100) : null;
+                        if (index === 0) {
+                            unitTr.innerHTML = `
+                                <td class="py-3 px-4 text-center" rowspan="${item.Units.length}">${getTierBadge(item.Tier)}</td>
+                                <td class="py-3 px-4 font-extrabold text-white" rowspan="${item.Units.length}">
+                                    ${item.Model} <span class="text-[#6c7086] text-xs font-normal">(${item.Units.length} ${currentLang === 'cz' ? 'záznamů' : 'Runs'})</span>
+                                    ${noteHtml}
+                                </td>
+                            `;
+                        }
+                        unitTr.innerHTML += `
+                            <td class="py-3 px-3 text-right text-[#bac2de]">${unit.Unit} <span class="text-[10px] text-[#6c7086] block">(${item.Rated_Energy_Wh.toFixed(1)} Wh)</span></td>
+                            <td class="py-3 px-3 text-right font-extrabold text-[#a6e3a1]">⚡ ${unit.Wh.toFixed(2)} Wh</td>
+                            <td class="py-3 px-3">${getEfficiencyBar(unit.Eff)}</td>
+                            <td class="py-3 px-3 text-right text-[#f9e2af]">${unit.In !== null ? '🔌 ' + unit.In.toFixed(2) + ' Wh' : '<span class="text-[#6c7086]">—</span>'}</td>
+                            <td class="py-3 px-3">${getEfficiencyBar(unitCycleEff)}</td>
+                            <td class="py-3 px-3 text-right text-[#bac2de]">${weightDisplay}</td>
+                            <td class="py-3 px-3 text-right font-extrabold text-[#89b4fa]">${densityDisplay}</td>
+                            <td class="py-3 px-4 text-white font-medium">${item.Ports_Summary}</td>
+                            <td class="py-3 px-4 text-[#a6adc8]">${item.Cell_Architecture}</td>
+                            <td class="py-3 px-3 text-center">${lpmDisplay}</td>
+                        `;
+                        tbody.appendChild(unitTr);
+                    });
+                }
+            });
+            lucide.createIcons();
+            const countTemplate = showAverages ? i18n[currentLang].showingModels : i18n[currentLang].showingUnits;
+            document.getElementById('filteredCountText').innerText = countTemplate.replace('{count}', data.length).replace('{units}', visibleUnits);
+        }
+
+        function setTierFilter(tier) {
+            activeTier = tier;
+            document.querySelectorAll('.tier-btn').forEach(btn => {
+                if (btn.dataset.tier === tier) {
+                    btn.className = 'tier-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#313244] text-white border border-[#585b70] transition shadow-md';
+                } else {
+                    btn.className = 'tier-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#11111b] text-[#6c7086] border border-borderCol hover:border-[#585b70] transition';
+                }
+            });
+            applyFiltersAndSort();
+        }
+
+        function applyFiltersAndSort() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cellVal = document.getElementById('cellFilter').value;
+            const portsVal = document.getElementById('portsFilter').value;
+            const protoVal = document.getElementById('protocolFilter').value;
+            const lpmVal = document.getElementById('lpmFilter').value;
+            const quickLpm = document.getElementById('lpmQuickCheckbox').checked;
+
+            let filtered = rawData.filter(item => {
+                const matchesTier = (activeTier === 'ALL' || item.Tier === activeTier);
+                const matchesQuery = !query || 
+                    item.Model.toLowerCase().includes(query) || 
+                    item.Cell_Architecture.toLowerCase().includes(query) ||
+                    item.Ports_Summary.toLowerCase().includes(query) ||
+                    (item.Note && item.Note.toLowerCase().includes(query)) ||
+                    (item.NoteCZ && item.NoteCZ.toLowerCase().includes(query));
+                
+                const matchesCell = (cellVal === 'ALL' || item.Cell_Architecture === cellVal);
+                
+                let matchesPorts = true;
+                if (portsVal === '2x USB-C') matchesPorts = item.Ports_Summary.includes('2× USB-C') || item.Ports_Summary.includes('3× USB-C');
+                else if (portsVal === 'USB-A') matchesPorts = item.Ports_Summary.includes('USB-A');
+                else if (portsVal === 'Attached Cable') matchesPorts = item.Ports_Summary.includes('Cable') || item.Ports_Summary.includes('Plug');
+
+                let matchesProto = true;
+                if (protoVal === '5A PPS') matchesProto = item.Has5APPS === true;
+                else if (protoVal === '100W') matchesProto = item.MaxW >= 100;
+                else if (protoVal === 'Qi2') matchesProto = item.Model.includes('Qi2') || item.Ports_Summary.includes('Qi2');
+
+                let matchesLpm = true;
+                if (lpmVal === 'YES') matchesLpm = item.LPM.includes('Dedicated');
+                else if (lpmVal === 'AUTO') matchesLpm = item.LPM.includes('Auto');
+                else if (lpmVal === 'NO') matchesLpm = item.LPM === 'NO';
+
+                let matchesQuickLpm = true;
+                if (quickLpm) {
+                    matchesQuickLpm = item.LPM.includes('YES');
+                }
+
+                return matchesTier && matchesQuery && matchesCell && matchesPorts && matchesProto && matchesLpm && matchesQuickLpm;
+            });
+
+            if (currentSortKey) {
+                filtered.sort((a, b) => {
+                    let valA = a[currentSortKey];
+                    let valB = b[currentSortKey];
+                    if (currentSortKey === 'Tier') {
+                        valA = tierRank[valA] || 99;
+                        valB = tierRank[valB] || 99;
+                    }
+                    if (valA === null || valA === undefined) valA = -Infinity;
+                    if (valB === null || valB === undefined) valB = -Infinity;
+                    if (typeof valA === 'string' && currentSortKey !== 'Tier') {
+                        return currentSortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+                    }
+                    return currentSortAsc ? valA - valB : valB - valA;
+                });
+            }
+            renderTable(filtered);
+            updateChart(filtered);
+        }
+
+        function updateChart(data) {
+            const ctx = document.getElementById('benchmarkChart').getContext('2d');
+            const labels = data.map(d => d.Model.length > 20 ? d.Model.substring(0, 18) + '...' : d.Model);
+            const densities = data.map(d => d.Energy_Density_Wh_kg || 0);
+            const efficiencies = data.map(d => d.Efficiency_Percent);
+            if (chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: currentLang === 'cz' ? '🚀 Hustota (Wh/kg)' : '🚀 Energy Density (Wh/kg)', data: densities, backgroundColor: 'rgba(249, 226, 175, 0.7)', borderColor: '#f9e2af', borderWidth: 1, borderRadius: 4, yAxisID: 'y' },
+                        { label: currentLang === 'cz' ? '⚡ Účinnost vybíjení (%)' : '⚡ Discharge Eff (%)', data: efficiencies, backgroundColor: 'rgba(245, 194, 231, 0.7)', borderColor: '#f5c2e7', borderWidth: 1, borderRadius: 4, yAxisID: 'y1' }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: {
+                        x: { ticks: { color: '#a6adc8', font: { family: 'Nunito', size: 10, weight: 'bold' } }, grid: { color: '#313244' } },
+                        y: { type: 'linear', position: 'left', title: { display: true, text: '⚡ Wh/kg', color: '#f9e2af', font: { weight: 'bold' } }, ticks: { color: '#bac2de' }, grid: { color: '#313244' } },
+                        y1: { type: 'linear', position: 'right', min: 30, max: 100, title: { display: true, text: currentLang === 'cz' ? '🔋 Účinnost %' : '🔋 Discharge %', color: '#f5c2e7', font: { weight: 'bold' } }, ticks: { color: '#bac2de' }, grid: { drawOnChartArea: false } }
+                    },
+                    plugins: { legend: { labels: { color: '#cdd6f4', font: { family: 'Nunito', weight: 'bold' }, boxWidth: 12 } } }
+                }
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('input', applyFiltersAndSort);
+        window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); updateKpiCounts(); applyFiltersAndSort(); });
+    </script>
+</body>
+</html>
