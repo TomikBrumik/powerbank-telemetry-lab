@@ -91,7 +91,7 @@
                     <span class="text-xl group-hover:scale-110 transition-transform float-icon">✨</span>
                 </div>
                 <div class="text-3xl font-extrabold text-accentYellow">96.27%</div>
-                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">INIU P52L 45W 20000mAh (Unit 2)</p>
+                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">INIU P52L / P51L 45W 20000mAh (Unit 2)</p>
             </div>
             <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg relative overflow-hidden group hover:border-accentTeal transition-colors duration-300">
                 <div class="flex justify-between items-center text-[#bac2de] mb-2">
@@ -115,7 +115,7 @@
                     <span class="text-xl group-hover:scale-110 transition-transform float-icon">⚡</span>
                 </div>
                 <div class="text-3xl font-extrabold text-accentBlue">209.72 <span class="text-base font-semibold opacity-70">Wh/kg</span></div>
-                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">INIU P52L 45W 20000mAh (avg)</p>
+                <p class="text-xs text-[#a6adc8] mt-1 font-semibold">INIU P52L / P51L 45W 20000mAh (avg)</p>
             </div>
         </div>
 
@@ -231,6 +231,66 @@
             </div>
         </details>
 
+        <!-- Dedicated Collapsible INIU P52L / P51L / P51L-E2 Revision & 45W Stress-Test Deep-Dive -->
+        <details class="bg-cardBg border border-borderCol rounded-2xl shadow-lg overflow-hidden group">
+            <summary class="p-4 bg-[#181825] hover:bg-[#202030] transition flex justify-between items-center cursor-pointer select-none">
+                <span class="text-sm font-extrabold text-white flex items-center gap-2">
+                    <span class="text-accentTeal">🔬</span> <span data-i18n="secIniuTitle">INIU P52L / P51L (2S 7.4V) vs. P51L-E2 (1S 3.7V) – Hardware Revision & 45W Stress-Test Log</span>
+                </span>
+                <i data-lucide="chevron-down" class="w-4 h-4 chevron transition-transform text-[#6c7086]"></i>
+            </summary>
+            <div class="p-4 overflow-x-auto border-t border-borderCol space-y-4">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead>
+                        <tr class="border-b border-borderCol text-[11px] font-extrabold uppercase text-[#a6adc8]">
+                            <th class="py-2.5 px-3">⚙️ Parameter / Test Metric</th>
+                            <th class="py-2.5 px-3">⚪ White P51L-E2 (1S • SN:000125)</th>
+                            <th class="py-2.5 px-3">⚫ Black P51L / P52L (2S • SN:000025)</th>
+                            <th class="py-2.5 px-3">🌐 r/ChargingSheet & Official INIU Specs</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-borderCol/50 font-semibold text-white">
+                        <tr>
+                            <td class="py-2 px-3 text-[#bac2de]">Cell Architecture & Pack</td>
+                            <td class="py-2 px-3 text-accentBlue">1S Parallel (3.7V / 20,000mAh / 74Wh) • ~14–16A cell draw @ 45W</td>
+                            <td class="py-2 px-3 text-accentGreen">2S Series (7.4V / 10,000mAh / 74Wh, cells 2INP12/62/80) • ~6–7A cell draw @ 45W</td>
+                            <td class="py-2 px-3 text-[#a6adc8]">P51L-E2 renamed/upgraded as P51L / P52L; 74Wh pack, 11.45 × 7.25 × 2.92 cm, 326–335g</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-3 text-[#bac2de]">PPS / Samsung SFC 2.0 (45W)</td>
+                            <td class="py-2 px-3 text-accentGreen">✅ 45W SFC 2.0 (3.3–11V/4.5A) on BOTH port C1 & smooth white cable</td>
+                            <td class="py-2 px-3 text-accentGreen">✅ 45W SFC 2.0 (3.3–11V/4.5A) on BOTH port C1 & braided black cable</td>
+                            <td class="py-2 px-3 text-[#a6adc8]">Full 5A PPS (45W SFC 2.0) on both C1 and attached cable + UFCS up to 49W</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-3 text-[#bac2de]">Fixed PD & Recharge Input</td>
+                            <td class="py-2 px-3">5V/3A, 9V/3A, 12V/3A, 15V/3A (No 20V PDO) • 27W max input</td>
+                            <td class="py-2 px-3">5V/3A, 9V/3A, 12V/3A, 15V/3A (No 20V PDO) • 27W max input</td>
+                            <td class="py-2 px-3 text-[#a6adc8]">No 20V PDO on any 45W P51L/P52L revision; input capped at 27W (9V/3A or 15V/1.8A)</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-3 text-[#bac2de]">Multi-Port / Passthrough / UPS</td>
+                            <td class="py-2 px-3 text-[#fab387]">5V/3A (15W Max) shared • Passthrough 5V only • NO UPS</td>
+                            <td class="py-2 px-3 text-[#fab387]">5V/3A (15W Max) shared • Passthrough 5V only • NO UPS</td>
+                            <td class="py-2 px-3 text-[#a6adc8]">Label: Total(OUT1+OUT2+OUT3) 15W Max; passthrough drops fast charge to 5V; brief dropout on AC unplug</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-3 text-[#bac2de]">Continuous 45W (15V/3A) Stress</td>
+                            <td class="py-2 px-3 text-accentTeal">Sustained 34 min continuous until converter OTP (44.3–48.3°C); 4 runs = 60.56 Wh (81.84%, 4105 mAh) in 01:22:16</td>
+                            <td class="py-2 px-3 text-accentRed">Fixed 5–8 min FW 45W throttling timer drops 15V PDO (4 runs: 00:05:54, +00:05:00, +00:10:04, +00:04:32 @ 2.9A = 18.52 Wh to 70% SoC)</td>
+                            <td class="py-2 px-3 text-[#a6adc8]">r/ChargingSheet: P51L-E2 sustains 45W 20–34 min before OTP; newer INIU FW uses fixed 5–8 min 45W timer</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-3 text-[#bac2de]">LPM & PD Controller Lockout</td>
+                            <td class="py-2 px-3">Auto 5V Trickle Mode • 5V fallback lock at 0% UVP</td>
+                            <td class="py-2 px-3">Auto 5V Trickle Mode (15V→5V after 30s &lt;40mA) • 5V fallback lock after load trips</td>
+                            <td class="py-2 px-3 text-[#a6adc8]">INIU Automatically-Adapted Trickle-Charging Mode (5V); brief AC charger plug-in resets PD 5V lockout</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </details>
+
         <!-- Chart Section -->
         <div class="bg-cardBg border border-borderCol rounded-2xl p-5 shadow-lg">
             <div class="flex justify-between items-center mb-4">
@@ -302,6 +362,7 @@
                 filterProtocols: "Protocols / Output",
                 filterLPM: "Low-Power Mode (LPM)",
                 sec21700Title: "Dedicated 21700 Cylindrical Cell Index (Zero Swelling Risk)",
+                secIniuTitle: "INIU P52L / P51L (2S 7.4V) vs. P51L-E2 (1S 3.7V) – Hardware Revision & 45W Stress-Test Log",
                 viewAverages: "View: Averages",
                 viewUnits: "View: Individual Units",
                 chartTitle: "⚡ Efficiency vs. Energy Density",
@@ -339,6 +400,7 @@
                 filterProtocols: "Protokoly / Výkon",
                 filterLPM: "Režim nízkého odběru (LPM)",
                 sec21700Title: "Samostatná tabulka modelů s články 21700 (Ocelový plášť • 0% riziko nafouknutí)",
+                secIniuTitle: "INIU P52L / P51L (2S 7,4 V) vs. P51L-E2 (1S 3,7 V) – Revize, PPS SFC 2.0 a 45W zátěžové testy",
                 viewAverages: "Zobrazení: Průměry",
                 viewUnits: "Zobrazení: Jednotlivé kusy",
                 chartTitle: "⚡ Účinnost vs. Energetická hustota",
@@ -363,19 +425,19 @@
 
         const rawData = [
             // S-TIER
-            { "Tier":"S","Model":"UGREEN Nexode 200W 25000mAh","Rated_Energy_Wh":90.00,"Measured_Energy_Wh":72.29,"Efficiency_Percent":80.32,"Input_Energy_Wh":99.00,"Cycle_Efficiency":73.02,"Weight_g":565.00,"Energy_Density_Wh_kg":127.95,"Cell_Architecture":"5S1P Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Color TFT (V/A/W)","Has5APPS":true,"MaxW":200,"Note":"Dual independent buck-boost converters (100W+100W simultaneous without reset or 5V drop), 140W EPR 28V/5A, 5S 21700 steel cylindrical cells, color TFT live wattmeter.","NoteCZ":"Duální nezávislé buck-boost měniče (100W+100W bez resetu a bez 5V pádu), 140W EPR 28V/5A, 5S 21700 ocelové články, barevný TFT wattmetr.","Units":[{"Unit":"140W Continuous Run (28V 5A)","Wh":72.29,"Eff":80.32,"In":99.00}] },
-            { "Tier":"S","Model":"UGREEN 145W 25000mAh","Rated_Energy_Wh":90.00,"Measured_Energy_Wh":74.49,"Efficiency_Percent":82.77,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":493.50,"Energy_Density_Wh_kg":150.94,"Cell_Architecture":"5S1P Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Digital %","Has5APPS":true,"MaxW":145,"Note":"Independent 100W + 45W split, 65W fast input without throttling, full 5A PPS, 21700 steel cylindrical cells, dedicated Low-Power Mode.","NoteCZ":"Nezávislý split 100 W + 45 W bez propadu, 65W rychlý vstup bez throttlingu, plné 5A PPS, 21700 články, dedikovaný Low-Power mód.","Units":[{"Unit":"Unit 1","Wh":74.49,"Eff":82.77,"In":null}] },
-            { "Tier":"S","Model":"INIU P771 Qi2.2 25W 10000mAh","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":31.94,"Efficiency_Percent":88.72,"Input_Energy_Wh":38.00,"Cycle_Efficiency":84.05,"Weight_g":215.00,"Energy_Density_Wh_kg":148.56,"Cell_Architecture":"2S1P Li-Po (High-Density)","Ports_Summary":"1× USB-C + Qi2 Magnetic","LPM":"YES (Auto)","Telemetry":"Paw Indicator","Has5APPS":true,"MaxW":45,"Note":"Lab World Record: highest round-trip cycle efficiency (84.05%). Qi2.2 25W wireless, 45W wired PD/PPS, GoCord cable, Temp°Guard 3.0.","NoteCZ":"Světový laboratorní rekord: nejvyšší účinnost cyklu ze zdi do zátěže (84,05 %). Qi2.2 25W bezdrát, 45W drátové PD/PPS, GoCord kabel, Temp°Guard 3.0.","Units":[{"Unit":"Unit 1","Wh":31.94,"Eff":88.72,"In":38.00}] },
-            { "Tier":"S","Model":"INIU P52L 45W 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":70.30,"Efficiency_Percent":95.00,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":335.20,"Energy_Density_Wh_kg":209.72,"Cell_Architecture":"2S2P Li-Po (High-Density)","Ports_Summary":"1× USB-C, 1× USB-A, 1× USB-C Cable","LPM":"YES (Auto)","Telemetry":"Segment LED","Has5APPS":true,"MaxW":45,"Note":"Laboratory record holder. Average efficiency 95.00% (Unit 2 reached 96.27%), exceptional gravimetric density 209.72 Wh/kg, 5A PPS, attached cable.","NoteCZ":"Laboratorní rekordman. Průměrná účinnost 95,00 % (kus 2 dosáhl 96,27 %), výjimečná hustota 209,72 Wh/kg, 5A PPS, integrovaný kabel.","Units":[{"Unit":"Unit 1","Wh":69.36,"Eff":93.73,"In":null},{"Unit":"Unit 2","Wh":71.23,"Eff":96.27,"In":null}] },
+            { "Tier":"S","Model":"UGREEN Nexode 200W 25000mAh","Rated_Energy_Wh":90.00,"Measured_Energy_Wh":72.29,"Efficiency_Percent":80.32,"Input_Energy_Wh":99.00,"Cycle_Efficiency":73.02,"Weight_g":565.00,"Energy_Density_Wh_kg":127.95,"Cell_Architecture":"5S1P Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Color TFT (V/A/W)","Has5APPS":true,"MaxW":200,"Note":"Dual independent buck-boost converters (100W+100W simultaneous without reset or 5V drop), 140W EPR 28V/5A, 5S 21700 steel cylindrical cells, color TFT live wattmeter, 65W passthrough recharge, dedicated LPM (3s hold, 3.5h auto-off).","NoteCZ":"Duální nezávislé buck-boost měniče (100W+100W bez resetu a bez 5V pádu), 140W EPR 28V/5A, 5S 21700 ocelové články, barevný TFT wattmetr, 65W passthrough dobíjení, dedikovaný LPM (podržení 3 s, auto-vypnutí po 3,5 h).","Units":[{"Unit":"140W Continuous Run (28V 5A)","Wh":72.29,"Eff":80.32,"In":99.00}] },
+            { "Tier":"S","Model":"UGREEN 145W 25000mAh","Rated_Energy_Wh":90.00,"Measured_Energy_Wh":74.49,"Efficiency_Percent":82.77,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":493.50,"Energy_Density_Wh_kg":150.94,"Cell_Architecture":"5S1P Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Digital %","Has5APPS":true,"MaxW":145,"Note":"Independent 100W + 45W split, 65W fast input with passthrough and zero throttling, full 5A PPS, 21700 steel cylindrical cells, dedicated Low-Power Mode (3s hold, 3.5h timer).","NoteCZ":"Nezávislý split 100 W + 45 W bez propadu, 65W rychlý vstup s passthrough bez throttlingu, plné 5A PPS, 21700 články, dedikovaný Low-Power mód (podržení 3 s, časovač 3,5 h).","Units":[{"Unit":"Unit 1","Wh":74.49,"Eff":82.77,"In":null}] },
+            { "Tier":"S","Model":"INIU P771 Qi2.2 25W 10000mAh","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":31.94,"Efficiency_Percent":88.72,"Input_Energy_Wh":38.00,"Cycle_Efficiency":84.05,"Weight_g":215.00,"Energy_Density_Wh_kg":148.56,"Cell_Architecture":"2S1P Li-Po (High-Density)","Ports_Summary":"1× USB-C + Qi2 Magnetic","LPM":"YES (Auto)","Telemetry":"Paw Indicator","Has5APPS":true,"MaxW":45,"Note":"Lab World Record: highest round-trip cycle efficiency (84.05%). Qi2.2 25W wireless, 45W wired PD/PPS, GoCord cable, Temp°Guard 3.0, Automatically-Adapted Trickle-Charging Mode.","NoteCZ":"Světový laboratorní rekord: nejvyšší účinnost cyklu ze zdi do zátěže (84,05 %). Qi2.2 25W bezdrát, 45W drátové PD/PPS, GoCord kabel, Temp°Guard 3.0, automatický trickle režim.","Units":[{"Unit":"Unit 1","Wh":31.94,"Eff":88.72,"In":38.00}] },
+            { "Tier":"S","Model":"INIU P52L / P51L / P51L-E2 45W 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":70.30,"Efficiency_Percent":95.00,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":335.20,"Energy_Density_Wh_kg":209.72,"Cell_Architecture":"2S / 1S Li-Po (High-Density)","Ports_Summary":"1× USB-C, 1× USB-A, 1× USB-C Cable","LPM":"YES (Auto)","Telemetry":"Segment LED","Has5APPS":true,"MaxW":45,"Note":"Laboratory record holder (95.00% avg @ 10W baseline; Unit 2 hit 96.27%, 209.72 Wh/kg). Full 5A PPS (3.3–11V/4.5A, Samsung SFC 2.0) on BOTH port C1 & built-in cable + UFCS 49W; no 20V PDO (max 15V/3A); 27W max input; 5V/3A (15W) multi-port drop; 5V-only passthrough (no UPS); INIU Auto Trickle Mode (15V sleeps to 5V after 30s <40mA). Revision split under 45W (15V/3A) DL24P stress: White P51L-E2 (1S 3.7V, SN:000125) sustained 34 min before converter OTP (44.3–48.3°C), delivering 60.56 Wh (81.84%, 4105 mAh) in 01:22:16 across 4 runs; Black P51L (2S 7.4V, SN:000025, 2INP12/62/80) enforces a fixed 5–8 min FW 45W throttling timer dropping 15V PDO (18.52 Wh to 70% SoC across 4 runs). Brief AC charger plug-in resets PD 5V fallback lockout.","NoteCZ":"Laboratorní rekordman (průměr 95,00 % při 10W základu; kus 2 dosáhl 96,27 %, 209,72 Wh/kg). Plné 5A PPS (3,3–11V/4,5A, Samsung SFC 2.0) na portu C1 i integrovaném kabelu + UFCS 49W; bez 20V PDO (max 15V/3A); 27W max vstup; sdílení více portů 5V/3A (15W Max); passthrough jen 5V (není UPS); INIU Auto Trickle režim (po 30s pod 40mA uspí 15V na 5V). Rozdíl revizí při 45W (15V/3A) DL24P testu: Bílá P51L-E2 (1S 3,7V, SN:000125) držela 34 min v kuse do OTP měniče (44,3–48,3 °C) a odevzdala 60,56 Wh (81,84 %, 4105 mAh) za 01:22:16 ve 4 úsecích; Černá P51L (2S 7,4V, SN:000025, 2INP12/62/80) má pevný 5–8min FW časovač shazující 15V profil (18,52 Wh po 70 % SoC ve 4 bězích). Krátké připojení k nabíječce resetuje 5V zámek PD řadiče.","Units":[{"Unit":"Unit 1 (10W Baseline)","Wh":69.36,"Eff":93.73,"In":null},{"Unit":"Unit 2 (10W Baseline)","Wh":71.23,"Eff":96.27,"In":null}] },
 
             // A-TIER
             { "Tier":"A","Model":"AlzaPower Vision 100W 20000mAh","Rated_Energy_Wh":72.00,"Measured_Energy_Wh":60.62,"Efficiency_Percent":84.19,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":477.90,"Energy_Density_Wh_kg":126.85,"Cell_Architecture":"4S1P Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Color TFT (V/A/W)","Has5APPS":true,"MaxW":130,"Note":"4x 21700 cells, combined output up to 130W (100W C + 30W A, 100W in/out), full 5A PPS, color TFT live wattmeter (V, A, W, time), dedicated Low-Power Mode. C+A works at full power without 5V drop; drops to 5V only when C1+C2 are shared.","NoteCZ":"4x 21700 články, kombinovaný výkon až 130 W (100 W C + 30 W A, 100 W vstup i výstup), plné 5A PPS, barevný TFT wattmetr (V/A/W/čas), dedikovaný Low-Power mód. Kombinace C+A drží plný výkon bez pádu na 5V; na 5V padá pouze při sdílení C1+C2.","Units":[{"Unit":"Unit 1","Wh":60.62,"Eff":84.19,"In":null}] },
             { "Tier":"A","Model":"AlzaPower Vision 100W 10000mAh","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":32.82,"Efficiency_Percent":91.17,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":343.60,"Energy_Density_Wh_kg":95.52,"Cell_Architecture":"2S1P Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Color TFT (V/A/W)","Has5APPS":true,"MaxW":130,"Note":"2x 21700 cells, exceptional 91.17% lab efficiency, combined output up to 130W (100W C + 30W A), full 5A PPS, color TFT live wattmeter, dedicated Low-Power Mode. C+A works at full power without 5V drop; drops to 5V only when C1+C2 are shared. Weight 343g.","NoteCZ":"2x 21700 články, skvělá 91,17% účinnost, kombinovaný výkon až 130 W (100 W C + 30 W A), plné 5A PPS, barevný TFT wattmetr, dedikovaný Low-Power mód. Kombinace C+A drží plný výkon bez pádu na 5V; na 5V padá pouze při sdílení C1+C2. Hmotnost 343 g.","Units":[{"Unit":"Unit 1","Wh":33.04,"Eff":91.78,"In":null},{"Unit":"Unit 2","Wh":32.97,"Eff":91.58,"In":null},{"Unit":"Unit 3","Wh":33.26,"Eff":92.39,"In":null},{"Unit":"Unit 4","Wh":31.99,"Eff":88.86,"In":null}] },
             { "Tier":"A","Model":"Vention 165W TFT 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":61.62,"Efficiency_Percent":83.27,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":439.70,"Energy_Density_Wh_kg":140.14,"Cell_Architecture":"4S1P Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"NO","Telemetry":"Color TFT (V/A/W)","Has5APPS":true,"MaxW":165,"Note":"Paper split 100W + 65W, 21700 cells, color TFT display, high power ceiling. Lacks Low-Power Mode.","NoteCZ":"Papírový split 100 W + 65 W, 21700 články, barevný TFT displej. Chybí Low-Power mód.","Units":[{"Unit":"Unit 1","Wh":61.62,"Eff":83.27,"In":null}] },
-            { "Tier":"A","Model":"CUKTECH PB200N 55W 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":64.09,"Efficiency_Percent":86.61,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":496.90,"Energy_Density_Wh_kg":128.98,"Cell_Architecture":"2S1P Li-Po (2S Block)","Ports_Summary":"1× USB-C, 1× USB-A, 1× USB-C Cable","LPM":"YES (Dedicated)","Telemetry":"Digital %","Has5APPS":true,"MaxW":55,"Note":"2S Li-Po block (7.4V), full 5A PPS (up to 55W Xiaomi Turbo), dedicated 2-hour Low-Power Mode (double-click), integrated lanyard cable.","NoteCZ":"2S Li-Po blok (7,4 V), plné 5A PPS (až 55 W Xiaomi Turbo), dedikovaný 2h Low-Power mód (dvojklik), poutkový kabel.","Units":[{"Unit":"Unit 1","Wh":64.09,"Eff":86.61,"In":null}] },
+            { "Tier":"A","Model":"CUKTECH PB200N 55W 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":64.09,"Efficiency_Percent":86.61,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":496.90,"Energy_Density_Wh_kg":128.98,"Cell_Architecture":"2S1P Li-Po (2S Block)","Ports_Summary":"1× USB-C, 1× USB-A, 1× USB-C Cable","LPM":"YES (Dedicated)","Telemetry":"Digital %","Has5APPS":true,"MaxW":55,"Note":"2S Li-Po block (7.4V), fixed PDO up to 20V/2.75A + full 5A PPS (5–11V/5A, 55W Xiaomi Turbo), 40W fast input, independent multi-port split without 5V drop (33W+15W / 45W+10W), dedicated 2-hour Low-Power Mode (double-click), integrated lanyard cable.","NoteCZ":"2S Li-Po blok (7,4 V), fixní PDO až 20V/2,75A + plné 5A PPS (5–11V/5A, 55 W Xiaomi Turbo), 40W rychlý vstup, nezávislý multi-port split bez 5V pádu (33W+15W / 45W+10W), dedikovaný 2h Low-Power mód (dvojklik), poutkový kabel.","Units":[{"Unit":"Unit 1","Wh":64.09,"Eff":86.61,"In":null}] },
             { "Tier":"A","Model":"AlzaPower WorkMate 100W 20000mAh","Rated_Energy_Wh":72.00,"Measured_Energy_Wh":59.99,"Efficiency_Percent":83.32,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":432.80,"Energy_Density_Wh_kg":138.61,"Cell_Architecture":"4S1P Li-Ion (21700)","Ports_Summary":"2× USB-C, 1× USB-A","LPM":"YES (Dedicated)","Telemetry":"Digital (V/W)","Has5APPS":false,"MaxW":100,"Note":"Independent multi-port rail (zero 5V drop!), 4x 21700 cells, digital display showing live Volts and Watts, Low-Power Mode. Demoted from top tiers due to lack of 5A PPS.","NoteCZ":"Nezávislé větve bez 5V pádu, 4x 21700 články, digitální displej s teleometrií V a W, Low-Power mód. Sražen kvůli absenci 5A PPS (zamčeno na 3 A).","Units":[{"Unit":"Unit 1","Wh":59.99,"Eff":83.32,"In":null}] },
-            { "Tier":"A","Model":"Samsung 45W EB-P4520 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":62.20,"Efficiency_Percent":84.05,"Input_Energy_Wh":76.00,"Cycle_Efficiency":79.46,"Weight_g":400.40,"Energy_Density_Wh_kg":155.34,"Cell_Architecture":"2S1P Li-Po (Pouch)","Ports_Summary":"3× USB-C","LPM":"NO","Telemetry":"4-LED","Has5APPS":true,"MaxW":45,"Note":"Symmetrical 22W + 22W split on 2 ports, but collapses to 10W (5V drop) on all 3 ports. Full 5A PPS (SFC 2.0). Slow 25W input (~3.5h). Missing 12V fixed PDO. Soft pouch cells.","NoteCZ":"Symetrický split 22 W + 22 W na 2 portech, ale na 3 portech padá na 5V (10 W + 10 W + 10 W). Plné 5A PPS. Pomalý 25W vstup (~3,5h). Chybí 12V PDO. Měkký pouch.","Units":[{"Unit":"Unit 1","Wh":64.01,"Eff":86.50,"In":null},{"Unit":"Unit 2","Wh":60.39,"Eff":81.61,"In":76.00}] },
-            { "Tier":"A","Model":"INIU Pocket P50 45W 10000mAh","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":30.56,"Efficiency_Percent":84.89,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":162.00,"Energy_Density_Wh_kg":188.64,"Cell_Architecture":"2S1P Li-Po (2S Block)","Ports_Summary":"1× USB-C, 1× USB-A","LPM":"YES (Auto)","Telemetry":"Digital %","Has5APPS":true,"MaxW":45,"Note":"Pocket EDC (162g, 188 Wh/kg) with 45W output, 5A PPS, and fast recharge.","NoteCZ":"Kapesní EDC (162 g, 188 Wh/kg) s 45W výkonem, 5A PPS a rychlým dobíjením.","Units":[{"Unit":"Unit 1","Wh":30.56,"Eff":84.89,"In":null}] },
+            { "Tier":"A","Model":"Samsung 45W EB-P4520 20000mAh","Rated_Energy_Wh":74.00,"Measured_Energy_Wh":62.20,"Efficiency_Percent":84.05,"Input_Energy_Wh":76.00,"Cycle_Efficiency":79.46,"Weight_g":400.40,"Energy_Density_Wh_kg":155.34,"Cell_Architecture":"2S1P Li-Po (Pouch)","Ports_Summary":"3× USB-C","LPM":"NO","Telemetry":"4-LED","Has5APPS":true,"MaxW":45,"Note":"Symmetrical 22W + 22W split on 2 ports, collapses to 10W (5V drop) on all 3 ports. PDO 5V/9V/15V@3A + 20V/2.25A (no 12V PDO) + dual PPS (3.3–11V/4.5A SFC 2.0 & 3.3–16V/3A). Slow 25W input (~3.5h), 5V-only passthrough. Soft pouch cells.","NoteCZ":"Symetrický split 22 W + 22 W na 2 portech, na 3 portech padá na 5V (10 W + 10 W + 10 W). PDO 5V/9V/15V@3A + 20V/2,25A (chybí 12V PDO) + duální PPS (3,3–11V/4,5A SFC 2.0 a 3,3–16V/3A). Pomalý 25W vstup (~3,5h), passthrough jen 5V. Měkký pouch.","Units":[{"Unit":"Unit 1","Wh":64.01,"Eff":86.50,"In":null},{"Unit":"Unit 2","Wh":60.39,"Eff":81.61,"In":76.00}] },
+            { "Tier":"A","Model":"INIU Pocket P50 45W 10000mAh","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":30.56,"Efficiency_Percent":84.89,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":162.00,"Energy_Density_Wh_kg":188.64,"Cell_Architecture":"2S1P Li-Po (2S Block)","Ports_Summary":"1× USB-C, 1× USB-A","LPM":"YES (Auto)","Telemetry":"Digital %","Has5APPS":true,"MaxW":45,"Note":"Pocket EDC (162g, 188.64 Wh/kg) with 45W output, 5A PPS (11V/4.5A SFC 2.0), no 20V PDO (max 15V/3A), 5V/3A multi-port drop, and INIU Automatically-Adapted Trickle-Charging Mode (5V).","NoteCZ":"Kapesní EDC (162 g, 188,64 Wh/kg) s 45W výkonem, 5A PPS (11V/4,5A SFC 2.0), bez 20V PDO (max 15V/3A), 5V/3A multi-port sdílení a automatický INIU Trickle-Charging mód (5V).","Units":[{"Unit":"Unit 1","Wh":30.56,"Eff":84.89,"In":null}] },
 
             // B-TIER
             { "Tier":"B","Model":"O2 Spark 35W 10000mAh","Rated_Energy_Wh":36.00,"Measured_Energy_Wh":28.97,"Efficiency_Percent":80.47,"Input_Energy_Wh":null,"Cycle_Efficiency":null,"Weight_g":173.90,"Energy_Density_Wh_kg":166.59,"Cell_Architecture":"2S1P Li-Ion (21700)","Ports_Summary":"1× USB-C, 1× USB-C Cable","LPM":"NO","Telemetry":"Digital %","Has5APPS":false,"MaxW":40,"Note":"Solid 2x 21700 cylindrical cells with up to 40W peak headroom. 1x USB-C port + 1x built-in USB-C cable (no USB-A). Digital segment display showing percentage. Fast 20W input. Drops to 5V when both are used. Lacks 5A PPS and Low-Power Mode.","NoteCZ":"Poctivé 2x 21700 články zvládají až 40 W ve špičce. 1x USB-C port + 1x vestavěný USB-C kabel (žádné USB-A). Digitální segmentový displej s %. Rychlý 20W vstup. Při obsazení obou padá na 5V. Chybí 5A PPS i Low-Power mód.","Units":[{"Unit":"Unit 1","Wh":28.97,"Eff":80.47,"In":null}] },
@@ -561,7 +623,6 @@
                     const hasMultiple = item.Units && item.Units.length > 1;
                     let detailHtml = '';
                     if (hasMultiple) {
-                        // Dynamically calculate actual mathematical mean of all units
                         const dynamicAvgWh = item.Units.reduce((acc, u) => acc + u.Wh, 0) / item.Units.length;
                         const dynamicAvgEff = item.Units.reduce((acc, u) => acc + u.Eff, 0) / item.Units.length;
                         
@@ -583,7 +644,6 @@
                         }
 
                         if (item.Tier === 'F') {
-                            // Clear, unambiguous summary for Disqualified models (e.g. Vention)
                             detailHtml += `<div class="border-t border-borderCol mt-2 pt-2 text-white">
                                 <div class="flex justify-between font-bold text-accentRed">
                                     <span>💀 ${currentLang === 'cz' ? 'Hlavní 9V PD test (Diskvalifikace OTP):' : 'Primary 9V PD Run (OTP Disqualification):'}</span>
